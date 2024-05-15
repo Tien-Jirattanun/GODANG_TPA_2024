@@ -1,0 +1,16 @@
+package.xml
+setup.cfg
+setup.py
+../../build/planing/planing.egg-info/PKG-INFO
+../../build/planing/planing.egg-info/SOURCES.txt
+../../build/planing/planing.egg-info/dependency_links.txt
+../../build/planing/planing.egg-info/entry_points.txt
+../../build/planing/planing.egg-info/requires.txt
+../../build/planing/planing.egg-info/top_level.txt
+../../build/planing/planing.egg-info/zip-safe
+planing/__init__.py
+planing/planing_node.py
+resource/planing
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py

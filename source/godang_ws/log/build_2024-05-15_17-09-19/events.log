@@ -1,0 +1,94 @@
+[0.000000] (-) TimerEvent: {}
+[0.000550] (localization) JobQueued: {'identifier': 'localization', 'dependencies': OrderedDict()}
+[0.000891] (planing) JobQueued: {'identifier': 'planing', 'dependencies': OrderedDict()}
+[0.001099] (vision) JobQueued: {'identifier': 'vision', 'dependencies': OrderedDict()}
+[0.001311] (localization) JobStarted: {'identifier': 'localization'}
+[0.020331] (planing) JobStarted: {'identifier': 'planing'}
+[0.033196] (vision) JobStarted: {'identifier': 'vision'}
+[0.098030] (-) TimerEvent: {}
+[0.200036] (-) TimerEvent: {}
+[0.302021] (-) TimerEvent: {}
+[0.402954] (-) TimerEvent: {}
+[0.504047] (-) TimerEvent: {}
+[0.606037] (-) TimerEvent: {}
+[0.707770] (-) TimerEvent: {}
+[0.808991] (-) TimerEvent: {}
+[0.909934] (-) TimerEvent: {}
+[1.010930] (-) TimerEvent: {}
+[1.112077] (-) TimerEvent: {}
+[1.214002] (-) TimerEvent: {}
+[1.315954] (-) TimerEvent: {}
+[1.417094] (-) TimerEvent: {}
+[1.519042] (-) TimerEvent: {}
+[1.620981] (-) TimerEvent: {}
+[1.630536] (localization) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/localization', 'build', '--build-base', '/ros2_file/godang_ws/build/localization/build', 'install', '--record', '/ros2_file/godang_ws/build/localization/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/ros2_file/godang_ws/src/localization', 'env': {'HOSTNAME': '64e19fa183ed', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/root', 'OLDPWD': '/ros2_file', 'ROS_PYTHON_VERSION': '3', 'ROS_DISTRO': 'humble', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'PWD': '/ros2_file/godang_ws/build/localization', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/ros2_file/godang_ws/build/localization/prefix_override:/ros2_file/godang_ws/install/localization/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1'}, 'shell': False}
+[1.645369] (planing) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/planing', 'build', '--build-base', '/ros2_file/godang_ws/build/planing/build', 'install', '--record', '/ros2_file/godang_ws/build/planing/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/ros2_file/godang_ws/src/planing', 'env': {'HOSTNAME': '64e19fa183ed', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/root', 'OLDPWD': '/ros2_file', 'ROS_PYTHON_VERSION': '3', 'ROS_DISTRO': 'humble', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'PWD': '/ros2_file/godang_ws/build/planing', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/ros2_file/godang_ws/build/planing/prefix_override:/ros2_file/godang_ws/install/planing/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1'}, 'shell': False}
+[1.656604] (vision) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/vision', 'build', '--build-base', '/ros2_file/godang_ws/build/vision/build', 'install', '--record', '/ros2_file/godang_ws/build/vision/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/ros2_file/godang_ws/src/vision', 'env': {'HOSTNAME': '64e19fa183ed', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/root', 'OLDPWD': '/ros2_file', 'ROS_PYTHON_VERSION': '3', 'ROS_DISTRO': 'humble', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'PWD': '/ros2_file/godang_ws/build/vision', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/ros2_file/godang_ws/build/vision/prefix_override:/ros2_file/godang_ws/install/vision/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1'}, 'shell': False}
+[1.721971] (-) TimerEvent: {}
+[1.823032] (-) TimerEvent: {}
+[1.925034] (-) TimerEvent: {}
+[2.026961] (-) TimerEvent: {}
+[2.035421] (localization) StdoutLine: {'line': b'running egg_info\n'}
+[2.037084] (planing) StdoutLine: {'line': b'running egg_info\n'}
+[2.038196] (localization) StdoutLine: {'line': b'writing ../../build/localization/localization.egg-info/PKG-INFO\n'}
+[2.039588] (localization) StdoutLine: {'line': b'writing dependency_links to ../../build/localization/localization.egg-info/dependency_links.txt\n'}
+[2.040384] (planing) StdoutLine: {'line': b'writing ../../build/planing/planing.egg-info/PKG-INFO\n'}
+[2.041502] (localization) StdoutLine: {'line': b'writing entry points to ../../build/localization/localization.egg-info/entry_points.txt\n'}
+[2.042140] (planing) StdoutLine: {'line': b'writing dependency_links to ../../build/planing/planing.egg-info/dependency_links.txt\n'}
+[2.042525] (localization) StdoutLine: {'line': b'writing requirements to ../../build/localization/localization.egg-info/requires.txt\n'}
+[2.042850] (localization) StdoutLine: {'line': b'writing top-level names to ../../build/localization/localization.egg-info/top_level.txt\n'}
+[2.043214] (planing) StdoutLine: {'line': b'writing entry points to ../../build/planing/planing.egg-info/entry_points.txt\n'}
+[2.043650] (planing) StdoutLine: {'line': b'writing requirements to ../../build/planing/planing.egg-info/requires.txt\n'}
+[2.044039] (planing) StdoutLine: {'line': b'writing top-level names to ../../build/planing/planing.egg-info/top_level.txt\n'}
+[2.047558] (localization) StdoutLine: {'line': b"reading manifest file '../../build/localization/localization.egg-info/SOURCES.txt'\n"}
+[2.050379] (localization) StdoutLine: {'line': b"writing manifest file '../../build/localization/localization.egg-info/SOURCES.txt'\n"}
+[2.051077] (localization) StdoutLine: {'line': b'running build\n'}
+[2.051490] (localization) StdoutLine: {'line': b'running build_py\n'}
+[2.052113] (planing) StdoutLine: {'line': b"reading manifest file '../../build/planing/planing.egg-info/SOURCES.txt'\n"}
+[2.052561] (localization) StdoutLine: {'line': b'running install\n'}
+[2.052973] (localization) StdoutLine: {'line': b'running install_lib\n'}
+[2.055760] (planing) StdoutLine: {'line': b"writing manifest file '../../build/planing/planing.egg-info/SOURCES.txt'\n"}
+[2.057035] (vision) StdoutLine: {'line': b'running egg_info\n'}
+[2.058404] (localization) StdoutLine: {'line': b'running install_data\n'}
+[2.059200] (planing) StdoutLine: {'line': b'running build\n'}
+[2.059911] (planing) StdoutLine: {'line': b'running build_py\n'}
+[2.060707] (localization) StdoutLine: {'line': b'running install_egg_info\n'}
+[2.061779] (vision) StdoutLine: {'line': b'writing ../../build/vision/vision.egg-info/PKG-INFO\n'}
+[2.062670] (planing) StdoutLine: {'line': b'running install\n'}
+[2.063373] (planing) StdoutLine: {'line': b'running install_lib\n'}
+[2.064284] (vision) StdoutLine: {'line': b'writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt\n'}
+[2.065255] (vision) StdoutLine: {'line': b'writing entry points to ../../build/vision/vision.egg-info/entry_points.txt\n'}
+[2.066198] (localization) StdoutLine: {'line': b"removing '/ros2_file/godang_ws/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[2.066775] (vision) StdoutLine: {'line': b'writing requirements to ../../build/vision/vision.egg-info/requires.txt\n'}
+[2.067734] (vision) StdoutLine: {'line': b'writing top-level names to ../../build/vision/vision.egg-info/top_level.txt\n'}
+[2.068522] (localization) StdoutLine: {'line': b'Copying ../../build/localization/localization.egg-info to /ros2_file/godang_ws/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info\n'}
+[2.069505] (planing) StdoutLine: {'line': b'running install_data\n'}
+[2.070411] (planing) StdoutLine: {'line': b'running install_egg_info\n'}
+[2.071313] (vision) StdoutLine: {'line': b"reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'\n"}
+[2.071901] (planing) StdoutLine: {'line': b"removing '/ros2_file/godang_ws/install/planing/lib/python3.10/site-packages/planing-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[2.072659] (planing) StdoutLine: {'line': b'Copying ../../build/planing/planing.egg-info to /ros2_file/godang_ws/install/planing/lib/python3.10/site-packages/planing-0.0.0-py3.10.egg-info\n'}
+[2.073491] (vision) StdoutLine: {'line': b"writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'\n"}
+[2.074307] (vision) StdoutLine: {'line': b'running build\n'}
+[2.074943] (vision) StdoutLine: {'line': b'running build_py\n'}
+[2.076106] (vision) StdoutLine: {'line': b'running install\n'}
+[2.077186] (vision) StdoutLine: {'line': b'running install_lib\n'}
+[2.119051] (localization) StdoutLine: {'line': b'running install_scripts\n'}
+[2.120447] (vision) StdoutLine: {'line': b'running install_data\n'}
+[2.121686] (vision) StdoutLine: {'line': b'running install_egg_info\n'}
+[2.123707] (planing) StdoutLine: {'line': b'running install_scripts\n'}
+[2.125623] (vision) StdoutLine: {'line': b"removing '/ros2_file/godang_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[2.127473] (vision) StdoutLine: {'line': b'Copying ../../build/vision/vision.egg-info to /ros2_file/godang_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info\n'}
+[2.128412] (-) TimerEvent: {}
+[2.136729] (vision) StdoutLine: {'line': b'running install_scripts\n'}
+[2.169270] (localization) StdoutLine: {'line': b"writing list of installed files to '/ros2_file/godang_ws/build/localization/install.log'\n"}
+[2.174095] (planing) StdoutLine: {'line': b"writing list of installed files to '/ros2_file/godang_ws/build/planing/install.log'\n"}
+[2.185280] (vision) StdoutLine: {'line': b"writing list of installed files to '/ros2_file/godang_ws/build/vision/install.log'\n"}
+[2.221592] (localization) CommandEnded: {'returncode': 0}
+[2.228916] (-) TimerEvent: {}
+[2.255520] (localization) JobEnded: {'identifier': 'localization', 'rc': 0}
+[2.262465] (planing) CommandEnded: {'returncode': 0}
+[2.296460] (planing) JobEnded: {'identifier': 'planing', 'rc': 0}
+[2.299774] (vision) CommandEnded: {'returncode': 0}
+[2.327254] (vision) JobEnded: {'identifier': 'vision', 'rc': 0}
+[2.331710] (-) TimerEvent: {}
+[2.332008] (-) EventReactorShutdown: {}

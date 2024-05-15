@@ -1,0 +1,33 @@
+[1.892s] Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/src/vision': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/build/vision/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/build/vision/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/build/vision/install.log --single-version-externally-managed install_data
+[2.379s] running egg_info
+[2.379s] creating ../../build/vision/vision.egg-info
+[2.380s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[2.380s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[2.380s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[2.380s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[2.381s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[2.381s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[2.384s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[2.385s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[2.385s] running build
+[2.385s] running build_py
+[2.385s] creating /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/build/vision/build
+[2.385s] creating /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/build/vision/build/lib
+[2.385s] creating /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/build/vision/build/lib/vision
+[2.385s] copying vision/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/build/vision/build/lib/vision
+[2.386s] running install
+[2.387s] running install_lib
+[2.387s] creating /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[2.388s] copying /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/build/vision/build/lib/vision/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[2.388s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/install/vision/lib/python3.10/site-packages/vision/__init__.py to __init__.cpython-310.pyc
+[2.389s] running install_data
+[2.389s] creating /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/install/vision/share/ament_index
+[2.389s] creating /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/install/vision/share/ament_index/resource_index
+[2.389s] creating /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/install/vision/share/ament_index/resource_index/packages
+[2.389s] copying resource/vision -> /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/install/vision/share/ament_index/resource_index/packages
+[2.389s] copying package.xml -> /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/install/vision/share/vision
+[2.389s] running install_egg_info
+[2.392s] Copying ../../build/vision/vision.egg-info to /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info
+[2.394s] running install_scripts
+[2.434s] writing list of installed files to '/home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/build/vision/install.log'
+[2.478s] Invoked command in '/home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/src/vision' returned '0': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/build/vision/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/build/vision/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/godang_ws/build/vision/install.log --single-version-externally-managed install_data
