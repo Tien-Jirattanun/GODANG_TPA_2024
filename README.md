@@ -29,7 +29,7 @@ docker run -it env
 
 ## Question
 
-Feel free to ask Jiratanun@kmutt.ac.th about all of this. I know it's kinda hard but trust me I'm engineer.
+Feel free to ask Jiratanun.leeu@kmutt.ac.th about all of this. I know it's kinda hard but trust me I'm engineer.
 
 
 
