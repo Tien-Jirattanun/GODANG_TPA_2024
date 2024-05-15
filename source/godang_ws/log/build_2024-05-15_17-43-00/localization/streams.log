@@ -1,0 +1,20 @@
+[1.501s] Invoking command in '/ros2_file/godang_ws/src/localization': PYTHONPATH=/ros2_file/godang_ws/build/localization/prefix_override:/ros2_file/godang_ws/install/localization/lib/python3.10/site-packages: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/localization build --build-base /ros2_file/godang_ws/build/localization/build install --record /ros2_file/godang_ws/build/localization/install.log --single-version-externally-managed install_data
+[1.819s] running egg_info
+[1.821s] writing ../../build/localization/localization.egg-info/PKG-INFO
+[1.822s] writing dependency_links to ../../build/localization/localization.egg-info/dependency_links.txt
+[1.823s] writing entry points to ../../build/localization/localization.egg-info/entry_points.txt
+[1.824s] writing requirements to ../../build/localization/localization.egg-info/requires.txt
+[1.825s] writing top-level names to ../../build/localization/localization.egg-info/top_level.txt
+[1.831s] reading manifest file '../../build/localization/localization.egg-info/SOURCES.txt'
+[1.834s] writing manifest file '../../build/localization/localization.egg-info/SOURCES.txt'
+[1.836s] running build
+[1.836s] running build_py
+[1.837s] running install
+[1.839s] running install_lib
+[1.842s] running install_data
+[1.843s] running install_egg_info
+[1.847s] removing '/ros2_file/godang_ws/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info' (and everything under it)
+[1.849s] Copying ../../build/localization/localization.egg-info to /ros2_file/godang_ws/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info
+[1.863s] running install_scripts
+[1.915s] writing list of installed files to '/ros2_file/godang_ws/build/localization/install.log'
+[2.049s] Invoked command in '/ros2_file/godang_ws/src/localization' returned '0': PYTHONPATH=/ros2_file/godang_ws/build/localization/prefix_override:/ros2_file/godang_ws/install/localization/lib/python3.10/site-packages: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/localization build --build-base /ros2_file/godang_ws/build/localization/build install --record /ros2_file/godang_ws/build/localization/install.log --single-version-externally-managed install_data

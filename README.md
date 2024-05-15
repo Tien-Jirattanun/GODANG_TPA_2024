@@ -16,11 +16,17 @@ After install the docker open your comand-line and enter to env file to pull cre
 docker image build -t env .
 ```
 
-To run the container use this command.
+To run the container use this command and pull the godang_ws in to sources. (for the first time)
+
 ```bash
 docker run -it -v $PWD/source:/ros2_file env
 ```
-Now pull the godang_ws in to sources and ready to go!!
+
+To run the container
+```bash
+docker run -it env
+```
+
 ## Question
 
 Feel free to ask Jiratanun@kmutt.ac.th about all of this. I know it's kinda hard but trust me I'm engineer.

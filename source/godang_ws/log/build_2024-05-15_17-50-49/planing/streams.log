@@ -1,0 +1,20 @@
+[1.601s] Invoking command in '/ros2_file/godang_ws/src/planing': PYTHONPATH=/ros2_file/godang_ws/build/planing/prefix_override:/ros2_file/godang_ws/install/planing/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/planing build --build-base /ros2_file/godang_ws/build/planing/build install --record /ros2_file/godang_ws/build/planing/install.log --single-version-externally-managed install_data
+[1.996s] running egg_info
+[1.998s] writing ../../build/planing/planing.egg-info/PKG-INFO
+[1.999s] writing dependency_links to ../../build/planing/planing.egg-info/dependency_links.txt
+[2.000s] writing entry points to ../../build/planing/planing.egg-info/entry_points.txt
+[2.001s] writing requirements to ../../build/planing/planing.egg-info/requires.txt
+[2.002s] writing top-level names to ../../build/planing/planing.egg-info/top_level.txt
+[2.003s] reading manifest file '../../build/planing/planing.egg-info/SOURCES.txt'
+[2.006s] writing manifest file '../../build/planing/planing.egg-info/SOURCES.txt'
+[2.010s] running build
+[2.010s] running build_py
+[2.011s] running install
+[2.013s] running install_lib
+[2.014s] running install_data
+[2.014s] running install_egg_info
+[2.016s] removing '/ros2_file/godang_ws/install/planing/lib/python3.10/site-packages/planing-0.0.0-py3.10.egg-info' (and everything under it)
+[2.018s] Copying ../../build/planing/planing.egg-info to /ros2_file/godang_ws/install/planing/lib/python3.10/site-packages/planing-0.0.0-py3.10.egg-info
+[2.025s] running install_scripts
+[2.073s] writing list of installed files to '/ros2_file/godang_ws/build/planing/install.log'
+[2.156s] Invoked command in '/ros2_file/godang_ws/src/planing' returned '0': PYTHONPATH=/ros2_file/godang_ws/build/planing/prefix_override:/ros2_file/godang_ws/install/planing/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/planing build --build-base /ros2_file/godang_ws/build/planing/build install --record /ros2_file/godang_ws/build/planing/install.log --single-version-externally-managed install_data

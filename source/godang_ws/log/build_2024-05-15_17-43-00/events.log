@@ -1,0 +1,91 @@
+[0.000000] (-) TimerEvent: {}
+[0.000508] (localization) JobQueued: {'identifier': 'localization', 'dependencies': OrderedDict()}
+[0.001502] (planing) JobQueued: {'identifier': 'planing', 'dependencies': OrderedDict()}
+[0.001734] (vision) JobQueued: {'identifier': 'vision', 'dependencies': OrderedDict()}
+[0.001845] (localization) JobStarted: {'identifier': 'localization'}
+[0.012712] (planing) JobStarted: {'identifier': 'planing'}
+[0.022663] (vision) JobStarted: {'identifier': 'vision'}
+[0.096901] (-) TimerEvent: {}
+[0.198748] (-) TimerEvent: {}
+[0.299911] (-) TimerEvent: {}
+[0.401897] (-) TimerEvent: {}
+[0.503891] (-) TimerEvent: {}
+[0.605892] (-) TimerEvent: {}
+[0.707741] (-) TimerEvent: {}
+[0.808864] (-) TimerEvent: {}
+[0.909876] (-) TimerEvent: {}
+[1.010865] (-) TimerEvent: {}
+[1.111879] (-) TimerEvent: {}
+[1.213797] (-) TimerEvent: {}
+[1.315816] (-) TimerEvent: {}
+[1.417902] (-) TimerEvent: {}
+[1.473428] (vision) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/vision', 'build', '--build-base', '/ros2_file/godang_ws/build/vision/build', 'install', '--record', '/ros2_file/godang_ws/build/vision/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/ros2_file/godang_ws/src/vision', 'env': {'HOSTNAME': '64e19fa183ed', 'HOME': '/root', 'OLDPWD': '/ros2_file', 'ROS_DISTRO': 'humble', 'TERM': 'xterm', 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'LANG': 'C.UTF-8', 'LC_ALL': 'C.UTF-8', 'PWD': '/ros2_file/godang_ws/build/vision', 'COLCON': '1', 'PYTHONPATH': '/ros2_file/godang_ws/build/vision/prefix_override:/ros2_file/godang_ws/install/vision/lib/python3.10/site-packages:'}, 'shell': False}
+[1.492403] (localization) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/localization', 'build', '--build-base', '/ros2_file/godang_ws/build/localization/build', 'install', '--record', '/ros2_file/godang_ws/build/localization/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/ros2_file/godang_ws/src/localization', 'env': {'HOSTNAME': '64e19fa183ed', 'HOME': '/root', 'OLDPWD': '/ros2_file', 'ROS_DISTRO': 'humble', 'TERM': 'xterm', 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'LANG': 'C.UTF-8', 'LC_ALL': 'C.UTF-8', 'PWD': '/ros2_file/godang_ws/build/localization', 'COLCON': '1', 'PYTHONPATH': '/ros2_file/godang_ws/build/localization/prefix_override:/ros2_file/godang_ws/install/localization/lib/python3.10/site-packages:'}, 'shell': False}
+[1.504463] (planing) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/planing', 'build', '--build-base', '/ros2_file/godang_ws/build/planing/build', 'install', '--record', '/ros2_file/godang_ws/build/planing/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/ros2_file/godang_ws/src/planing', 'env': {'HOSTNAME': '64e19fa183ed', 'HOME': '/root', 'OLDPWD': '/ros2_file', 'ROS_DISTRO': 'humble', 'TERM': 'xterm', 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'LANG': 'C.UTF-8', 'LC_ALL': 'C.UTF-8', 'PWD': '/ros2_file/godang_ws/build/planing', 'COLCON': '1', 'PYTHONPATH': '/ros2_file/godang_ws/build/planing/prefix_override:/ros2_file/godang_ws/install/planing/lib/python3.10/site-packages:'}, 'shell': False}
+[1.518788] (-) TimerEvent: {}
+[1.619875] (-) TimerEvent: {}
+[1.721823] (-) TimerEvent: {}
+[1.818426] (planing) StdoutLine: {'line': b'running egg_info\n'}
+[1.819920] (localization) StdoutLine: {'line': b'running egg_info\n'}
+[1.821452] (planing) StdoutLine: {'line': b'writing ../../build/planing/planing.egg-info/PKG-INFO\n'}
+[1.822132] (-) TimerEvent: {}
+[1.822456] (localization) StdoutLine: {'line': b'writing ../../build/localization/localization.egg-info/PKG-INFO\n'}
+[1.823133] (planing) StdoutLine: {'line': b'writing dependency_links to ../../build/planing/planing.egg-info/dependency_links.txt\n'}
+[1.823616] (localization) StdoutLine: {'line': b'writing dependency_links to ../../build/localization/localization.egg-info/dependency_links.txt\n'}
+[1.824202] (planing) StdoutLine: {'line': b'writing entry points to ../../build/planing/planing.egg-info/entry_points.txt\n'}
+[1.824690] (localization) StdoutLine: {'line': b'writing entry points to ../../build/localization/localization.egg-info/entry_points.txt\n'}
+[1.825026] (planing) StdoutLine: {'line': b'writing requirements to ../../build/planing/planing.egg-info/requires.txt\n'}
+[1.825417] (planing) StdoutLine: {'line': b'writing top-level names to ../../build/planing/planing.egg-info/top_level.txt\n'}
+[1.825760] (localization) StdoutLine: {'line': b'writing requirements to ../../build/localization/localization.egg-info/requires.txt\n'}
+[1.826176] (localization) StdoutLine: {'line': b'writing top-level names to ../../build/localization/localization.egg-info/top_level.txt\n'}
+[1.830135] (planing) StdoutLine: {'line': b"reading manifest file '../../build/planing/planing.egg-info/SOURCES.txt'\n"}
+[1.831489] (vision) StdoutLine: {'line': b'running egg_info\n'}
+[1.832273] (localization) StdoutLine: {'line': b"reading manifest file '../../build/localization/localization.egg-info/SOURCES.txt'\n"}
+[1.832955] (planing) StdoutLine: {'line': b"writing manifest file '../../build/planing/planing.egg-info/SOURCES.txt'\n"}
+[1.833704] (planing) StdoutLine: {'line': b'running build\n'}
+[1.834756] (planing) StdoutLine: {'line': b'running build_py\n'}
+[1.835293] (localization) StdoutLine: {'line': b"writing manifest file '../../build/localization/localization.egg-info/SOURCES.txt'\n"}
+[1.835924] (vision) StdoutLine: {'line': b'writing ../../build/vision/vision.egg-info/PKG-INFO\n'}
+[1.837086] (localization) StdoutLine: {'line': b'running build\n'}
+[1.837836] (localization) StdoutLine: {'line': b'running build_py\n'}
+[1.838416] (vision) StdoutLine: {'line': b'writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt\n'}
+[1.838884] (vision) StdoutLine: {'line': b'writing entry points to ../../build/vision/vision.egg-info/entry_points.txt\n'}
+[1.839266] (localization) StdoutLine: {'line': b'running install\n'}
+[1.839674] (planing) StdoutLine: {'line': b'running install\n'}
+[1.840148] (vision) StdoutLine: {'line': b'writing requirements to ../../build/vision/vision.egg-info/requires.txt\n'}
+[1.840593] (localization) StdoutLine: {'line': b'running install_lib\n'}
+[1.841355] (planing) StdoutLine: {'line': b'running install_lib\n'}
+[1.841811] (vision) StdoutLine: {'line': b'writing top-level names to ../../build/vision/vision.egg-info/top_level.txt\n'}
+[1.842940] (localization) StdoutLine: {'line': b'running install_data\n'}
+[1.843732] (planing) StdoutLine: {'line': b'running install_data\n'}
+[1.844181] (localization) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.845011] (planing) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.845397] (vision) StdoutLine: {'line': b"reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'\n"}
+[1.847783] (vision) StdoutLine: {'line': b"writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'\n"}
+[1.848399] (localization) StdoutLine: {'line': b"removing '/ros2_file/godang_ws/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[1.849050] (planing) StdoutLine: {'line': b"removing '/ros2_file/godang_ws/install/planing/lib/python3.10/site-packages/planing-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[1.849662] (vision) StdoutLine: {'line': b'running build\n'}
+[1.850144] (vision) StdoutLine: {'line': b'running build_py\n'}
+[1.850689] (planing) StdoutLine: {'line': b'Copying ../../build/planing/planing.egg-info to /ros2_file/godang_ws/install/planing/lib/python3.10/site-packages/planing-0.0.0-py3.10.egg-info\n'}
+[1.851048] (localization) StdoutLine: {'line': b'Copying ../../build/localization/localization.egg-info to /ros2_file/godang_ws/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info\n'}
+[1.851658] (vision) StdoutLine: {'line': b'running install\n'}
+[1.852757] (vision) StdoutLine: {'line': b'running install_lib\n'}
+[1.855893] (vision) StdoutLine: {'line': b'running install_data\n'}
+[1.856825] (vision) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.861927] (vision) StdoutLine: {'line': b"removing '/ros2_file/godang_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[1.863215] (planing) StdoutLine: {'line': b'running install_scripts\n'}
+[1.864150] (vision) StdoutLine: {'line': b'Copying ../../build/vision/vision.egg-info to /ros2_file/godang_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info\n'}
+[1.864756] (localization) StdoutLine: {'line': b'running install_scripts\n'}
+[1.874675] (vision) StdoutLine: {'line': b'running install_scripts\n'}
+[1.916020] (localization) StdoutLine: {'line': b"writing list of installed files to '/ros2_file/godang_ws/build/localization/install.log'\n"}
+[1.916981] (planing) StdoutLine: {'line': b"writing list of installed files to '/ros2_file/godang_ws/build/planing/install.log'\n"}
+[1.922759] (-) TimerEvent: {}
+[1.928289] (vision) StdoutLine: {'line': b"writing list of installed files to '/ros2_file/godang_ws/build/vision/install.log'\n"}
+[1.974437] (planing) CommandEnded: {'returncode': 0}
+[2.010830] (planing) JobEnded: {'identifier': 'planing', 'rc': 0}
+[2.015858] (vision) CommandEnded: {'returncode': 0}
+[2.024073] (-) TimerEvent: {}
+[2.047041] (vision) JobEnded: {'identifier': 'vision', 'rc': 0}
+[2.050865] (localization) CommandEnded: {'returncode': 0}
+[2.080520] (localization) JobEnded: {'identifier': 'localization', 'rc': 0}
+[2.084612] (-) EventReactorShutdown: {}
