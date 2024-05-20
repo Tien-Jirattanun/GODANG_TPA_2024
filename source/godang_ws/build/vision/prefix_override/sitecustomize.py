@@ -1,3 +1,3 @@
 import sys
 sys.real_prefix = sys.prefix
-sys.prefix = sys.exec_prefix = '/ros2_file/godang_ws/install/vision'
+sys.prefix = sys.exec_prefix = '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision'

@@ -13,3 +13,4 @@ test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
 vision/__init__.py
+vision/vision_node.py
