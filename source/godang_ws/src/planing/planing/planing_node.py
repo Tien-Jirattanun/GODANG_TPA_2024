@@ -64,6 +64,8 @@ class Planing(Node):
             elif self.field == 1:
                 # left side of the field
                 pass
+        elif self.state == 2:
+            pass
         
         self.publisher_.publish(way_point)
 

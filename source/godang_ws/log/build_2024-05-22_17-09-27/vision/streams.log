@@ -1,0 +1,24 @@
+[1.920s] Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/install.log --single-version-externally-managed install_data
+[2.423s] running egg_info
+[2.425s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[2.425s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[2.425s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[2.425s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[2.425s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[2.429s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[2.431s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[2.431s] running build
+[2.431s] running build_py
+[2.432s] copying vision/vision_node.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[2.433s] running install
+[2.433s] running install_lib
+[2.434s] copying /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/vision_node.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[2.434s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/vision_node.py to vision_node.cpython-310.pyc
+[2.435s] running install_data
+[2.436s] running install_egg_info
+[2.439s] removing '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info' (and everything under it)
+[2.440s] Copying ../../build/vision/vision.egg-info to /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info
+[2.441s] running install_scripts
+[2.481s] Installing vision script to /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/vision
+[2.482s] writing list of installed files to '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/install.log'
+[2.558s] Invoked command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision' returned '0': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/install.log --single-version-externally-managed install_data

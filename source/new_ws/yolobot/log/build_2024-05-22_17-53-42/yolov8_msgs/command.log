@@ -1,0 +1,1 @@
+Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/new_ws/yolobot/build/yolov8_msgs': /usr/bin/cmake /home/tien/Documents/GitHub/BoutToHackNASA/source/new_ws/yolobot/src/yolov8_msgs -DCMAKE_INSTALL_PREFIX=/home/tien/Documents/GitHub/BoutToHackNASA/source/new_ws/yolobot/install/yolov8_msgs

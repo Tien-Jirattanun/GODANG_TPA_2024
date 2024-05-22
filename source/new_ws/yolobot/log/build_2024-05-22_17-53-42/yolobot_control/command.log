@@ -1,0 +1,1 @@
+Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/new_ws/yolobot/build/yolobot_control': /usr/bin/cmake /home/tien/Documents/GitHub/BoutToHackNASA/source/new_ws/yolobot/src/yolobot_control -DCMAKE_INSTALL_PREFIX=/home/tien/Documents/GitHub/BoutToHackNASA/source/new_ws/yolobot/install/yolobot_control
