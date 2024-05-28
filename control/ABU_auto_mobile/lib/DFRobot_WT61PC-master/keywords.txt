@@ -1,0 +1,35 @@
+#######################################
+# Syntax Coloring Map For DFRobot_WT61PC
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+DFRobot_WT61PC	KEYWORD1
+
+#######################################
+# Methods and Functions  (KEYWORD2)
+#######################################
+
+available	KEYWORD2
+modifyFrequency	KEYWORD2
+
+#######################################
+# Constants   (LITERAL1)
+#######################################
+
+Acc	LITERAL1
+Gyro	LITERAL1
+Angle	LITERAL1
+FREQUENCY_0_1HZ	LITERAL1
+FREQUENCY_0_5HZ	LITERAL1
+FREQUENCY_1HZ	LITERAL1
+FREQUENCY_2HZ	LITERAL1
+FREQUENCY_5HZ	LITERAL1
+FREQUENCY_10HZ	LITERAL1
+FREQUENCY_20HZ	LITERAL1
+FREQUENCY_50HZ	LITERAL1
+FREQUENCY_100HZ	LITERAL1
+FREQUENCY_125HZ	LITERAL1
+FREQUENCY_200HZ	LITERAL1

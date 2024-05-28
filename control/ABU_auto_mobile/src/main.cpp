@@ -18,6 +18,7 @@
 #include "Kinematics.h"
 #include <RPi_Pico_TimerInterrupt.h>
 #include <pio_encoder.h>
+#include "DFRobotSensor.h"
 
 // microros define
 
@@ -31,7 +32,7 @@ rcl_allocator_t allocator;
 rcl_node_t node;
 rcl_timer_t timer;
 
-float vel[4] = { 0, 0, 0, 0 };
+float vel[4] = { 0.0, 0.0, 0.0, 0.0};
 
 // control define
 
@@ -64,12 +65,16 @@ struct TransformStep
 	unsigned long duration;
 };
 
+SensorData imu_data;
+
 // variable
 long start_time, T;
 int currentStep = 0;
 int stepsCount = 0;
 bool newStepsAvailable = false;
 TransformStep steps[10];
+
+DFRobotSensor imu;
 
 #define LED_PIN 25
 
@@ -114,6 +119,10 @@ void timer_callback(rcl_timer_t* timer, int64_t last_call_time)
 		pos_msg.data.data[0] = currentPosition.x;
 		pos_msg.data.data[1] = currentPosition.y;
 		pos_msg.data.data[2] = currentPosition.theta;
+
+		// pos_msg.data.data[0] = (currentPosition.x + imu_data.px)/2;
+		// pos_msg.data.data[1] = (currentPosition.y + imu_data.py)/2;
+		// pos_msg.data.data[2] = (currentPosition.theta + imu_data.angleZ)/2;
 
 		RCSOFTCHECK(rcl_publish(&publisher, &pos_msg, NULL));
 	}
@@ -206,7 +215,6 @@ void setup()
 	vel_msg.data.data[0] = 0.0f;
 	vel_msg.data.data[1] = 0.0f;
 	vel_msg.data.data[2] = 0.0f;
-	vel_msg.data.data[3] = 0.0f;
 }
 
 void loop()
@@ -219,6 +227,8 @@ void setup1()
 	analogWriteFreq(1000);
 	analogWriteRange(255);
 
+	imu.begin();
+
 	FR.encoder.begin();
 	FL.encoder.begin();
 	BR.encoder.begin();
@@ -230,4 +240,7 @@ void setup1()
 
 void loop1()
 {
+	imu.update();
+	imu_data = imu.getSensorData();
+
 }
