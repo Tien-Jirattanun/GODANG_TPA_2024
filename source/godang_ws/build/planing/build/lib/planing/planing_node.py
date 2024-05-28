@@ -23,7 +23,7 @@ class Planing(Node):
         
         # Way point publisher
         self.publisher_point = self.create_publisher(
-            Float32MultiArray, 'way_point', 10)
+            Float32MultiArray, 'motor', 10)
         
         # Position subscriber
         self.subscription_pos = self.create_subscription(
@@ -45,7 +45,7 @@ class Planing(Node):
 
     def timer_callback(self):
         
-        way_point = Float32MultiArray()
+        motor = Float32MultiArray()
         
         # wait for lunch button
         if self.but == [0,1,1] and self.state == 0:
@@ -60,14 +60,21 @@ class Planing(Node):
         elif self.state == 1:
             if self.field == 0:
                 # right side of the field 
+                
+                
+                
+                
                 pass
             elif self.field == 1:
                 # left side of the field
+                
+                
+                
                 pass
         elif self.state == 2:
             pass
         
-        self.publisher_.publish(way_point)
+        self.publisher_.publish(motor)
 
 
 def main(args=None):

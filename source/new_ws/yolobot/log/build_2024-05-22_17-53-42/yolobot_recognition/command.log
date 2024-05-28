@@ -1,1 +1,0 @@
-Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/new_ws/yolobot/build/yolobot_recognition': /usr/bin/cmake /home/tien/Documents/GitHub/BoutToHackNASA/source/new_ws/yolobot/src/yolobot_recognition -DCMAKE_INSTALL_PREFIX=/home/tien/Documents/GitHub/BoutToHackNASA/source/new_ws/yolobot/install/yolobot_recognition

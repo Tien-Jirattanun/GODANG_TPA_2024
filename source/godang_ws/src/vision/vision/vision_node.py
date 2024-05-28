@@ -34,7 +34,7 @@ class Vision(Node):
         self.timer = self.create_timer(timer_period, self.timer_callback)
         self.vision = DistanceCalculator(1,1)
         # load an official model
-        self.model = YOLO("src/vision/vision/best_yolov8.pt")
+        self.model = YOLO("src/vision/vision/best.pt")
 
     def distance(self, results):
         class_names = ['purple', 'red']
@@ -66,7 +66,7 @@ class Vision(Node):
 
     def timer_callback(self):
         # input from camera
-        results = self.model("src/vision/vision/AI/frame_0075.jpg")
+        results = self.model("src/vision/vision/frame_0127.jpg")
         distances = self.distance(results)
 
         msg = Float32MultiArray()

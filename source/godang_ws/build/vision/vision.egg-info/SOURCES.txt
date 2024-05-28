@@ -12,6 +12,11 @@ resource/vision
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
+vision/ML.py
 vision/__init__.py
-vision/vision_class.py
+vision/ballonthefloor.py
+vision/cam_midball.py
+vision/config.py
+vision/silo_decision.py
+vision/silo_detect.py
 vision/vision_node.py
