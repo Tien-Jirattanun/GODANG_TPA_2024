@@ -1,5 +1,5 @@
 import sys
-sys.path.append("src/planing/planing")
+sys.path.append("/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/planing/planing")
 from Function import PositionController
 
 import rclpy
@@ -62,18 +62,17 @@ class MobileNode(Node):
         elif self.state == 1:
             # waypoint 1
             if self.way_point == 0:
-                self.vel_array[3] = 0.0
-                self.vel_array = self.pos_control.go_to_position(6, 0, 0, self.pos_x, self.pos_y, self.pos_z)
-                if self.vel_array == [0.0, 0.0, 0.0]:
+                self.vel_array = self.pos_control.go_to_position(1, 0, 0, self.pos_x, self.pos_y, self.pos_z)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
                     self.vel_array[3] += 1.0
                     self.way_point += 1
-            # # waypoint 2        
-            # elif self.way_point == 1:
-            #     self.vel_array[3] = 0.0
-            #     self.vel_array = self.pos_control.go_to_position(0, 3, 0, self.pos_x, self.pos_y, self.pos_z)
-            #     if self.vel_array == [0.0, 0.0, 0.0, 0.0]:
-            #         self.vel_array[3] += 1.0
-            #         self.way_point += 1
+            # waypoint 2        
+            elif self.way_point == 1:
+                self.vel_array[3] = 0.0
+                self.vel_array = self.pos_control.go_to_position(0, -1, 0, self.pos_x, self.pos_y, self.pos_z)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.vel_array[3] += 1.0
+                    self.way_point += 1
             # # waypoint 3    
             # elif self.way_point == 2:
             #     self.vel_array[3] = 0.0
