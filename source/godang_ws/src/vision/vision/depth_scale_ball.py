@@ -42,10 +42,10 @@ for bbox in results:
     for i, class_index in enumerate(cls):
         class_name = class_names[int(class_index)]
         confidence = conf[i]
-        x, y, w, h = map(int, xyxy[i])
+        x1, y1, x2, y2 = map(int, xyxy[i])
         if class_name == 'red':
-            detections.append([x, y, w, h])
-#             cv2.rectangle(frame, (x, y), (w, h), (0, 255, 0), 2)
+            detections.append([x1, y1, x2, y2])
+#             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
 #             cv2.imshow('frame', frame)
 #             cv2.waitKey(500)
 # cv2.destroyAllWindows()
@@ -68,7 +68,7 @@ focal_length_y = 992.6178560916601
 real_diameter = 0.19
 bounding_box_width = []
 for detection in detections:
-    bounding_box_width.append(detection[2] - detection[0])
+    bounding_box_width.append(detection[2]-detection[0])
 print(f"Bounding box width: {bounding_box_width}")
 
 depth_x = calculate_depth(focal_length_x, real_diameter, bounding_box_width)
@@ -97,12 +97,12 @@ def image_to_world_coordinates(u, v, depth, camera_matrix):
 
 def coordinates_image(detections):
     for detection in detections:
-        x, y, w, h = detection
-        u = x + (w - x) / 2
-        v = y + (h - y) / 2
+        x1, y1, x2, y2 = detection
+        u = x1 + (x2 - x1) / 2
+        v = y1 + (y2 - y1) / 2
         return u, v
-camera_matrix = np.array([[1029.138061543091, 0, 1013.22079],  
-                          [0, 992.6178560916601, 548.440524],  
+camera_matrix = np.array([[1029.138061543091, 0,  1.01324017e+03],  
+                          [0, 992.6178560916601,  5.48550898e+02],  
                           [0, 0, 1]])
 
 
