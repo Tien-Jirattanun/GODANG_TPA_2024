@@ -10,7 +10,25 @@ model = YOLO("../ML_ball/best_yolov8.pt")  # load an official model
 # model.export(format="onnx")
 frame = cv2.imread("../ML_ball/ball_images/frame_0225.jpg")
 
-results = model(frame)  # predict on an image
+def UndistortImg(img):
+  # data from calibration
+  mtx = np.matrix([[1.02896097e+03, 0, 1.01324017e+03], [0.0, 9.92389966e+02, 5.48550898e+02],[0, 0,  1]])
+  dist = np.array([ 0.19576717, -0.2477706,  -0.00620366,  0.00395638,  0.10295289])
+  newcameramtx = np.matrix([[1.07476421e+03, 0, 1.02262547e+03], [0, 1.02925677e+03, 5.43286518e+02],[0, 0, 1]])
+  roi = [13, 14, 1895, 1057]
+
+  dst = cv2.undistort(img, mtx, dist, None, newcameramtx) 
+  # crop the image
+  x, y, w, h = roi
+  return dst[y:y+h, x:x+w]    
+
+
+frame = UndistortImg(frame)
+# print(f"frame Original image shape: {frame.shape}")
+
+print(f"dst Original image shape: {frame.shape}")
+
+results = model(frame) 
 class_names = ['purple','red']
 
 detections = []
@@ -47,7 +65,7 @@ def calculate_depth(focal_length, real_diameter, bounding_box_width):
 
 focal_length_x = 1029.138061543091  
 focal_length_y = 992.6178560916601 
-real_diameter = 0.15
+real_diameter = 0.19
 bounding_box_width = []
 for detection in detections:
     bounding_box_width.append(detection[2] - detection[0])
@@ -59,6 +77,8 @@ depth_y = calculate_depth(focal_length_y, real_diameter, bounding_box_width)
 
 print(f"The estimated depth of the ball from the camera (using focal length x) is {depth_x:.2f} meters.")
 print(f"The estimated depth of the ball from the camera (using focal length y) is {depth_y:.2f} meters.")
+
+
 
 
 def image_to_world_coordinates(u, v, depth, camera_matrix):
@@ -86,6 +106,8 @@ def coordinates_image(detections):
 camera_matrix = np.array([[1029.138061543091, 0, 1013.22079],  
                           [0, 992.6178560916601, 548.440524],  
                           [0, 0, 1]])
+
+
 
 
 u, v = coordinates_image(detections)
