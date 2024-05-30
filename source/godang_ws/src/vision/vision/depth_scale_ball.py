@@ -71,7 +71,6 @@ for detection in detections:
     bounding_box_width.append(detection[2] - detection[0])
 print(f"Bounding box width: {bounding_box_width}")
 
-# You can use either focal_length_x or focal_length_y for this calculation
 depth_x = calculate_depth(focal_length_x, real_diameter, bounding_box_width)
 depth_y = calculate_depth(focal_length_y, real_diameter, bounding_box_width)
 
@@ -102,7 +101,6 @@ def coordinates_image(detections):
         u = x + (w - x) / 2
         v = y + (h - y) / 2
         return u, v
-# Example usage
 camera_matrix = np.array([[1029.138061543091, 0, 1013.22079],  
                           [0, 992.6178560916601, 548.440524],  
                           [0, 0, 1]])
