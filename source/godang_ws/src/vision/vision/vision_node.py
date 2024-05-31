@@ -1,130 +1,171 @@
-from std_msgs.msg import Float32MultiArray
-from ultralytics import YOLO
-# from vision_class import DistanceCalculator
-import rclpy
-from rclpy.node import Node
 import numpy as np
+from ultralytics import YOLO
 import cv2
 
-# class DistanceCalculator:
-#     def __init__(self, focal_length, object_height):
-#         self.focal_length = focal_length  
-#         self.object_height = object_height  # Actual height of the object in meters
+import rclpy
+from rclpy.node import Node
 
-#     def calculate_distance(self, object_height_in_image):
-#         distance = (self.focal_length * self.object_height) / object_height_in_image
-#         return distance
+from std_msgs.msg import Float32MultiArray
 
-#     def process_detections(self, results):
-       
-#         distances = []
-#         for bbox in results:
-#             xmin, ymin, xmax, ymax = bbox
-#             object_height_in_image = ymax - ymin
-#             distance = self.calculate_distance(object_height_in_image)
-#             distances.append(distance)
-#         return distances
-# xmax
+# Vision Class
+class BallDetection:
+    def __init__(self, model_path, camera_matrix, dist_coeffs, new_camera_matrix, roi):
+        self.model = YOLO(model_path)
+        self.camera_matrix = camera_matrix
+        self.dist_coeffs = dist_coeffs
+        self.new_camera_matrix = new_camera_matrix
+        self.roi = roi
+        self.class_names = ['purple', 'red']
+
+    def undistort_image(self, img):
+        dst = cv2.undistort(img, self.camera_matrix, self.dist_coeffs, None, self.new_camera_matrix) 
+        x, y, w, h = self.roi
+        return dst[y:y+h, x:x+w]
+
+    def detect_objects(self, frame):
+        results = self.model(frame)
+        detections = []
+        for bbox in results:
+            boxes = bbox.boxes
+            cls = boxes.cls.tolist()
+            xyxy = boxes.xyxy
+            conf = boxes.conf
+            for i, class_index in enumerate(cls):
+                class_name = self.class_names[int(class_index)]
+                if class_name == 'red':
+                    x1, y1, x2, y2 = map(int, xyxy[i])
+                    detections.append([x1, y1, x2, y2])
+        return detections
+
+    def calculate_depth(self, focal_length, real_diameter, bounding_box_width):
+        if bounding_box_width == 0:
+            raise ValueError("Bounding box width cannot be zero")
+        min_depth = (real_diameter * focal_length) / max(bounding_box_width)
+        return min_depth
+
+    def image_to_world_coordinates(self, u, v, depth):
+        fx = self.camera_matrix[0, 0]
+        fy = self.camera_matrix[1, 1]
+        cx = self.camera_matrix[0, 2]
+        cy = self.camera_matrix[1, 2]
+
+        x_norm = (u - cx) / fx
+        y_norm = (v - cy) / fy
+
+        X = depth * x_norm
+        Y = depth * y_norm
+        Z = depth
+
+        return X, Y, Z
+
+    def coordinates_image(self, detections):
+        for detection in detections:
+            x1, y1, x2, y2 = detection
+            u = x1 + (x2 - x1) / 2
+            v = y1 + (y2 - y1) / 2
+            return u, v
 
 
-def BoxToPos(x,y,w,h):
-   # camera center
-   Cx = 1022.625
-   Cy = 543.287
-   fx = 1074.764
-   fy = 1029.2567
-   u_x = x + 0.5*w
-   u_y = y + 0.5*h
-   approx_x = (u_x-Cx)/fx
-   approx_y = (u_y-Cy)/fy
-   ball_diameter = 0.25 # m NEED TO BE UPDATED
-   # is this Zc or distance??
-   Zc = 0.5*(ball_diameter/w*fx + ball_diameter/h*fy)
-   Zc_2 = np.sqrt(Zc*Zc/(1+approx_x*approx_x+approx_y*approx_y))
-   Xc = approx_x * Zc
-   Yc = approx_y * Zc
-   Xc2 = approx_x * Zc_2
-   Yc2 = approx_y * Zc_2
-#    tx = 0
-   ty = -0.47
-   tz = 0.24
-   print('X~', Xc, ' Z~', -ty - Yc) # should be close to ball radius
-   print('X2~', Xc2, ' Z~', -ty - Yc2) # should be close to ball radius
-   # camera mounting offset
-   return (Xc, Zc+tz)
-#    camera_mat = np.ze((3,3))
-#    camera_mat[0,0] = fx
-#    camera_mat[1,1] = fy
-#    camera_mat[2,2] = 1
-#    camera_mat[0,2] = Cx
-#    camera_mat[1,2] = Cy
-#    cam_inv = np.linalg.inv(camera_mat)
-#    rot_C2R = np.matrix([1,0,0], [0,1,0], [0,0,1])
-#    trans = np.array([tx,ty,tz])
-#    uv = np.array([x+0.5*w, y+0.5*h])
-#    res = Scaling_factor*cam_inv*uv - trans
-#    return (res[0], res[2])
+# vision param
+camera_matrix = np.array([[1029.138061543091, 0, 1013.24017],
+                          [0, 992.6178560916601, 548.550898],
+                          [0, 0, 1]])
+dist_coeffs = np.array([0.19576717, -0.2477706, -0.00620366, 0.00395638, 0.10295289])
+new_camera_matrix = np.array([[1074.76421, 0, 1022.62547],
+                              [0, 1029.25677, 543.286518],
+                              [0, 0, 1]])
+roi = [13, 14, 1895, 1057]
 
-def GetBallPositions(results):
-    class_names = ['purple', 'red']
-    detections = []
-    for bbox in results:
-        boxes = bbox.boxes
-        cls = boxes.cls.tolist()
-        xyxy = boxes.xyxy
-        # conf = boxes.conf
-        # masks = bbox.masks
-        for i, class_index in enumerate(cls):
-            class_name = class_names[int(class_index)]
-            # confidence = conf[i]
-            x, y, w, h = map(int, xyxy[i])
-            if class_name == 'red':
-                detections.append(BoxToPos(x,y,w,h))
-    return detections
+# ROS node
+class VisionNode(Node):
 
-def UndistortImg(img):
-  # data from calibration
-  mtx = np.matrix([[1.02896097e+03, 0, 1.01324017e+03], [0.0, 9.92389966e+02, 5.48550898e+02],[0, 0,  1]])
-  dist = np.array([ 0.19576717, -0.2477706,  -0.00620366,  0.00395638,  0.10295289])
-  newcameramtx = np.matrix([[1.07476421e+03, 0, 1.02262547e+03], [0, 1.02925677e+03, 5.43286518e+02],[0, 0, 1]])
-  roi = [13, 14, 1895, 1057]
-
-  dst = cv2.undistort(img, mtx, dist, None, newcameramtx) 
-  # crop the image
-  x, y, w, h = roi
-  return dst[y:y+h, x:x+w]    
-
-class Vision(Node):
     def __init__(self):
-        super().__init__('planing_node')
-        self.publisher_ = self.create_publisher(
-            Float32MultiArray, 'distance', 10)
-        timer_period = 2  # 0.5 hz
+        super().__init__('minimal_publisher')
+        self.publisher_ = self.create_publisher(Float32MultiArray, 'topic', 10)
+        timer_period = 0.5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
-        # self.vision = DistanceCalculator(1,1)
-        # load an official model
-        self.model = YOLO("src/vision/vision/best.pt")
+        # vision constructor
+        self.ball_detector = BallDetection("/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision/best.pt", camera_matrix, dist_coeffs, new_camera_matrix, roi)
 
     def timer_callback(self):
-        # input from camera
-        # call UndistortImg then pass it to model
-        results = self.model("src/vision/vision/frame_0127.jpg")
         msg = Float32MultiArray()
-        balls = GetBallPositions(results)
-        if balls:
-          msg.data = balls
+        
+        frame = cv2.imread("/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision/frame_0225.jpg")
+        frame = self.ball_detector.undistort_image(frame)
+
+        detections = self.ball_detector.detect_objects(frame)
+        # print(detections)
+
+        focal_length_x = 1029.138061543091  
+        focal_length_y = 992.6178560916601 
+        real_diameter = 0.19
+        bounding_box_width = [detection[2] - detection[0] for detection in detections]
+        # print(f"Bounding box width: {bounding_box_width}")
+
+        depth_x = self.ball_detector.calculate_depth(focal_length_x, real_diameter, bounding_box_width)
+        depth_y = self.ball_detector.calculate_depth(focal_length_y, real_diameter, bounding_box_width)
+
+        # print(f"The estimated depth of the ball from the camera (using focal length x) is {depth_x:.2f} meters.")
+        # print(f"The estimated depth of the ball from the camera (using focal length y) is {depth_y:.2f} meters.")
+
+        u, v = self.ball_detector.coordinates_image(detections)
+        depth = self.ball_detector.calculate_depth(focal_length_x, real_diameter, bounding_box_width)
+        X, Y, Z = self.ball_detector.image_to_world_coordinates(u, v, depth)
+        # sent this
+        # print(f"Real-world coordinates: X = {X:.2f} m, Y = {Y:.2f} m, Z = {Z:.2f} m")
+
+        index_nearest = bounding_box_width.index(max(bounding_box_width))
+        # print(f"Nearest bounding box: {detections[index_nearest]}")
+            
+        
+        msg.data = [X, Y, Z]
         self.publisher_.publish(msg)
-        self.get_logger().info('Publishing: "%s"' % msg.data)
 
 
 def main(args=None):
     rclpy.init(args=args)
-    vision = Vision()
-    rclpy.spin(vision)
 
-    vision.destroy_node()
+    vision_node = VisionNode()
+
+    rclpy.spin(vision_node)
+
+    # Destroy the node explicitly
+    # (optional - otherwise it will be done automatically
+    # when the garbage collector destroys the node object)
+    vision_node.destroy_node()
     rclpy.shutdown()
 
 
 if __name__ == '__main__':
     main()
+
+
+# if __name__ == "__main__":
+#     self.ball_detector = BallDetection("../ML_ball/best_yolov8.pt", camera_matrix, dist_coeffs, new_camera_matrix, roi)
+
+#     frame = cv2.imread("../ML_ball/ball_images/frame_0225.jpg")
+#     frame = self.ball_detector.undistort_image(frame)
+
+#     detections = self.ball_detector.detect_objects(frame)
+#     print(detections)
+
+#     focal_length_x = 1029.138061543091  
+#     focal_length_y = 992.6178560916601 
+#     real_diameter = 0.19
+#     bounding_box_width = [detection[2] - detection[0] for detection in detections]
+#     print(f"Bounding box width: {bounding_box_width}")
+
+#     depth_x = self.ball_detector.calculate_depth(focal_length_x, real_diameter, bounding_box_width)
+#     depth_y = self.ball_detector.calculate_depth(focal_length_y, real_diameter, bounding_box_width)
+
+#     print(f"The estimated depth of the ball from the camera (using focal length x) is {depth_x:.2f} meters.")
+#     print(f"The estimated depth of the ball from the camera (using focal length y) is {depth_y:.2f} meters.")
+
+#     u, v = self.ball_detector.coordinates_image(detections)
+#     depth = self.ball_detector.calculate_depth(focal_length_x, real_diameter, bounding_box_width)
+#     X, Y, Z = self.ball_detector.image_to_world_coordinates(u, v, depth)
+#     # sent this
+#     print(f"Real-world coordinates: X = {X:.2f} m, Y = {Y:.2f} m, Z = {Z:.2f} m")
+
+#     index_nearest = bounding_box_width.index(max(bounding_box_width))
+#     print(f"Nearest bounding box: {detections[index_nearest]}")

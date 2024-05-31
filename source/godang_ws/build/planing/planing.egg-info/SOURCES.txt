@@ -8,10 +8,8 @@ setup.py
 ../../build/planing/planing.egg-info/requires.txt
 ../../build/planing/planing.egg-info/top_level.txt
 ../../build/planing/planing.egg-info/zip-safe
-planing/Function.py
-planing/PID.py
 planing/__init__.py
-planing/planing_node.py
+planing/state_node.py
 resource/planing
 test/test_copyright.py
 test/test_flake8.py
