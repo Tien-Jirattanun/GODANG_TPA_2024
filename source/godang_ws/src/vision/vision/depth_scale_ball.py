@@ -3,12 +3,12 @@ import numpy as np
 from ultralytics import YOLO
 import cv2
 # Load a model
-model = YOLO("../ML_ball/best_yolov8.pt")  # load an official model
+model = YOLO("/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision/best.pt")  # load an official model
 # model = YOLO("path/to/best.pt")  # load a custom trained model
 
 # Export the model
 # model.export(format="onnx")
-frame = cv2.imread("../ML_ball/ball_images/frame_0225.jpg")
+frame = cv2.imread("/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision/frame_0225.jpg")
 
 def UndistortImg(img):
   # data from calibration
