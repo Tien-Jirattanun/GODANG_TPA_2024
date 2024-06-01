@@ -134,17 +134,16 @@ bool TimerHandler(struct repeating_timer* t)
 {
 	(void)t;
 
-	
 	vx = vel[0];
 	vy = vel[1];
 	wz = vel[2];
 	
-
 	Kinematics::RadPS wheelSpeeds = kinematics.Inverse_Kinematics(vx, vy, wz);
 	radps_fl = FL.computeRADS(wheelSpeeds.radps_fl, deltaT);
 	radps_fr = FR.computeRADS(wheelSpeeds.radps_fr, deltaT);
 	radps_bl = BL.computeRADS(wheelSpeeds.radps_bl, deltaT);
 	radps_br = BR.computeRADS(wheelSpeeds.radps_br, deltaT);
+	
 	currentPosition =
 			kinematics.Forward_Kinematics_Position(radps_fl, radps_fr, radps_bl, radps_br, currentPosition, deltaT);
 
