@@ -96,5 +96,6 @@ if __name__ == "__main__":
     X, Y, Z = ball_detector.image_to_world_coordinates(u, v, depth)
     print(f"Real-world coordinates: X = {X:.2f} m, Y = {Y:.2f} m, Z = {Z:.2f} m")
 
+
     index_nearest = bounding_box_width.index(max(bounding_box_width))
     print(f"Nearest bounding box: {detections[index_nearest]}")
