@@ -31,13 +31,32 @@ class BallDetection:
                     detections.append([x1, y1, x2, y2])
         return detections
 
-    def calculate_depth(self, focal_length, real_diameter, bounding_box_width):
-        if bounding_box_width == 0:
+    def calculate_min_depth(self, focal_length, real_diameter, bounding_box_width, bounding_box_height):
+        if bounding_box_width == 0 or bounding_box_height ==0:
             raise ValueError("Bounding box width cannot be zero")
         min_depth = (real_diameter * focal_length) / max(bounding_box_width)
         return min_depth
+    
 
-    def image_to_world_coordinates(self, u, v, depth):
+    #requirements
+    def calculate_depth(self, focal_length_x, focal_length_y, real_diameter, bounding_box_width,bounding_box_height):
+        distance_x =[]
+        distance_y =[]
+        distance_xy =[]
+        if len(bounding_box_width) == 0 or len(bounding_box_height) ==0:
+            raise ValueError("Bounding box width cannot be zero")
+        for i in range(len(bounding_box_width)):
+            if bounding_box_width[i] == 0 or bounding_box_height[i] ==0:
+                raise ValueError("Bounding box width cannot be zero")
+            depth_x = (real_diameter * focal_length_x) / (bounding_box_width[i])
+            distance_x.append(depth_x)
+            depth_y = (real_diameter * focal_length_y) / (bounding_box_height[i])
+            distance_y.append(depth_y)
+            distance_xy.append([depth_x,depth_y])
+        return distance_xy
+    
+
+    def image_to_robot_coordinates(self, u, v, depth):
         fx = self.camera_matrix[0, 0]
         fy = self.camera_matrix[1, 1]
         cx = self.camera_matrix[0, 2]
@@ -45,12 +64,16 @@ class BallDetection:
 
         x_norm = (u - cx) / fx
         y_norm = (v - cy) / fy
+        xyz_robot_coordinates =[]
 
-        X = depth * x_norm
-        Y = depth * y_norm
-        Z = depth
+        for i in range(len(depth)):
 
-        return X, Y, Z
+            X = depth[i][0] * x_norm
+            Y = depth[i][1] * y_norm
+            Z = depth[i][0]
+            xyz_robot_coordinates.append([X, Y, Z])
+
+        return xyz_robot_coordinates
 
     def coordinates_image(self, detections):
         for detection in detections:
@@ -85,16 +108,28 @@ if __name__ == "__main__":
     print(f"Bounding box height: {bounding_box_height}")
     print(f"Bounding box width: {bounding_box_width}")
 
-    depth_x = ball_detector.calculate_depth(focal_length_x, real_diameter, bounding_box_width)
-    depth_y = ball_detector.calculate_depth(focal_length_y, real_diameter, bounding_box_height)
+    depth_x = ball_detector.calculate_min_depth(focal_length_x, real_diameter, bounding_box_width, bounding_box_height)
+    depth_y = ball_detector.calculate_min_depth(focal_length_y, real_diameter, bounding_box_width, bounding_box_height)
+
+
+    depth_xy = ball_detector.calculate_depth(focal_length_x, focal_length_y, real_diameter, bounding_box_width,bounding_box_height)
+    print(f"depth_xy {depth_xy}")
 
     print(f"The estimated depth of the ball from the camera (using focal length x) is {depth_x:.2f} meters.")
     print(f"The estimated depth of the ball from the camera (using focal length y) is {depth_y:.2f} meters.")
 
     u, v = ball_detector.coordinates_image(detections)
-    depth = ball_detector.calculate_depth(focal_length_x, real_diameter, bounding_box_height)
-    X, Y, Z = ball_detector.image_to_world_coordinates(u, v, depth)
-    print(f"Real-world coordinates: X = {X:.2f} m, Y = {Y:.2f} m, Z = {Z:.2f} m")
+    depth = ball_detector.calculate_min_depth(focal_length_x, real_diameter,bounding_box_width,bounding_box_height)
+    xyz_robot_coordinates = ball_detector.image_to_robot_coordinates(u, v, depth_xy)
+
+    X =[xyz[0] for xyz in xyz_robot_coordinates]
+    Y =[xyz[1] for xyz in xyz_robot_coordinates]
+    Z =[xyz[2] for xyz in xyz_robot_coordinates]
+
+    for j in range(len(X)):
+
+
+        print(f"Robot coordinates: X = {X[j]:.2f} m, Y = {Y[j]:.2f} m, Z = {Z[j]:.2f} m")
 
 
     index_nearest = bounding_box_width.index(max(bounding_box_width))
