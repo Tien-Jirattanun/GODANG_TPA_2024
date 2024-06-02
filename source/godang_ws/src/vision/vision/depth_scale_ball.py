@@ -14,10 +14,14 @@ class BallDetection:
     def undistort_image(self, img):
         dst = cv2.undistort(img, self.camera_matrix, self.dist_coeffs, None, self.new_camera_matrix) 
         x, y, w, h = self.roi
+        frame_undistorted = dst[y:y+h, x:x+w]
+        cv2.imshow("frame_undistorted", frame_undistorted)
+        cv2.imwrite("./test_carlibrate/frame_undistorted.jpg", frame_undistorted)
         return dst[y:y+h, x:x+w]
 
     def detect_objects(self, frame):
-        results = self.model(frame)
+        results = self.model(frame, conf=0.1)
+
         detections = []
         for bbox in results:
             boxes = bbox.boxes
@@ -29,6 +33,11 @@ class BallDetection:
                 if class_name == 'red':
                     x1, y1, x2, y2 = map(int, xyxy[i])
                     detections.append([x1, y1, x2, y2])
+                    cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)    
+                    cv2.imshow("frame", frame)
+                    cv2.waitKey(500)
+        
+        cv2.destroyAllWindows()
         return detections
 
     def calculate_min_depth(self, focal_length, real_diameter, bounding_box_width, bounding_box_height):
@@ -70,8 +79,9 @@ class BallDetection:
 
             X = depth[i][0] * x_norm
             Y = depth[i][1] * y_norm
-            Z = depth[i][0]
-            xyz_robot_coordinates.append([X, Y, Z])
+            Z_x = depth[i][0]
+            Z_y = depth[i][1]
+            xyz_robot_coordinates.append([X, Y, Z_x, Z_y])
 
         return xyz_robot_coordinates
 
@@ -92,9 +102,10 @@ new_camera_matrix = np.array([[1074.76421, 0, 1022.62547],
 roi = [13, 14, 1895, 1057]
 
 if __name__ == "__main__":
+
     ball_detector = BallDetection("../ML_ball/best_yolov8.pt", camera_matrix, dist_coeffs, new_camera_matrix, roi)
 
-    frame = cv2.imread("../ML_ball/ball_images/frame_0225.jpg")
+    frame = cv2.imread("./test_carlibrate/red1_test_4angle.jpg")
     frame = ball_detector.undistort_image(frame)
 
     detections = ball_detector.detect_objects(frame)
@@ -115,21 +126,20 @@ if __name__ == "__main__":
     depth_xy = ball_detector.calculate_depth(focal_length_x, focal_length_y, real_diameter, bounding_box_width,bounding_box_height)
     print(f"depth_xy {depth_xy}")
 
-    print(f"The estimated depth of the ball from the camera (using focal length x) is {depth_x:.2f} meters.")
-    print(f"The estimated depth of the ball from the camera (using focal length y) is {depth_y:.2f} meters.")
+    for i in range(len(depth_xy)):
+        print(f"The estimated depth of the ball from the camera (using focal length x) is {depth_xy[i][0]:.2f} meters.")
+        print(f"The estimated depth of the ball from the camera (using focal length y) is {depth_xy[i][1]:.2f} meters.")
+
+    # print(f"The estimated depth of the ball from the camera (using focal length x) is {depth_x:.2f} meters.")
+    # print(f"The estimated depth of the ball from the camera (using focal length y) is {depth_y:.2f} meters.")
 
     u, v = ball_detector.coordinates_image(detections)
     depth = ball_detector.calculate_min_depth(focal_length_x, real_diameter,bounding_box_width,bounding_box_height)
     xyz_robot_coordinates = ball_detector.image_to_robot_coordinates(u, v, depth_xy)
 
-    X =[xyz[0] for xyz in xyz_robot_coordinates]
-    Y =[xyz[1] for xyz in xyz_robot_coordinates]
-    Z =[xyz[2] for xyz in xyz_robot_coordinates]
-
-    for j in range(len(X)):
-
-
-        print(f"Robot coordinates: X = {X[j]:.2f} m, Y = {Y[j]:.2f} m, Z = {Z[j]:.2f} m")
+    for j in range(len(xyz_robot_coordinates)):
+        X, Y, Z_x, Z_y = xyz_robot_coordinates[j]
+        print(f"Robot coordinates: X = {X:.2f} m, Y = {Y:.2f} m, Z_x = {Z_x:.2f} m, Z_y = {Z_y:.2f} m")
 
 
     index_nearest = bounding_box_width.index(max(bounding_box_width))
