@@ -1,10 +1,11 @@
 import numpy as np
-from ultralytics import YOLO
+from ultralytics import YOLOv10
+
 import cv2
 
 class BallDetection:
     def __init__(self, model_path, camera_matrix, dist_coeffs, new_camera_matrix, roi):
-        self.model = YOLO(model_path)
+        self.model = YOLOv10(model_path)
         self.camera_matrix = camera_matrix
         self.dist_coeffs = dist_coeffs
         self.new_camera_matrix = new_camera_matrix
@@ -86,11 +87,14 @@ class BallDetection:
         return xyz_robot_coordinates
 
     def coordinates_image(self, detections):
+        uv = []
         for detection in detections:
             x1, y1, x2, y2 = detection
             u = x1 + (x2 - x1) / 2
             v = y1 + (y2 - y1) / 2
-            return u, v
+            uv.append([u, v])
+
+        return uv
 
 camera_matrix = np.array([[1029.138061543091, 0, 1013.24017],
                           [0, 992.6178560916601, 548.550898],
@@ -103,7 +107,7 @@ roi = [13, 14, 1895, 1057]
 
 if __name__ == "__main__":
 
-    ball_detector = BallDetection("../ML_ball/best_yolov8.pt", camera_matrix, dist_coeffs, new_camera_matrix, roi)
+    ball_detector = BallDetection("../ML_ball/bestv10_redball.pt", camera_matrix, dist_coeffs, new_camera_matrix, roi)
 
     frame = cv2.imread("./test_carlibrate/red1_test_4angle.jpg")
     frame = ball_detector.undistort_image(frame)
@@ -133,13 +137,18 @@ if __name__ == "__main__":
     # print(f"The estimated depth of the ball from the camera (using focal length x) is {depth_x:.2f} meters.")
     # print(f"The estimated depth of the ball from the camera (using focal length y) is {depth_y:.2f} meters.")
 
-    u, v = ball_detector.coordinates_image(detections)
+    uv = ball_detector.coordinates_image(detections)
     depth = ball_detector.calculate_min_depth(focal_length_x, real_diameter,bounding_box_width,bounding_box_height)
-    xyz_robot_coordinates = ball_detector.image_to_robot_coordinates(u, v, depth_xy)
 
-    for j in range(len(xyz_robot_coordinates)):
-        X, Y, Z_x, Z_y = xyz_robot_coordinates[j]
-        print(f"Robot coordinates: X = {X:.2f} m, Y = {Y:.2f} m, Z_x = {Z_x:.2f} m, Z_y = {Z_y:.2f} m")
+    for i in range(len(uv)):
+        u, v = uv[i]
+        xyz_robot_coordinates = ball_detector.image_to_robot_coordinates(u, v, depth_xy)
+        # print(f"Image coordinates: u = {u:.2f}, v = {v:.2f}")
+        # print(f"The estimated depth of the ball from the camera is {depth:.2f} meters.")
+
+        for j in range(len(xyz_robot_coordinates)):
+            X, Y, Z_x, Z_y = xyz_robot_coordinates[j]
+            print(f"Robot coordinates: X = {X:.2f} m, Y = {Y:.2f} m, Z_x = {Z_x:.2f} m, Z_y = {Z_y:.2f} m")
 
 
     index_nearest = bounding_box_width.index(max(bounding_box_width))
