@@ -2,12 +2,19 @@
 import numpy as np
 import cv2
 class ConfigColorsilo:
-    RED_LOWER = np.array([0, 0, 100], np.uint8)
-    RED_UPPER = np.array([80, 80, 255], np.uint8)
-    BLUE_LOWER = np.array([100, 0, 0], np.uint8)
-    BLUE_UPPER = np.array([255, 153, 48], np.uint8)
-    PURPLE_LOWER = np.array([80, 0, 100], np.uint8)
-    PURPLE_UPPER = np.array([150, 90, 161], np.uint8)
+    # RED_LOWER = np.array([0, 0, 100], np.uint8)
+    # RED_UPPER = np.array([80, 80, 255], np.uint8)
+    # BLUE_LOWER = np.array([100, 0, 0], np.uint8)
+    # BLUE_UPPER = np.array([255, 153, 48], np.uint8)
+    # PURPLE_LOWER = np.array([80, 0, 100], np.uint8)
+    # PURPLE_UPPER = np.array([150, 90, 161], np.uint8)
+
+    RED_LOWER = np.array([0, 175, 0], np.uint8)
+    RED_UPPER = np.array([255, 255, 255], np.uint8)
+    BLUE_LOWER = np.array([0, 0, 155], np.uint8)
+    BLUE_UPPER = np.array([255, 255, 255], np.uint8)
+    PURPLE_LOWER = np.array([0, 135, 0], np.uint8)
+    PURPLE_UPPER = np.array([135, 255, 255], np.uint8)
 
 # class SiloConfig:
 #     silo_roi_1 = (390,400,540,630)

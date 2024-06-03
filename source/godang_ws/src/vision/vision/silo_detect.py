@@ -189,9 +189,9 @@ roi = [13, 14, 1895, 1057]
 
 if __name__ == "__main__":
     silo_detector = SiloDetection("..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\siloWeight.pt", camera_matrix, dist_coeffs, new_camera_matrix, roi)
-    # ret, silo_detector.frame = silo_detector.cap.read()
-    frame = cv2.imread("..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\framekmutt_silo_0292.jpg")
+    # ret, frame = silo_detector.cap.read()
     frame = cv2.imread("..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\Screenshot 2024-06-03 122739.png")
+    frame = cv2.imread("..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\framekmutt_silo_0292.jpg")
     print(frame.shape)
     bboxs = sorted(silo_detector.detect_silo(frame))
     print(bboxs)
