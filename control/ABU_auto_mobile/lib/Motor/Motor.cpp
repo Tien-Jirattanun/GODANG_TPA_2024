@@ -69,6 +69,7 @@ float Motor::computeRADS(float setPoint_RADS, float deltaTime) {
 
   } else if (setPoint_RADS == 0) {
     stop();
+    _vFilt = 0;
   }
 
   return _vFilt;

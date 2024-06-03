@@ -52,6 +52,8 @@ class MobileNode(Node):
 
     def timer_callback(self):
         
+        print(self.state)
+        
         msg = Float32MultiArray()
         msg.layout.dim.append(MultiArrayDimension(label='rows', size=3, stride=3))
         msg.layout.dim.append(MultiArrayDimension(label='columns', size=1, stride=1))
@@ -62,17 +64,18 @@ class MobileNode(Node):
         elif self.state == 1:
             # waypoint 1
             if self.way_point == 0:
-                self.vel_array = self.pos_control.go_to_position(6, 0, 0, self.pos_x, self.pos_y, self.pos_z)
+                self.vel_array = self.pos_control.go_to_position(-3, 0, 0, self.pos_x, self.pos_y, self.pos_z)
+                print(self.vel_array);
                 if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
                     self.vel_array[3] += 1.0
                     self.way_point += 1
             # waypoint 2        
-            elif self.way_point == 1:
-                self.vel_array[3] = 0.0
-                self.vel_array = self.pos_control.go_to_position(0, -2, 0, self.pos_x, self.pos_y, self.pos_z)
-                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
-                    self.vel_array[3] += 1.0
-                    self.way_point += 1
+            # elif self.way_point == 1:
+            #     self.vel_array[3] = 0.0
+            #     self.vel_array = self.pos_control.go_to_position(0, -2, 0, self.pos_x, self.pos_y, self.pos_z)
+            #     if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+            #         self.vel_array[3] += 1.0
+            #         self.way_point += 1
             # waypoint 3    
             # elif self.way_point == 2:
             #     self.vel_array[3] = 0.0
