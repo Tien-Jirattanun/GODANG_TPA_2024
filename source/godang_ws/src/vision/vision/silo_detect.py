@@ -65,9 +65,8 @@ class SiloDetection:
             mask_red = self.color_detect(roi, (ConfigColorsilo.RED_LOWER, ConfigColorsilo.RED_UPPER))
             mask_blue = self.color_detect(roi, (ConfigColorsilo.BLUE_LOWER, ConfigColorsilo.BLUE_UPPER))
 
-            #cv2.imwrite(f"..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\mask{n}{i}.png", mask_red)
-            cv2.imwrite(f"..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\red_Silo{n}_{i}.png", mask_red)
-            cv2.imwrite(f"..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\blue_Silo{n}_{i}.png", mask_blue)
+            #cv2.imwrite(f"..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\red_Silo{n}_{i}.png", mask_red)
+            #cv2.imwrite(f"..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\blue_Silo{n}_{i}.png", mask_blue)
             red_area = cv2.countNonZero(cv2.bitwise_and(mask_red, mask_red, mask=mask_ellipse))
             blue_area = cv2.countNonZero(cv2.bitwise_and(mask_blue, mask_blue, mask=mask_ellipse))
 
