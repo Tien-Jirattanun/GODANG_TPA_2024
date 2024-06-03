@@ -170,13 +170,13 @@ class SiloDetection:
         def display(value):
           pass
 
-        cv2.createTrackbar("LB","Trackbar",ColorConfigsilo.RED_LOWER[0],255,display)
-        cv2.createTrackbar("LG","Trackbar",ColorConfigsilo.RED_LOWER[1],255,display)
-        cv2.createTrackbar("LR","Trackbar",ColorConfigsilo.RED_LOWER[2],255,display)
+        cv2.createTrackbar("LB","Trackbar",ConfigColorsilo.RED_LOWER[0],255,display)
+        cv2.createTrackbar("LG","Trackbar",ConfigColorsilo.RED_LOWER[1],255,display)
+        cv2.createTrackbar("LR","Trackbar",ConfigColorsilo.RED_LOWER[2],255,display)
         # cv2.createTrackbar("LA","Trackbar",0,255,display)
-        cv2.createTrackbar("HB","Trackbar",ColorConfigsilo.RED_UPPER[0],255,display)
-        cv2.createTrackbar("HG","Trackbar",ColorConfigsilo.RED_UPPER[1],255,display)
-        cv2.createTrackbar("HR","Trackbar",ColorConfigsilo.RED_UPPER[2],255,display)
+        cv2.createTrackbar("HB","Trackbar",ConfigColorsilo.RED_UPPER[0],255,display)
+        cv2.createTrackbar("HG","Trackbar",ConfigColorsilo.RED_UPPER[1],255,display)
+        cv2.createTrackbar("HR","Trackbar",ConfigColorsilo.RED_UPPER[2],255,display)
 
 camera_matrix = np.array([[1029.138061543091, 0, 1013.24017],
                           [0, 992.6178560916601, 548.550898],
