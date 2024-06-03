@@ -41,8 +41,8 @@ class SiloDetection:
 
     def split_rectangle_into_rois(self, bbox):
         x, y, w, h = bbox
-        small_height = h // 3
-        rects = [(x, y + (small_height * i), w, small_height) for i in range(3)]
+        small_height = h // 3 + 25
+        rects = [(x, y + (small_height * i) - 75, w, small_height) for i in range(3)]
         return rects
 
     def draw_ellipse(self, small_rectangles, frame):
