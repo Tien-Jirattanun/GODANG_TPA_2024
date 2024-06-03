@@ -1,7 +1,7 @@
 
 import numpy as np
 import cv2
-class ColorConfigsilo:
+class ConfigColorsilo:
     RED_LOWER = np.array([0, 0, 100], np.uint8)
     RED_UPPER = np.array([80, 80, 255], np.uint8)
     BLUE_LOWER = np.array([100, 0, 0], np.uint8)
@@ -9,12 +9,12 @@ class ColorConfigsilo:
     PURPLE_LOWER = np.array([80, 0, 100], np.uint8)
     PURPLE_UPPER = np.array([150, 90, 161], np.uint8)
 
-class SiloConfig:
-    silo_roi_1 = (390,400,540,630)
-    silo_roi_2 = (710,400,860,630)
-    silo_roi_3 = (980,400,1130,630)
-    silo_roi_4 = (1340,400,1490,630)
-    silo_roi_5 = (1730,400,1870,630)
+# class SiloConfig:
+#     silo_roi_1 = (390,400,540,630)
+#     silo_roi_2 = (710,400,860,630)
+#     silo_roi_3 = (980,400,1130,630)
+#     silo_roi_4 = (1340,400,1490,630)
+#     silo_roi_5 = (1730,400,1870,630)
 
 class ColorConfigball:
     RED_LOWER = np.array([140, 85, 0])
