@@ -41,8 +41,8 @@ class SiloDetection:
 
     def split_rectangle_into_rois(self, bbox):
         x, y, w, h = bbox
-        small_height = h // 3
-        rects = [(x, y + (small_height * i), w, small_height) for i in range(3)]
+        small_height = h // 3 + 25
+        rects = [(x, y + (small_height * i) - 75, w, small_height) for i in range(3)]
         return rects
 
     def draw_ellipse(self, small_rectangles, frame):
@@ -65,9 +65,8 @@ class SiloDetection:
             mask_red = self.color_detect(roi, (ConfigColorsilo.RED_LOWER, ConfigColorsilo.RED_UPPER))
             mask_blue = self.color_detect(roi, (ConfigColorsilo.BLUE_LOWER, ConfigColorsilo.BLUE_UPPER))
 
-            #cv2.imwrite(f"..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\mask{n}{i}.png", mask_red)
-            cv2.imwrite(f"..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\red_Silo{n}_{i}.png", mask_red)
-            cv2.imwrite(f"..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\blue_Silo{n}_{i}.png", mask_blue)
+            #cv2.imwrite(f"..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\red_Silo{n}_{i}.png", mask_red)
+            #cv2.imwrite(f"..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\blue_Silo{n}_{i}.png", mask_blue)
             red_area = cv2.countNonZero(cv2.bitwise_and(mask_red, mask_red, mask=mask_ellipse))
             blue_area = cv2.countNonZero(cv2.bitwise_and(mask_blue, mask_blue, mask=mask_ellipse))
 
@@ -189,9 +188,9 @@ roi = [13, 14, 1895, 1057]
 
 if __name__ == "__main__":
     silo_detector = SiloDetection("..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\siloWeight.pt", camera_matrix, dist_coeffs, new_camera_matrix, roi)
-    # ret, silo_detector.frame = silo_detector.cap.read()
-    frame = cv2.imread("..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\framekmutt_silo_0292.jpg")
+    # ret, frame = silo_detector.cap.read()
     frame = cv2.imread("..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\Screenshot 2024-06-03 122739.png")
+    frame = cv2.imread("..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\framekmutt_silo_0292.jpg")
     print(frame.shape)
     bboxs = sorted(silo_detector.detect_silo(frame))
     print(bboxs)
