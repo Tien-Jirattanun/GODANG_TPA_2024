@@ -1,0 +1,56 @@
+[0.826s] Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/install.log --single-version-externally-managed install_data
+[0.994s] running egg_info
+[1.003s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[1.004s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[1.004s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[1.004s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[1.004s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[1.024s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[1.025s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[1.025s] running build
+[1.025s] running build_py
+[1.025s] copying vision/Get_depth.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[1.025s] copying vision/vision_node.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[1.025s] copying vision/silo_detect.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[1.025s] copying vision/ballonthefloor.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[1.025s] copying vision/silo_decision.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[1.025s] copying vision/cam_midball.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[1.025s] copying vision/config.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[1.026s] copying vision/linetracking.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[1.026s] copying vision/depth_scale_ball.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[1.026s] copying vision/ML.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[1.026s] copying vision/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[1.026s] running install
+[1.029s] running install_lib
+[1.039s] copying /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/Get_depth.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[1.039s] copying /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/vision_node.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[1.039s] copying /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/silo_detect.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[1.040s] copying /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ballonthefloor.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[1.040s] copying /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/silo_decision.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[1.040s] copying /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/cam_midball.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[1.040s] copying /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/config.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[1.040s] copying /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/linetracking.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[1.040s] copying /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/depth_scale_ball.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[1.040s] copying /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ML.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[1.040s] copying /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision
+[1.040s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/Get_depth.py to Get_depth.cpython-310.pyc
+[1.041s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/vision_node.py to vision_node.cpython-310.pyc
+[1.042s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/silo_detect.py to silo_detect.cpython-310.pyc
+[1.043s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/ballonthefloor.py to ballonthefloor.cpython-310.pyc
+[1.044s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/silo_decision.py to silo_decision.cpython-310.pyc
+[1.045s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/cam_midball.py to cam_midball.cpython-310.pyc
+[1.045s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/config.py to config.cpython-310.pyc
+[1.046s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/linetracking.py to linetracking.cpython-310.pyc
+[1.047s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/depth_scale_ball.py to depth_scale_ball.cpython-310.pyc
+[1.048s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/ML.py to ML.cpython-310.pyc
+[1.048s] byte-compiling /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/__init__.py to __init__.cpython-310.pyc
+[1.048s] running install_data
+[1.048s] copying resource/vision -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/ament_index/resource_index/packages
+[1.048s] copying package.xml -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision
+[1.048s] running install_egg_info
+[1.060s] removing '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info' (and everything under it)
+[1.060s] Copying ../../build/vision/vision.egg-info to /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info
+[1.061s] running install_scripts
+[1.155s] Installing vision script to /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/vision
+[1.155s] writing list of installed files to '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/install.log'
+[1.183s] Invoked command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision' returned '0': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/install.log --single-version-externally-managed install_data

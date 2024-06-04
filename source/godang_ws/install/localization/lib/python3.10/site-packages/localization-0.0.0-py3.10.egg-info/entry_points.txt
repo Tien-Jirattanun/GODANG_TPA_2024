@@ -1,3 +1,2 @@
 [console_scripts]
 mobile_node = localization.mobile_node:main
-

@@ -1,3 +1,2 @@
 [console_scripts]
 run = planing.planing_node:main
-

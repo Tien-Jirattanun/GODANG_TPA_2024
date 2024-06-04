@@ -21,7 +21,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "vision = vision.vision_node:main"
+            "vision_ball = vision.vision_ball_node:main",
+            "vision_silo = vision.vision_silo_node:main"
         ],
     },
 )
