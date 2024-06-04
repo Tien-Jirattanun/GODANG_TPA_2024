@@ -151,8 +151,6 @@ bool TimerHandler(struct repeating_timer* t)
   currentPosition =
       kinematics.Forward_Kinematics_Position(radps_fl, radps_fr, radps_bl, radps_br, currentPosition, deltaT);
 
-  
-
   return true;
 }
 

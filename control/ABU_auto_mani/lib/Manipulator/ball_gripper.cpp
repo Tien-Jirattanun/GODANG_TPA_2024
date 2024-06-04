@@ -2,7 +2,8 @@
 #include <Arduino.h>
 
 BallGripper::BallGripper(int limit_switch, int INA, int INB, int stepPin, int dirPin, int servoPin)
-  : limitSwitchPin_(limit_switch),
+  : stepper(AccelStepper::DRIVER, stepPin, dirPin),
+    limitSwitchPin_(limit_switch),
     INA_(INA),
     INB_(INB),
     stepPin_(stepPin),
@@ -35,35 +36,37 @@ void BallGripper::limitswitch() {
 }
 
 void BallGripper::stepper_cw() {
-  digitalWrite(dirPin_, HIGH);
-
-  for (int i = 0; i < stepsPerRevolution; i++) {
-    int currentSpeed = startSpeed - ((startSpeed - endSpeed) * i / accelerationSteps);
-    currentSpeed = max(currentSpeed, endSpeed);
-    digitalWrite(stepPin_, HIGH);
-    delayMicroseconds(currentSpeed);
-    digitalWrite(stepPin_, LOW);
-    delayMicroseconds(currentSpeed);
-  }
-
-  if (stepsPerRevolution > accelerationSteps) {
-    for (int i = accelerationSteps; i < stepsPerRevolution; i++) {
-      digitalWrite(stepPin_, HIGH);
-      delayMicroseconds(endSpeed);
-      digitalWrite(stepPin_, LOW);
-      delayMicroseconds(endSpeed);
+  stepper.setCurrentPosition(0);
+  
+  while(stepper.currentPosition() < stepsPerRevolution){
+    float maxSpeed = 2800;  // # of steps per second to speeed up to
+    float initSpeed = 800;
+    unsigned long time;
+    unsigned long previousAccel = millis();
+    int interval = 10;  // # of milliseconds between speed increases
+    stepper.setMaxSpeed(maxSpeed);
+    stepper.setSpeed(initSpeed);
+    while (initSpeed < maxSpeed) {
+      time = millis();
+      if ( time > previousAccel + interval) {
+        previousAccel = time;
+        initSpeed = initSpeed + 10;
+        stepper.setSpeed(initSpeed);
+      }
+      stepper.runSpeed();
     }
+    stepper.runSpeed();
   }
+  stepper.stop();
 }
 
 void BallGripper::stepper_ccw() {
-  while (digitalRead(limitSwitchPin_) == 1) {
-    digitalWrite(dirPin_, LOW);
-    digitalWrite(stepPin_, HIGH);
-    delayMicroseconds(speed_step_down_);
-    digitalWrite(stepPin_, LOW);
-    delayMicroseconds(speed_step_down_);
+  stepper.setMaxSpeed(-3000);
+  stepper.setSpeed(-1000);
+  while(digitalRead(limitSwitchPin_) == 1){
+    stepper.runSpeed();
   }
+  stepper.stop();
 }
 
 // additional function for control
@@ -76,9 +79,15 @@ void BallGripper::preparing() {
 void BallGripper::grab() {  // grab the ball and keep high from the ground
   s.write(150);
   delay(500);
+}
+
+void BallGripper::lift() {
   motor(250);
   delay(1000);
   motor_stop();
+}
+
+void BallGripper::release() {
   s.write(30);
   delay(500);
 }
