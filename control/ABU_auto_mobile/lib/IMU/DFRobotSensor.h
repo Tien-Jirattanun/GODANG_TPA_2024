@@ -40,6 +40,10 @@ private:
     // Translation vector
     float tx, ty, tz;
 
+    // Angle variables
+    float set_zero;
+    float angle_z;
+
     bool isStationary(float ax, float ay, float az);
     bool isXStationary(float ax);
     bool isYStationary(float ay);
