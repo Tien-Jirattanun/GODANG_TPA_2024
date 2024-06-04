@@ -5,6 +5,7 @@ from rclpy.node import Node
 import numpy as np
 import cv2
 
+
 class_names = ['purple', 'red']
 
 camera_matrix = np.array([[1029.138061543091, 0, 1013.24017],
@@ -18,20 +19,32 @@ new_camera_matrix = np.array([[1.08832011e+03, 0.00000000e+00 ,1.02215651e+03],
                                 [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]])
 roi = [0, 0, 1919, 1079]
 
+focal_length_x = 1029.138061543091  
+focal_length_y = 992.6178560916601 
+real_diameter = 0.19
+
+
 def detect_objects(frame):
-    model = YOLOv10("../../../../../models/bestv10_redball.pt")
-    results = model(frame)
-    detections = []
+    list_of_ball = []
+    model = YOLOv10("./bestv10_redball.pt")
+    results = model(frame, conf=0.1)
+    
+    class_names = model.names  
+    
     for bbox in results:
         boxes = bbox.boxes
         cls = boxes.cls.tolist()
-        xyxy = boxes.xyxy
-        conf = boxes.conf
+        xyxy = boxes.xyxy.tolist()
+        conf = boxes.conf.tolist()
+        
         for i, class_index in enumerate(cls):
             class_name = class_names[int(class_index)]
             x1, y1, x2, y2 = map(int, xyxy[i])
-            detections.append([x1, y1, x2, y2])
-    list_of_ball = [detections, conf, class_name]
+            detection = [x1, y1, x2, y2]
+            confidence = float(conf[i])
+            list_of_ball.append([detection, confidence, class_name])
+            print(list_of_ball)
+    
     return list_of_ball
 
 def image_to_robot_coordinates(u, v, depth):
@@ -65,6 +78,7 @@ def computeBallPosRobotframe(list_of_ball):
         return 999
 
     ## first choose most confident ball and match radio
+    # print(list_of_ball)
     sorted_conf_ball = sorted(list_of_ball, key=lambda x: x[1], reverse=True)
     for i in range(len(sorted_conf_ball)):
         diff_x = sorted_conf_ball[i][0][2] - sorted_conf_ball[i][0][0]
@@ -75,8 +89,12 @@ def computeBallPosRobotframe(list_of_ball):
             u = x1 + (x2 - x1) / 2
             v = y1 + (y2 - y1) / 2
 
+            ## Get depth
+            depth_x = (real_diameter * focal_length_x) / (x2-x1)
+            
+
             ## compute the image_to_robot_coordinates
-            X, Y, Z = image_to_robot_coordinates(u, v)
+            X, Y, Z = image_to_robot_coordinates(u, v, depth_x)
             ball_pos = [X, Y, Z]
 
             return ball_pos
@@ -87,8 +105,10 @@ def R2WConversion(ball_pos,robot_position_in_world_position):
     transformation_matrix = np.array([[np.cos(theta_r), -np.sin(theta_r), x_r],
                                         [np.sin(theta_r), np.cos(theta_r), y_r],
                                         [0, 0, 1]])
-    
-    X, Y, Z = ball_pos
+        
+    X = ball_pos[0]
+    Y = ball_pos[1]
+    Z = ball_pos[2]
     robot_coords_homogeneous = np.array([Z, -X, 1])
     world_coords_homogeneous = np.dot(transformation_matrix, robot_coords_homogeneous)
     theta_w = np.rad2deg((theta_r))
@@ -120,13 +140,13 @@ class Vision(Node):
         self.timer = self.create_timer(timer_period, self.timer_callback)
         # self.vision = DistanceCalculator(1,1)
         # load an official model
-        self.model = YOLOv10("../../../../../models/bestv10_redball.pt")
+        self.model = YOLOv10("./bestv10_redball.pt")
         self.robot_position_in_world_position = [0,0,90]
 
     def timer_callback(self):
         # input from camera
         # call UndistortImg then pass it to model
-        frame = cv2.imread("../../../../../source/godang_ws/src/vision/vision/frame_0127.jpg")
+        frame = cv2.imread("./frame_0127.jpg")
         # results = self.model("src/vision/vision/frame_0127.jpg")
         msg = Float32MultiArray()
         img_undistorted =UndistortImg(frame)
