@@ -29,9 +29,9 @@ class PositionController:
     def clamp_speed(self, speed, max_speed):
         return max(min(speed, max_speed), -max_speed)
 
-    def go_to_position(self, target_x, target_y, target_z, pos_x, pos_y, pos_z):
+    def go_to_position(self, target_x, target_y, target_z, pos_x, pos_y, pos_z, start_x, start_y):
         
-        total_distance = math.sqrt(target_x**2 + target_y**2)
+        total_distance = math.sqrt((target_x - start_x)**2 + (target_y - start_y)**2)
         accel_distance = total_distance / 5   
         decel_distance = total_distance / 5
         const_distance = total_distance - accel_distance - decel_distance    
@@ -43,7 +43,7 @@ class PositionController:
             error_x = target_x - current_x
             error_y = target_y - current_y
             error_z = self.angular_difference(target_z, current_z)
-            current_distance = math.sqrt((current_x)**2 + (current_y)**2)
+            current_distance = math.sqrt((current_x - start_x)**2 + (current_y - start_y)**2)
             
             if current_distance < accel_distance:
                 velocity_scale = self.mapf(current_distance, 0, accel_distance, self.Min_Speed_fac, 1)
@@ -68,19 +68,11 @@ class PositionController:
             base_vx = velocity_scale * math.cos(error_direction)
             base_vy = velocity_scale * math.sin(error_direction)
             
-            # vx_pid = self.PosX.update(base_vx)
-            # vy_pid = self.PosY.update(base_vy)
-            
-            # vx = self.clamp_speed(velocity_scale * vx_pid, self.Max_speed)
-            # vy = self.clamp_speed(velocity_scale * vy_pid, self.Max_speed)
-
-            # vx = self.clamp_speed(self.PosX.update(round(velocvx = self.clamp_speed(vx_pid, self.Max_speed)ity_scale * math.cos(error_direction),1)), self.Max_speed)
-            # vy = self.clamp_speed(self.PosY.update(round(velocity_scale * math.sin(error_direction),1)), self.Max_speed)
             vx = self.clamp_speed(base_vx, self.Max_speed)
             vy = self.clamp_speed(base_vy, self.Max_speed)
             vz = self.clamp_speed(self.PosZ.update(error_z), self.Max_speed)
             
-            # print(vx,vy,vz)
+            print(vx,vy,vz)
 
             if abs(error_x) <= 0.05 and abs(error_y) <= 0.05 and abs(error_z) <= 3:
                 return [0.0,0.0,0.0]

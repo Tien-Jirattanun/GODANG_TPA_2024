@@ -39,6 +39,8 @@ class MobileNode(Node):
         self.state = 0
         # way point
         self.way_point = 0
+        self.startX = 0
+        self.startY = 0
         #========================
 
     def listener_state_callback(self, msg):
@@ -49,6 +51,10 @@ class MobileNode(Node):
         self.pos_x = self.pos_array[0]
         self.pos_y = self.pos_array[1]
         self.pos_z = self.pos_array[2]
+        
+    def resetStart(self):
+        self.startX = self.pos_x
+        self.startY = self.pos_y
 
     def timer_callback(self):
         
@@ -64,18 +70,16 @@ class MobileNode(Node):
         elif self.state == 1:
             # waypoint 1
             if self.way_point == 0:
-                self.vel_array = self.pos_control.go_to_position(-3, 0, 0, self.pos_x, self.pos_y, self.pos_z)
-                print(self.vel_array);
+                self.vel_array = self.pos_control.go_to_position(6, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
                 if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
-                    self.vel_array[3] += 1.0
                     self.way_point += 1
+                    self.resetStart()
             # waypoint 2        
-            # elif self.way_point == 1:
-            #     self.vel_array[3] = 0.0
-            #     self.vel_array = self.pos_control.go_to_position(0, -2, 0, self.pos_x, self.pos_y, self.pos_z)
-            #     if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
-            #         self.vel_array[3] += 1.0
-            #         self.way_point += 1
+            elif self.way_point == 1:
+                self.vel_array = self.pos_control.go_to_position(0, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
             # waypoint 3    
             # elif self.way_point == 2:
             #     self.vel_array[3] = 0.0
