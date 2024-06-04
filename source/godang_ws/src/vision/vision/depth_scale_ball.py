@@ -170,8 +170,9 @@ class BallDetection:
         X, Y, Z_x, Z_y = robot_coords
         robot_coords_homogeneous = np.array([Z_x, -X, 1])
         world_coords_homogeneous = np.dot(transformation_matrix, robot_coords_homogeneous)
+        theta_w = np.rad2deg((theta_r))
         
-        return world_coords_homogeneous[0], world_coords_homogeneous[1], Z_x, -X
+        return world_coords_homogeneous[0], world_coords_homogeneous[1], theta_w
     
 
     def coordinates_image(self, detections):
