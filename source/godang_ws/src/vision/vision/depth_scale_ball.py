@@ -158,32 +158,20 @@ class BallDetection:
 
     
 
-    def robot_to_world_coordinates(self, xyz_robot_coordinates, robot_position_in_world_position):
-        world_coordinates = []
-        cos_theta = np.cos(self.robot_position_in_world_position[2])
-        sin_theta = np.sin(self.robot_position_in_world_position[2])
+    def robot_to_world_coordinates(self, robot_coords):
+        x_r, y_r, theta_r = self.robot_position_in_world_position
+        theta_r = np.deg2rad(theta_r)
+        transformation_matrix = np.array([
+            [np.cos(theta_r), -np.sin(theta_r), x_r],
+            [np.sin(theta_r), np.cos(theta_r), y_r],
+            [0, 0, 1]
+        ])
 
-        for i in range(len(xyz_robot_coordinates)):
-            X_robot = xyz_robot_coordinates[i][0]
-            Y_robot = xyz_robot_coordinates[i][1]
-            Z_robot = xyz_robot_coordinates[i][2] 
-
-            #Rotation matrix
-            X_world = self.robot_position_in_world_position[0]
-            Y_world = self.robot_position_in_world_position[1]
-            R = np.array([[cos_theta, -sin_theta, 0],
-                            [sin_theta, cos_theta, 0],
-                            [0, 0, 1]])
-            
-            X_world_rotated = X_world * cos_theta - Y_world * sin_theta
-            Y_world_rotated = X_world * sin_theta + Y_world * cos_theta
-
-            X_world = X_world_rotated + Z_robot
-            Y_world = Y_world_rotated + X_robot
-            world_coordinates.append([X_world, Y_world, self.robot_position_in_world_position[2]])
-
-
-        return world_coordinates
+        X, Y, Z_x, Z_y = robot_coords
+        robot_coords_homogeneous = np.array([Z_x, -X, 1])
+        world_coords_homogeneous = np.dot(transformation_matrix, robot_coords_homogeneous)
+        
+        return world_coords_homogeneous[0], world_coords_homogeneous[1], Z_x, -X
     
 
     def coordinates_image(self, detections):
