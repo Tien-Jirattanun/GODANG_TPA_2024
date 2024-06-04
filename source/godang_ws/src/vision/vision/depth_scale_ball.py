@@ -158,23 +158,30 @@ class BallDetection:
 
     
 
-    def robot_to_world_coordinates(self, xyz_robot_coordinates):
+    def robot_to_world_coordinates(self, xyz_robot_coordinates, robot_position_in_world_position):
         world_coordinates = []
-        cos_theta = np.cos(self.robot_position[2])
-        sin_theta = np.sin(self.robot_position[2])
+        cos_theta = np.cos(self.robot_position_in_world_position[2])
+        sin_theta = np.sin(self.robot_position_in_world_position[2])
 
-        for coord in xyz_robot_coordinates:
-            X_robot = coord[0]
-            Y_robot = coord[1]
-            Z_robot = coord[2] 
+        for i in range(len(xyz_robot_coordinates)):
+            X_robot = xyz_robot_coordinates[i][0]
+            Y_robot = xyz_robot_coordinates[i][1]
+            Z_robot = xyz_robot_coordinates[i][2] 
 
-            X_world = Z_robot  
-            Y_world = X_robot  
-
+            #Rotation matrix
+            X_world = self.robot_position_in_world_position[0]
+            Y_world = self.robot_position_in_world_position[1]
+            R = np.array([[cos_theta, -sin_theta, 0],
+                            [sin_theta, cos_theta, 0],
+                            [0, 0, 1]])
+            
             X_world_rotated = X_world * cos_theta - Y_world * sin_theta
             Y_world_rotated = X_world * sin_theta + Y_world * cos_theta
 
-            world_coordinates.append([X_world_rotated, Y_world_rotated, self.robot_position[2]])
+            X_world = X_world_rotated + Z_robot
+            Y_world = Y_world_rotated + X_robot
+            world_coordinates.append([X_world, Y_world, self.robot_position_in_world_position[2]])
+
 
         return world_coordinates
     
@@ -265,7 +272,7 @@ if __name__ == "__main__":
 
             X, Y, Z_x, Z_y = xyz_robot_coordinates[i]
             print(f"Robot coordinates: X = {X:.2f} m, Y = {Y:.2f} m, Z_x = {Z_x:.2f} m, Z_y = {Z_y:.2f} m")
-            robot_to_world_coordinates = ball_detector.robot_to_world_coordinates(xyz_robot_coordinates)
+            robot_to_world_coordinates = ball_detector.robot_to_world_coordinates(xyz_robot_coordinates, [0, 0, 90])
 
             print(f"robot_to_world_coordinates  X_r = {robot_to_world_coordinates[i][0]:.2f} m, Y_r = {robot_to_world_coordinates[i][1]:.2f} m, theta_r = {robot_to_world_coordinates[i][2]:.2f} °")
         error = ball_detector.error(detections)
