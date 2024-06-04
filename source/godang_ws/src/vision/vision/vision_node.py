@@ -94,54 +94,22 @@ def R2WConversion(ball_pos,robot_position_in_world_position):
     theta_w = np.rad2deg((theta_r))
     return world_coords_homogeneous[0], world_coords_homogeneous[1], theta_w
 
-    
 
-
-
-            
-        
-
-
-    
-
-
-    
-        
-       
-        
-
-
-    
-
-
-def GetBallPositions(results):
-    class_names = ['purple', 'red']
-    detections = []
-    for bbox in results:
-        boxes = bbox.boxes
-        cls = boxes.cls.tolist()
-        xyxy = boxes.xyxy
-        # conf = boxes.conf
-        # masks = bbox.masks
-        for i, class_index in enumerate(cls):
-            class_name = class_names[int(class_index)]
-            # confidence = conf[i]
-            x, y, w, h = map(int, xyxy[i])
-            if class_name == 'red':
-                detections.append(BoxToPos(x,y,w,h))
-    return detections
 
 def UndistortImg(img):
-  # data from calibration
-  mtx = np.matrix([[1.02896097e+03, 0, 1.01324017e+03], [0.0, 9.92389966e+02, 5.48550898e+02],[0, 0,  1]])
-  dist = np.array([ 0.19576717, -0.2477706,  -0.00620366,  0.00395638,  0.10295289])
-  newcameramtx = np.matrix([[1.07476421e+03, 0, 1.02262547e+03], [0, 1.02925677e+03, 5.43286518e+02],[0, 0, 1]])
-  roi = [13, 14, 1895, 1057]
+    camera_matrix = np.array([[1029.138061543091, 0, 1013.24017],
+                            [0, 992.6178560916601, 548.550898],
+                            [0, 0, 1]])
+    dist_coeffs = np.array([ 0.19576996 ,-0.24765409, -0.00625207 , 0.0039396 ,  0.10282869])
+    new_camera_matrix = np.array([[1.08832011e+03, 0.00000000e+00 ,1.02215651e+03],
+        [0.00000000e+00,1.05041880e+03 ,5.39881529e+02],
+        [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]])
+    roi = [0, 0, 1919, 1079]  
 
-  dst = cv2.undistort(img, mtx, dist, None, newcameramtx) 
-  # crop the image
-  x, y, w, h = roi
-  return dst[y:y+h, x:x+w]    
+    dst = cv2.undistort(img, camera_matrix, dist_coeffs,None, new_camera_matrix)
+    x, y, w, h = roi
+    frame_undistorted = dst[y:y+h, x:x+w]
+    return frame_undistorted
 
 class Vision(Node):
     def __init__(self):
@@ -152,16 +120,22 @@ class Vision(Node):
         self.timer = self.create_timer(timer_period, self.timer_callback)
         # self.vision = DistanceCalculator(1,1)
         # load an official model
-        self.model = YOLO("src/vision/vision/best.pt")
+        self.model = YOLOv10("../../../../../models/bestv10_redball.pt")
+        self.robot_position_in_world_position = [0,0,90]
 
     def timer_callback(self):
         # input from camera
         # call UndistortImg then pass it to model
-        results = self.model("src/vision/vision/frame_0127.jpg")
+        frame = cv2.imread("../../../../../source/godang_ws/src/vision/vision/frame_0127.jpg")
+        # results = self.model("src/vision/vision/frame_0127.jpg")
         msg = Float32MultiArray()
-        balls = GetBallPositions(results)
-        if balls:
-          msg.data = balls
+        img_undistorted =UndistortImg(frame)
+        balls = detect_objects(img_undistorted)
+        BallPosRobot = computeBallPosRobotframe(balls)
+        R2WConversion = R2WConversion(BallPosRobot,self.robot_position_in_world_position)
+
+        if R2WConversion:
+          msg.data = R2WConversion
         self.publisher_.publish(msg)
         self.get_logger().info('Publishing: "%s"' % msg.data)
 
