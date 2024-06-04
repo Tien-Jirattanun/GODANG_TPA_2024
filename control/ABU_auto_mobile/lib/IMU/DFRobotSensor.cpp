@@ -1,11 +1,11 @@
 #include "DFRobotSensor.h"
 
-// #if (defined(ARDUINO_AVR_UNO) || defined(ESP8266)) // Using a soft serial port
-// SoftwareSerial softSerial(/*rx =*/10, /*tx =*/11);
-// #define FPSerial softSerial
-// #else
+#if (defined(ARDUINO_AVR_UNO) || defined(ESP8266) || defined(ARDUINO_RASPBERRY_PI_PICO)) // Using a soft serial port
+SoftwareSerial softSerial(/*rx =*/17, /*tx =*/16);
+#define FPSerial softSerial
+#else
 #define FPSerial Serial2
-// #endif
+#endif
 
 DFRobotSensor::DFRobotSensor()
     : sensor(&FPSerial), previousTime(0), vx(0), vy(0), vz(0),
@@ -17,13 +17,13 @@ DFRobotSensor::DFRobotSensor()
 void DFRobotSensor::begin()
 {
 
-// #if (defined ESP32)
-//     FPSerial.begin(9600, SERIAL_8N1, /*rx =*/D3, /*tx =*/D2);
-// #else
-//     FPSerial.begin(9600);
-// #endif
+#if (defined ESP32)
+    FPSerial.begin(9600, SERIAL_8N1, /*rx =*/D3, /*tx =*/D2);
+#else
+    FPSerial.begin(9600);
+#endif
 
-    Serial2.begin(9600);
+    // Serial2.begin(9600);
 
     // Set the sensor output frequency
     sensor.modifyFrequency(FREQUENCY_200HZ);
