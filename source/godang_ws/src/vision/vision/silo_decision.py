@@ -6,16 +6,16 @@
 test = [["Red","Blue","Red"],    ["None","Red","Blue"],    ["None","Red","Blue"]]
 
         #center     #left     #right    #leftleft  #rightright
-test = [[],    [],    []]
+test = [[],    [],    [],    [],    []] 
 
 class Decision:
     # shortest_path_list = [4,0,3,1,2]
     # shortest_path_state = 0
     def __init__(self, silo, color):
         self.silo = silo
-        self.idx = 0
-        self.shortest_path_list = [2,1,0]
-        self.shortest_path_list = [2,0,1]
+        self.idx = -1
+        self.shortest_path_list = [4,0,3,1,2]
+        #self.shortest_path_list = [2,0,1]
         self.shortest_path_state = 0
         self.color = color
 
@@ -29,7 +29,7 @@ class Decision:
             for i in self.silo:
                 if "None" not in i:
                     count += 1
-            if count == 3:
+            if count == 5:
                 return 10000000 
             if "None" in self.silo[self.shortest_path_list[self.idx]]:
                 self.shortest_path_state = self.shortest_path_list[self.idx]
@@ -38,11 +38,12 @@ class Decision:
                 self.idx -= 1
                 self.shortest_path_state = self.shortest_path_list[self.idx]
                 return self.shortest_path_state
+            
         elif self.color == "blue":
             for i in self.silo:
                 if "None" not in i:
                     count += 1
-            if count == 3:
+            if count == 5:
                 return 10000000 
             if "None" in self.silo[self.shortest_path_list[self.idx]]:
                 self.shortest_path_state = self.shortest_path_list[self.idx]
@@ -51,8 +52,9 @@ class Decision:
                 self.idx -= 1
                 self.shortest_path_state = self.shortest_path_list[self.idx]
                 return self.shortest_path_state
+            
         else:
-            return "WTF"
+            return "Wrong input"
 
 
 
