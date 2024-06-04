@@ -1,10 +1,12 @@
-import numpy as np
-from ultralytics import YOLO
 import cv2
-
+import numpy as np
 import rclpy
-from rclpy.node import Node
+import time
 
+from bisect import bisect_left
+from collections import OrderedDict
+from rclpy.node import Node
+from ultralytics import YOLO
 from std_msgs.msg import Float32MultiArray
 
 # Vision Class
@@ -81,11 +83,35 @@ class VisionNode(Node):
 
     def __init__(self):
         super().__init__('minimal_publisher')
-        self.publisher_ = self.create_publisher(Float32MultiArray, 'topic', 10)
+        self.start_time_ = time.time()
+        self.publisher_ = self.create_publisher(Float32MultiArray, 'ball_pos', 10)
+        self.subscription_pos = self.create_subscription(Float32MultiArray, "pos_data",self.listener_pos_callback, 10)
         timer_period = 0.5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
         # vision constructor
         self.ball_detector = BallDetection("/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision/best.pt", camera_matrix, dist_coeffs, new_camera_matrix, roi)
+        self.pos_history_ = OrderedDict()
+
+    def listener_pos_callback(self, msg):
+        # TODO: replace time with msg time
+        elapse_time = time.time() - self.start_time_
+        # TODO: only extract position if it include time
+        self.pos_history_[elapse_time] = msg.data
+        # only keep the position in last 5 secs.
+        kMax_Hist = 5 # s
+        while(self.pos_history_ and elapse_time - next(iter(self.pos_history_)) > kMax_Hist):
+            _, _ = self.pos_history_.popitem(False)
+
+    ''' query with elapse time, i.e. time.time() - self.start_time_'''
+    def get_robot_pos(self, query_time):
+        if self.pos_history:
+            list_time = list(self.pos_history.keys())
+            index = bisect_left(list_time, query_time)
+            if(index < len(list_time)):
+                # maybe do interpolation between two pos if needed.
+                return self.pos_history[list_time[index]]
+            return self.pos_history[list_time[-1]]        
+        return [0.0, 0.0, 0.0]
 
     def timer_callback(self):
         msg = Float32MultiArray()
