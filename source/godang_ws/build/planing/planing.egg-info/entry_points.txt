@@ -1,2 +1,2 @@
 [console_scripts]
-run = planing.planing_node:main
+state_node = planing.state_node:main

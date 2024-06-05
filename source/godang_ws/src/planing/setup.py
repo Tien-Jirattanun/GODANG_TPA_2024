@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "run = planing.planing_node:main"
+            "state_node = planing.state_node:main"
         ],
     },
 )
