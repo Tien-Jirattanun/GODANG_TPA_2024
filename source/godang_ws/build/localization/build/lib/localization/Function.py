@@ -1,19 +1,21 @@
 import math
 from PID import PIDController
+import numpy as np
 
 class PositionController:
     def __init__(self):
         self.x, self.y, self.theta = 0, 0, 0
         self.PosX = PIDController(kP=0.1, kI=0.05, kD=0)
         self.PosY = PIDController(kP=0.1, kI=0.05, kD=0)
-        self.PosZ = PIDController(kP=0.01, kI=0.001, kD=0)
+        self.StraightZ = PIDController(kP=0.01, kI=0.001, kD=0)
+        self.RotateZ = PIDController(kP=0.05, kI=0.05, kD=0)
         self.vx, self.vy, self.vz = 0, 0, 0
         self.Max_speed = 0.9
-        self.Min_Speed_fac = 0.1
-        self.reset = 0;
+        self.Min_Speed_fac = 0.15
+        self.reset = 0
         
     def position_reset(self):
-        self.reset = 1;
+        self.reset = 1
 
     def angular_difference(self, target, current):
         difference = target - current
@@ -28,9 +30,16 @@ class PositionController:
     
     def clamp_speed(self, speed, max_speed):
         return max(min(speed, max_speed), -max_speed)
+    
+    def rotate_vector(self, vector, theta_degrees):
+        theta = float(np.radians(theta_degrees))  # Convert degrees to radians
+        rotation_matrix = np.array([
+            [np.cos(theta), -np.sin(theta)],
+            [np.sin(theta), np.cos(theta)]
+        ])
+        return np.matmul(rotation_matrix, vector)
 
-    def go_to_position(self, target_x, target_y, target_z, pos_x, pos_y, pos_z, start_x, start_y):
-        
+    def go_to_position(self, target_x, target_y, target_z, pos_x, pos_y, pos_z, start_x, start_y):        
         total_distance = math.sqrt((target_x - start_x)**2 + (target_y - start_y)**2)
         accel_distance = total_distance / 5   
         decel_distance = total_distance / 5
@@ -52,7 +61,8 @@ class PositionController:
                 velocity_scale = 1
                 # print(2)
             elif current_distance < total_distance:
-                velocity_scale = self.mapf(current_distance - (accel_distance + const_distance), 0, decel_distance, 1, self.Min_Speed_fac)
+                # velocity_scale = self.mapf(current_distance - (accel_distance + const_distance), 0, decel_distance, 1, self.Min_Speed_fac)
+                velocity_scale = self.mapf(total_distance - current_distance, 0, decel_distance, self.Min_Speed_fac, 1)
                 # print(3)
             else:
                 velocity_scale = self.Min_Speed_fac
@@ -70,7 +80,17 @@ class PositionController:
             
             vx = self.clamp_speed(base_vx, self.Max_speed)
             vy = self.clamp_speed(base_vy, self.Max_speed)
-            vz = self.clamp_speed(self.PosZ.update(error_z), self.Max_speed)
+            vz = self.clamp_speed(self.StraightZ.update(error_z), self.Max_speed)
+
+            # if abs(target_x - start_x) < 0.05:
+            #     vx = 0.0
+            
+            # if abs(target_y - start_y) < 0.05:
+            #     vy = 0.0
+
+            vx, vy = self.rotate_vector([vx, vy], -pos_z)
+
+            error_x, error_y = self.rotate_vector([error_x,error_y], -pos_z)
             
             print(vx,vy,vz)
 
@@ -78,3 +98,15 @@ class PositionController:
                 return [0.0,0.0,0.0]
             else:
                 return [vx,vy,vz]
+        
+    def rotate(self, target_z, pos_z):
+        if self.reset == 1:
+            pass
+        else:
+            current_z = pos_z
+            error_z = self.angular_difference(target_z, current_z)
+            vz = self.clamp_speed(self.RotateZ.update(error_z), self.Max_speed)
+        if abs(error_z) <= 3:
+            return [0.0,0.0,0.0]
+        else:
+            return [0.0,0.0,vz]

@@ -16,8 +16,14 @@ class PIDController:
         self.D = error - self.previous_error
 
         # Reset or reduce the integral term within a certain error threshold
-        if abs(error) < 0.05:  # Example threshold, adjust based on your system
-            self.I *= 0.5  # Dampen rather than reset to handle very small oscillations
+        # if abs(error) < 0.05:  # Example threshold, adjust based on your system
+        #     self.I *= 0.5  # Dampen rather than reset to handle very small oscillations
+        if error == 0:
+            self.I = 0
+        if error > 0 and self.I < 0:
+            self.I = 0
+        if error < 0 and self.I > 0:
+            self.I = 0
 
         if self.I > self.limit:
             self.I = self.limit

@@ -20,7 +20,7 @@ class StateNode(Node):
         # Variable
         self.button = 0
         # state [state, field, retired]
-        self.state = [0,0]
+        self.state = [0, 0, 0]
         
         
     def listener_callback(self, msg):
@@ -41,7 +41,6 @@ class StateNode(Node):
         
         msg.data = self.state    
         self.publisher_.publish(msg)
-
 
 def main(args=None):
     rclpy.init(args=args)
