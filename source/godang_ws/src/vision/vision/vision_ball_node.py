@@ -1,15 +1,12 @@
 import sys
 sys.path.append("/home/godang/BoutToHackNASA/source/godang_ws/src/vision/vision")
 
-from bisect import bisect_left
-from collections import OrderedDict
 from std_msgs.msg import Float32MultiArray
 from ultralytics import YOLOv10
 import rclpy
 from rclpy.node import Node
 import numpy as np
 import cv2
-import time
 
 
 class_names = ['purple','red']
@@ -152,35 +149,10 @@ class VisionBallNode(Node):
         self.timer = self.create_timer(timer_period, self.timer_callback)
         # self.vision = DistanceCalculator(1,1)
         # load an official model        
-        self.robot_position_in_world_position = [0,0,0]
+        self.robot_position_in_world_position = [0,0,90]
         self.cap_ball = cv2.VideoCapture(2)
         self.cap_ball.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
         self.cap_ball.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
-        self.pos_history_ = OrderedDict()
-
-    def listener_pos_callback(self, msg):
-        # TODO: replace time with msg time
-        elapse_time = time.time() - self.start_time_
-        # TODO: only extract position if it include time
-        self.pos_history_[elapse_time] = msg.data
-        # only keep the position in last 5 secs.
-        kMax_Hist = 5 # s
-        while(self.pos_history_ and elapse_time - next(iter(self.pos_history_)) > kMax_Hist):
-            _, _ = self.pos_history_.popitem(False)
-
-    ''' query with elapse time, i.e. time.time() - self.start_time_'''
-    def get_robot_pos(self, query_time):
-        if self.pos_history:
-            list_time = list(self.pos_history.keys())
-            index = bisect_left(list_time, query_time)
-            if(index < len(list_time)):
-                # maybe do interpolation between two pos if needed.
-                interpolation = (query_time - list_time[index-1]) / (list_time[index] - list_time[index-1])
-                if interpolation > 0:
-                    return [self.pos_history[list_time[index-1]][i] + interpolation * (self.pos_history[list_time[index]][i] - self.pos_history[list_time[index-1]][i]) for i in range(3)]
-                # return self.pos_history[list_time[index]]
-            return self.pos_history[list_time[-1]]        
-        return [0.0, 0.0, 0.0]
 
     def timer_callback(self):
         ret, frame = self.cap_ball.read()
@@ -194,13 +166,12 @@ class VisionBallNode(Node):
         balls = detect_objects(img_undistorted)
         BallPosRobot = computeBallPosRobotframe(balls)
         if BallPosRobot != []:
-            Robot_pos = self.get_robot_pos(time.time() - self.start_time_)
-            world_Conversion = R2WConversion(BallPosRobot, Robot_pos)
+            world_Conversion = R2WConversion(BallPosRobot,self.robot_position_in_world_position)
             print(f"world_Conversion {world_Conversion}")
             if world_Conversion:
                 msg.data = world_Conversion
         else:
-            msg.data = [0.0, 0.0, 0.0]
+            msg.data = [9.99,9.99,9.99]
             
         print(msg.data)
             
