@@ -1,6 +1,7 @@
 import sys
-sys.path.append("/home/godang/BoutToHackNASA/source/godang_ws/src/localization/localization")
+sys.path.append("/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/localization/localization")
 from Function import PositionController
+import numpy as np
 
 import rclpy
 from rclpy.node import Node
@@ -47,10 +48,23 @@ class MobileNode(Node):
         self.state = msg.data
 
     def listener_pos_callback(self, msg):
+        # before rotate
         self.pos_array = msg.data
         self.pos_x = self.pos_array[0]
         self.pos_y = self.pos_array[1]
         self.pos_z = self.pos_array[2]
+        # # after rotate
+        # self.pos_operate_array = self.rotate_vector([self.pos_x, self.pos_y], self.pos_z)
+        # self.pos_x = self.pos_operate_array[0]
+        # self.pos_y = self.pos_operate_array[1]
+                
+    def rotate_vector(self, vector, theta_degrees):
+        theta = np.radians(theta_degrees)  # Convert degrees to radians
+        rotation_matrix = np.array([
+            [np.cos(theta), -np.sin(theta)],
+            [np.sin(theta), np.cos(theta)]
+        ])
+        return np.matmul(rotation_matrix, vector)
         
     def resetStart(self):
         self.startX = self.pos_x
@@ -58,42 +72,48 @@ class MobileNode(Node):
 
     def timer_callback(self):
         
-        print(self.state)
+        # print(self.state)
         
         msg = Float32MultiArray()
         msg.layout.dim.append(MultiArrayDimension(label='rows', size=3, stride=3))
         msg.layout.dim.append(MultiArrayDimension(label='columns', size=1, stride=1))
-        
+
         if self.state[0] == 0:
             self.vel_array = [0.0, 0.0, 0.0]
                    
-        elif self.state ==[1, 0, 0]:
-            # waypoint 1
+        elif self.state[0] == 1 and self.state[1] == 0 and self.state[2] == 0:
+            # # waypoint 1
+            # if self.way_point == 0:
+            #     self.vel_array = self.pos_control.go_to_position(6, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+            #     if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+            #         self.way_point += 1
+            #         self.resetStart()
+            # # waypoint 2        
+            # elif self.way_point == 1:
+            #     self.vel_array = self.pos_control.go_to_position(6, 2, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+            #     if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+            #         self.way_point += 1
+            #         self.resetStart()
+            # cwaypoint 3      
             if self.way_point == 0:
-                self.vel_array = self.pos_control.go_to_position(6, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
-                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                self.vel_array = self.pos_control.rotate(90, self.pos_z)
+                if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
                     self.way_point += 1
-                    self.resetStart()
-            # waypoint 2        
+                    self.resetStart()   
+            # waypoint 4    
             elif self.way_point == 1:
-                self.vel_array = self.pos_control.go_to_position(0, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
-                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                self.vel_array = self.pos_control.go_to_position(1, 0, 90, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
                     self.way_point += 1
-                    self.resetStart()
-            # waypoint 3    
-            # elif self.way_point == 2:
-            #     self.vel_array[3] = 0.0
-            #     self.vel_array = self.pos_control.go_to_position(0.7, 0, 0, self.pos_x, self.pos_y, self.pos_z)
-            #     if self.vel_array == [0.0, 0.0, 0.0, 0.0]:
-            #         self.vel_array[3] += 1.0
-            #         self.way_point += 1    
+                    self.resetStart()   
             else:
+                print(2)
                 self.vel_array = [0.0, 0.0, 0.0] 
-        elif self.state == [1, 1, 0]:
+        elif self.state[0] == 1 and self.state[1] == 1 and self.state[2] == 0:
             pass
-        elif self.state == [1, 0, 1]:
+        elif self.state[0] == 1 and self.state[1] == 0 and self.state[2] == 0:
             pass
-        elif self.state == [1, 1, 1]:
+        elif self.state[0] == 1 and self.state[1] == 1 and self.state[2] == 1:
             pass
         
         # sent data here
