@@ -1,3 +1,6 @@
+import sys
+sys.path.append("/home/godang/BoutToHackNASA/source/godang_ws/src/vision/vision")
+
 from std_msgs.msg import Float32MultiArray
 from ultralytics import YOLOv10
 import rclpy
@@ -6,7 +9,7 @@ import numpy as np
 import cv2
 
 
-class_names = ['purple', 'red']
+class_names = ['purple','red']
 
 camera_matrix = np.array([[1029.138061543091, 0, 1013.24017],
                           [0, 992.6178560916601, 548.550898],
@@ -22,12 +25,13 @@ roi = [0, 0, 1919, 1079]
 focal_length_x = 1029.138061543091  
 focal_length_y = 992.6178560916601 
 real_diameter = 0.19
+model = YOLOv10("src/vision/vision/bestv10_redball.pt")
+
 
 
 def detect_objects(frame):
     list_of_ball = []
-    model = YOLOv10("./bestv10_redball.pt")
-    results = model(frame, conf=0.1)
+    results = model(frame, conf=0.2)
     
     class_names = model.names  
     
@@ -42,8 +46,9 @@ def detect_objects(frame):
             x1, y1, x2, y2 = map(int, xyxy[i])
             detection = [x1, y1, x2, y2]
             confidence = float(conf[i])
+            print(f"class_name{class_name}")
             list_of_ball.append([detection, confidence, class_name])
-            print(list_of_ball)
+            # print(list_of_ball)
     
     return list_of_ball
 
@@ -55,6 +60,7 @@ def image_to_robot_coordinates(u, v, depth):
 
     x_norm = (u - cx) / fx
     y_norm = (v - cy) / fy
+    # 0.215 is the distance from the camera to the Home position of the robot
     depth_T = depth + 0.215
     xyz_robot_coordinates = [x_norm, y_norm, depth_T]
     return xyz_robot_coordinates
@@ -62,10 +68,14 @@ def image_to_robot_coordinates(u, v, depth):
 
 def computeBallPosRobotframe(list_of_ball):
     ## radio of the ball
-    radio_threshold = 1.2
+    radio_threshold = 0.08
+
+    ## Tolarance of the wight and high ball
+    tolarance = 5
+
     ## check if there are any balls
-    if len(list_of_ball) == 0:
-        return None
+    if list_of_ball == []:
+        return []
     ## check if there is any red balls
     red_ball = False
     for i in range(len(list_of_ball)):
@@ -74,30 +84,40 @@ def computeBallPosRobotframe(list_of_ball):
             break
     
     ## if there is no red ball
-    if red_ball == False:
-        return 999
+    if not red_ball:
+        ball_pos = []
+        return ball_pos
 
     ## first choose most confident ball and match radio
     # print(list_of_ball)
-    sorted_conf_ball = sorted(list_of_ball, key=lambda x: x[1], reverse=True)
-    for i in range(len(sorted_conf_ball)):
-        diff_x = sorted_conf_ball[i][0][2] - sorted_conf_ball[i][0][0]
-        diff_y = sorted_conf_ball[i][0][3] - sorted_conf_ball[i][0][1]
-        if sorted_conf_ball[i][2] == 'red' and diff_x/diff_y < radio_threshold:
-            ## compute the center of the ball
-            x1, y1, x2, y2 = sorted_conf_ball[i][0]
-            u = x1 + (x2 - x1) / 2
-            v = y1 + (y2 - y1) / 2
+    if list_of_ball != []:
+        sorted_conf_ball = sorted(list_of_ball, key=lambda x: x[1], reverse=True)
+        for i in range(len(sorted_conf_ball)):
+            diff_x = sorted_conf_ball[i][0][2] - sorted_conf_ball[i][0][0]
+            diff_y = sorted_conf_ball[i][0][3] - sorted_conf_ball[i][0][1]
+            if sorted_conf_ball[i][2] == 'red' and abs(diff_x - diff_y) < tolarance:
+                ## compute the center of the ball
+                x1, y1, x2, y2 = sorted_conf_ball[i][0]
+                u = x1 + (x2 - x1) / 2
+                v = y1 + (y2 - y1) / 2
 
-            ## Get depth
-            depth_x = (real_diameter * focal_length_x) / (x2-x1)
-            
+                ## Get depth
+                depth_x = (real_diameter * focal_length_x) / (x2-x1)
+                
 
-            ## compute the image_to_robot_coordinates
-            X, Y, Z = image_to_robot_coordinates(u, v, depth_x)
-            ball_pos = [X, Y, Z]
+                ## compute the image_to_robot_coordinates
+                X, Y, Z = image_to_robot_coordinates(u, v, depth_x)
+                # 0.47 is the high from the camera to the ground
+                if Y - 0.47 < radio_threshold + 0.19: # 0.19 is the radius of the ball
+                    ball_pos = [X, Y, Z]
+                    return ball_pos
+                else:
+                    pass
 
-            return ball_pos
+                
+        else:
+            ball_pos = []
+    return ball_pos
         
 def R2WConversion(ball_pos,robot_position_in_world_position):
     x_r, y_r, theta_r = robot_position_in_world_position
@@ -131,38 +151,47 @@ def UndistortImg(img):
     frame_undistorted = dst[y:y+h, x:x+w]
     return frame_undistorted
 
-class Vision(Node):
+class VisionBallNode(Node):
     def __init__(self):
-        super().__init__('planing_node')
-        self.publisher_ = self.create_publisher(
-            Float32MultiArray, 'distance', 10)
+        super().__init__('vision_ball_node')
+        self.publisher_ = self.create_publisher(Float32MultiArray, 'ball_data', 10)
         timer_period = 2  # 0.5 hz
         self.timer = self.create_timer(timer_period, self.timer_callback)
         # self.vision = DistanceCalculator(1,1)
-        # load an official model
-        self.model = YOLOv10("./bestv10_redball.pt")
+        # load an official model        
         self.robot_position_in_world_position = [0,0,90]
+        self.cap_ball = cv2.VideoCapture(2)
+        self.cap_ball.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
+        self.cap_ball.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
 
     def timer_callback(self):
+        ret, frame = self.cap_ball.read()
+        
         # input from camera
         # call UndistortImg then pass it to model
-        frame = cv2.imread("./frame_0127.jpg")
+        # frame = cv2.imread("./src/vision/vision/frame_0225.jpg")
         # results = self.model("src/vision/vision/frame_0127.jpg")
         msg = Float32MultiArray()
         img_undistorted =UndistortImg(frame)
         balls = detect_objects(img_undistorted)
         BallPosRobot = computeBallPosRobotframe(balls)
-        R2WConversion = R2WConversion(BallPosRobot,self.robot_position_in_world_position)
-
-        if R2WConversion:
-          msg.data = R2WConversion
+        if BallPosRobot != []:
+            world_Conversion = R2WConversion(BallPosRobot,self.robot_position_in_world_position)
+            print(f"world_Conversion {world_Conversion}")
+            if world_Conversion:
+                msg.data = world_Conversion
+        else:
+            msg.data = [9.99,9.99,9.99]
+            
+        print(msg.data)
+            
         self.publisher_.publish(msg)
-        self.get_logger().info('Publishing: "%s"' % msg.data)
+            
 
 
 def main(args=None):
     rclpy.init(args=args)
-    vision = Vision()
+    vision = VisionBallNode()
     rclpy.spin(vision)
 
     vision.destroy_node()
