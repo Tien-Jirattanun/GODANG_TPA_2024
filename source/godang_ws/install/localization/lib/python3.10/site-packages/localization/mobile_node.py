@@ -5,7 +5,7 @@ from Function import PositionController
 import rclpy
 from rclpy.node import Node
 
-from std_msgs.msg import Int32
+from std_msgs.msg import Int32MultiArray
 from std_msgs.msg import Float32MultiArray
 from std_msgs.msg import MultiArrayDimension
 
@@ -16,7 +16,7 @@ class MobileNode(Node):
         self.publisher_vel = self.create_publisher(Float32MultiArray, "vel_data", 10)
         self.subscription_pos = self.create_subscription(Float32MultiArray, "pos_data",self.listener_pos_callback, 10)
         self.subscription_pos   
-        self.subscription_state = self.create_subscription(Int32, "state_data" ,self.listener_state_callback, 10)
+        self.subscription_state = self.create_subscription(Int32MultiArray, "state_data" ,self.listener_state_callback, 10)
         self.subscription_state   
         timer_period = 0.01  # 100 hz
         self.timer = self.create_timer(timer_period, self.timer_callback)
@@ -36,7 +36,7 @@ class MobileNode(Node):
         self.pos_z = 0.0
 
         # state
-        self.state = 0
+        self.state = [0, 0, 0]
         # way point
         self.way_point = 0
         self.startX = 0
@@ -64,10 +64,10 @@ class MobileNode(Node):
         msg.layout.dim.append(MultiArrayDimension(label='rows', size=3, stride=3))
         msg.layout.dim.append(MultiArrayDimension(label='columns', size=1, stride=1))
         
-        if self.state == 0:
+        if self.state[0] == 0:
             self.vel_array = [0.0, 0.0, 0.0]
                    
-        elif self.state == 1:
+        elif self.state ==[1, 0, 0]:
             # waypoint 1
             if self.way_point == 0:
                 self.vel_array = self.pos_control.go_to_position(6, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
@@ -89,7 +89,12 @@ class MobileNode(Node):
             #         self.way_point += 1    
             else:
                 self.vel_array = [0.0, 0.0, 0.0] 
-
+        elif self.state == [1, 1, 0]:
+            pass
+        elif self.state == [1, 0, 1]:
+            pass
+        elif self.state == [1, 1, 1]:
+            pass
         
         # sent data here
         msg.data = self.vel_array

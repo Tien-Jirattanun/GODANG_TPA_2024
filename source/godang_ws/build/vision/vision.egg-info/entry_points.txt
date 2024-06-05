@@ -1,2 +1,3 @@
 [console_scripts]
 vision_ball = vision.vision_ball_node:main
+vision_silo = vision.vision_silo_node:main
