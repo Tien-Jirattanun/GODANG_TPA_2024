@@ -11,6 +11,7 @@
 
 // Control include
 
+#include <DFRobotSensor.h>
 #include "Motor.h"
 #include "Kinematics.h"
 #include <RPi_Pico_TimerInterrupt.h>
@@ -29,11 +30,11 @@ rcl_allocator_t allocator;
 rcl_node_t node;
 rcl_timer_t timer;
 
-float vel[4] = { 0, 0, 0, 0 };
+float vel[4] = {0, 0, 0, 0};
 
 // control define
 
-#define dt_us 1000  // 1000 Hz
+#define dt_us 1000 // 1000 Hz
 float deltaT = dt_us / 1.0e6;
 RPI_PICO_Timer Timer(0);
 bool TimerStatus = false;
@@ -48,11 +49,14 @@ float lx = 0.388 / 2;
 float ly = 0.375 / 2;
 Kinematics kinematics(wheelDiameter, lx, ly);
 
-Kinematics::Position currentPosition{ 0.0, 0.0, 0.0 };
+Kinematics::Position currentPosition{0.0, 0.0, 0.0};
 
 float vx, vy, wz;
 
 float radps_fl, radps_fr, radps_bl, radps_br;
+
+DFRobotSensor IMU;
+SensorData imu_data;
 
 struct TransformStep
 {
@@ -73,24 +77,32 @@ int counter = 0;
 
 #define LED_PIN 25
 
+int button(){
+  if(digitalRead(0) == HIGH) return 1;
+  if(digitalRead(0) == HIGH) return 2;
+  if(digitalRead(0) == HIGH) return 3;
+  if(digitalRead(0) == HIGH) return 4;
+  else return 0;
+}
+
 // --------------------------------
 
 // error handler
 
-#define RCCHECK(fn)                                                                                                    \
-  {                                                                                                                    \
-    rcl_ret_t temp_rc = fn;                                                                                            \
-    if ((temp_rc != RCL_RET_OK))                                                                                       \
-    {                                                                                                                  \
-      error_loop();                                                                                                    \
-    }                                                                                                                  \
+#define RCCHECK(fn)              \
+  {                              \
+    rcl_ret_t temp_rc = fn;      \
+    if ((temp_rc != RCL_RET_OK)) \
+    {                            \
+      error_loop();              \
+    }                            \
   }
-#define RCSOFTCHECK(fn)                                                                                                \
-  {                                                                                                                    \
-    rcl_ret_t temp_rc = fn;                                                                                            \
-    if ((temp_rc != RCL_RET_OK))                                                                                       \
-    {                                                                                                                  \
-    }                                                                                                                  \
+#define RCSOFTCHECK(fn)          \
+  {                              \
+    rcl_ret_t temp_rc = fn;      \
+    if ((temp_rc != RCL_RET_OK)) \
+    {                            \
+    }                            \
   }
 
 void error_loop()
@@ -106,37 +118,36 @@ void error_loop()
 
 // ros void call back
 
-void timer_callback(rcl_timer_t* timer, int64_t last_call_time)
+void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
 {
   RCLC_UNUSED(last_call_time);
   if (timer != NULL)
   {
     pos_msg.data.data[0] = currentPosition.x;
     pos_msg.data.data[1] = currentPosition.y;
-    pos_msg.data.data[2] = currentPosition.theta;
+    pos_msg.data.data[2] = imu_data.angleZ;
     // pos_msg.data.data[2] = BR.encoder.getCount();
 
     RCSOFTCHECK(rcl_publish(&publisher, &pos_msg, NULL));
   }
 }
 
-void subscription_callback(const void* msgin)
+void subscription_callback(const void *msgin)
 {
-  const std_msgs__msg__Float32MultiArray* msg = (const std_msgs__msg__Float32MultiArray*)msgin;
+  const std_msgs__msg__Float32MultiArray *msg = (const std_msgs__msg__Float32MultiArray *)msgin;
   vel[0] = msg->data.data[0];
   vel[1] = msg->data.data[1];
   vel[2] = msg->data.data[2];
 
   // if (counter++ % 100 == 0 && (vx != 0 || vy != 0 || wz != 0))
   // {
-    digitalWrite(LED_PIN, !digitalRead(LED_PIN));
+  digitalWrite(LED_PIN, !digitalRead(LED_PIN));
   // }s
-
 }
 
 // timer interrupt call back
 
-bool TimerHandler(struct repeating_timer* t)
+bool TimerHandler(struct repeating_timer *t)
 {
   (void)t;
 
@@ -175,28 +186,28 @@ void setup()
   RCCHECK(rclc_node_init_default(&node, "micro_ros_mobile_auto_node", "", &support));
 
   // create subscriber
-  RCCHECK(rclc_subscription_init_default(&subscriber, &node,ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "vel_data"));
+  RCCHECK(rclc_subscription_init_default(&subscriber, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "vel_data"));
 
   // create publisher
-  RCCHECK(rclc_publisher_init_default(&publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray),"pos_data"));
+  RCCHECK(rclc_publisher_init_default(&publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "pos_data"));
 
   const unsigned int timer_timeout = 10;
   RCCHECK(rclc_timer_init_default(&timer, &support, RCL_MS_TO_NS(timer_timeout), timer_callback));
 
   vel_msg.data.capacity = 3;
   vel_msg.data.size = 3;
-  vel_msg.data.data = (float_t*)malloc(vel_msg.data.capacity * sizeof(float_t));
+  vel_msg.data.data = (float_t *)malloc(vel_msg.data.capacity * sizeof(float_t));
 
   vel_msg.layout.dim.capacity = 3;
   vel_msg.layout.dim.size = 3;
-  vel_msg.layout.dim.data = (std_msgs__msg__MultiArrayDimension*)malloc(vel_msg.layout.dim.capacity *
-                                                                        sizeof(std_msgs__msg__MultiArrayDimension));
+  vel_msg.layout.dim.data = (std_msgs__msg__MultiArrayDimension *)malloc(vel_msg.layout.dim.capacity *
+                                                                         sizeof(std_msgs__msg__MultiArrayDimension));
 
   for (size_t i = 0; i < vel_msg.layout.dim.capacity; i++)
   {
     vel_msg.layout.dim.data[i].label.capacity = 3;
     vel_msg.layout.dim.data[i].label.size = 3;
-    vel_msg.layout.dim.data[i].label.data = (char*)malloc(vel_msg.layout.dim.data[i].label.capacity * sizeof(char));
+    vel_msg.layout.dim.data[i].label.data = (char *)malloc(vel_msg.layout.dim.data[i].label.capacity * sizeof(char));
   }
 
   // create executor
@@ -206,7 +217,7 @@ void setup()
 
   pos_msg.data.capacity = 3;
   pos_msg.data.size = 3;
-  pos_msg.data.data = (float_t*)malloc(pos_msg.data.capacity * sizeof(float_t));
+  pos_msg.data.data = (float_t *)malloc(pos_msg.data.capacity * sizeof(float_t));
 
   pos_msg.data.data[0] = 0.0f;
   pos_msg.data.data[1] = 0.0f;
@@ -232,10 +243,14 @@ void setup1()
   BR.encoder.begin();
   BL.encoder.begin();
 
+  IMU.begin();
+
   // Timer Interrupt Setup
   TimerStatus = Timer.attachInterruptInterval(dt_us, TimerHandler);
 }
 
 void loop1()
 {
+  IMU.update();
+  imu_data = IMU.getSensorData();
 }

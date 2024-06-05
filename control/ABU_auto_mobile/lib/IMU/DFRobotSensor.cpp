@@ -1,6 +1,7 @@
-#include "DFRobotSensor.h"
+#include <DFRobotSensor.h>
 
 #if (defined(ARDUINO_AVR_UNO) || defined(ESP8266) || defined(ARDUINO_RASPBERRY_PI_PICO)) // Using a soft serial port
+#include <SoftwareSerial.h>
 SoftwareSerial softSerial(/*rx =*/17, /*tx =*/16);
 #define FPSerial softSerial
 #else
@@ -9,7 +10,7 @@ SoftwareSerial softSerial(/*rx =*/17, /*tx =*/16);
 
 DFRobotSensor::DFRobotSensor()
     : sensor(&FPSerial), previousTime(0), vx(0), vy(0), vz(0),
-      px(0), py(0), pz(0), roll(0), pitch(0), 
+      px(0), py(0), pz(0), roll(0), pitch(0),
       ax_filtered(0), ay_filtered(0), az_filtered(0),
       gx_filtered(0), gy_filtered(0), gz_filtered(0),
       tx(0.0), ty(0.0), tz(0.0), set_zero(0.0), angle_z(0.0) {}
@@ -30,8 +31,10 @@ void DFRobotSensor::begin()
 
     // Reset angle Z
     long d = millis();
-    while (millis() - d <= 3000) {
-        if (sensor.available()) {
+    while (millis() - d <= 3000)
+    {
+        if (sensor.available())
+        {
             set_zero = sensor.Angle.Z;
         }
     }
@@ -49,9 +52,12 @@ void DFRobotSensor::update()
         // previousTime = currentTime;
 
         // Angle Z process
-        if (sensor.Angle.Z >= set_zero) {
+        if (sensor.Angle.Z >= set_zero)
+        {
             angle_z = sensor.Angle.Z - set_zero;
-        } else {
+        }
+        else
+        {
             angle_z = 360 - (set_zero - sensor.Angle.Z);
         }
 
@@ -117,7 +123,7 @@ void DFRobotSensor::update()
 SensorData DFRobotSensor::getSensorData() const
 {
     // SensorData data = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, sensor.Angle.Z};
-    
+
     SensorData data = {px, py, pz, sensor.Acc.X, sensor.Acc.Y, sensor.Acc.Z, sensor.Gyro.X, sensor.Gyro.Y, sensor.Gyro.Z, sensor.Angle.X, sensor.Angle.Y, angle_z};
     return data;
 }
