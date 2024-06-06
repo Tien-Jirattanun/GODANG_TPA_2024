@@ -193,7 +193,7 @@ class VisionBallNode(Node):
 
     def timer_callback(self):
         ret, frame = self.cap_ball.read()
-        
+        capture_time = time.time() - self.start_time_
         # input from camera
         # call UndistortImg then pass it to model
         # frame = cv2.imread("./src/vision/vision/frame_0225.jpg")
@@ -203,7 +203,7 @@ class VisionBallNode(Node):
         balls = detect_objects(img_undistorted)
         BallPosRobot = computeBallPosRobotframe(balls)
         if BallPosRobot != []:
-            Robot_pos = self.get_robot_pos(time.time() - self.start_time_)
+            Robot_pos = self.get_robot_pos(capture_time)
             world_Conversion = R2WConversion(BallPosRobot, Robot_pos)
             print(f"world_Conversion {world_Conversion}")
             if world_Conversion:
