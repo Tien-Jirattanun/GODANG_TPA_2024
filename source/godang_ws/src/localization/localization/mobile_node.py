@@ -192,7 +192,7 @@ class MobileNode(Node):
                     if self.ball_fresh:
                         print("Error y: ", err_y)
                     # self.vel_array = self.pos_control.rotate(self.target_yaw, self.pos_z)
-                    self.vel_array = self.pos_control.go_to_world_position(self.pos_x, self.ball_y_stable, self.pos_z)
+                    self.vel_array = self.pos_control.go_to_world_position(self.pos_x, self.ball_y_stable, self.pos_z, 0.)
                     
                 self.ball_fresh = False
                     
