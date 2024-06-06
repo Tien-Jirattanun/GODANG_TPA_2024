@@ -53,6 +53,16 @@ class StateNode(Node):
             self.state[0] = 4
         elif self.done == 5:
             self.state[0] = 5
+        elif self.done == 6:
+            self.state[0] = 6
+        elif self.done == 7:
+            self.state[0] = 7
+        elif self.done == 8:
+            self.state[0] = 8
+        elif self.done == 9:
+            self.state[0] = 9
+        elif self.done == 10:
+            self.state[0] = 10
         
         print("loop : ", self.done)
         print(self.state)

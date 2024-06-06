@@ -1,12 +1,12 @@
 import sys
-sys.path.append("/home/godang/BoutToHackNASA/source/godang_ws/src/vision/vision")
+sys.path.append("/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision")
 
 # vision import 
 import numpy as np
 import json
-from silo_decision import Decision
+# from silo_decision import Decision
 from config import ConfigColorsilo
-from ultralytics import YOLO
+from ultralytics import YOLOv10
 import cv2
 
 # ros import
@@ -19,12 +19,12 @@ class SiloDetection:
     def __init__(self, model_path):
         self.silo = [["None", "None", "None"], ["None", "None", "None"], ["None", "None", "None"], ["None", "None", "None"], ["None", "None", "None"]] # silo array
         self.state = 0 # state of silo
-        self.model = YOLO(model_path) # model
+        self.model = YOLOv10(model_path) # model
         self.class_names = ['silo'] # class name
         self.idx = -1 # index
         self.shortest_path_list = [4,0,3,1,2] # shortest path list
         self.shortest_path_state = 0 # shortest path state
-        self.cap_silo = cv2.VideoCapture(0)
+        self.cap_silo = cv2.VideoCapture(4)
     
     def detect_silo(self, frame): # parameter : frame
         results = self.model(frame, conf=0.1)
@@ -40,9 +40,9 @@ class SiloDetection:
                     x1, y1, x2, y2 = map(int, xyxy[i])
                     detections.append([x1, y1, x2 - x1, y2 - y1])
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)    
-                    cv2.imshow("frame", frame)
+                    # cv2.imshow("frame", frame)
                     cv2.waitKey(500)      
-                cv2.imwrite("..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\ans.png", frame)
+                # cv2.imwrite("..\\BoutToHackNASA\\source\\godang_ws\\src\\vision\\vision\\ans.png", frame)
         cv2.destroyAllWindows()
         return detections
 
@@ -120,14 +120,15 @@ class VisionSiloNode(Node):
         timer_period = 0.5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
         # vision initia        
-        self.silo_detection = SiloDetection("/home/godang/BoutToHackNASA/source/godang_ws/src/vision/vision/best_silo.pt")
-        self.cap_silo = cv2.VideoCapture(0)
+        self.silo_detection = SiloDetection("/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision/siloWeight.pt")
+        self.cap_silo = cv2.VideoCapture(2)
 
     def timer_callback(self):
         msg = Int32()
         ret, frame = self.silo_detection.cap_silo.read()
         print(frame.shape)
         bboxs = sorted(self.silo_detection.detect_silo(frame))
+        #bboxs = self.silo_detection.detect_silo(frame)
         print(f"bboxs{bboxs}")
         [self.silo_detection.display_rois(bbox, frame, i) for i, bbox in enumerate(bboxs)]
         silo = self.silo_detection.silo

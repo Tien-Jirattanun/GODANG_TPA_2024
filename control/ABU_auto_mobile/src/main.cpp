@@ -81,10 +81,14 @@ int counter = 0;
 #define LED_PIN 25
 
 int button(){
-  if(digitalRead(0) == HIGH) return 1;  //
-  if(digitalRead(1) == HIGH) return 2;  //
-  if(digitalRead(19) == HIGH) return 3;
-  if(digitalRead(18) == HIGH) return 4;
+  if(digitalRead(0) == HIGH) 
+    return 1;  
+  else if(digitalRead(1) == HIGH) 
+    return 2;  
+  else if(digitalRead(19) == HIGH) 
+    return 3;
+  else if(digitalRead(18) == HIGH) 
+    return 4;
   else return 0;
 }
 
@@ -200,6 +204,10 @@ void setup()
   // create publisher
   RCCHECK(rclc_publisher_init_default(&publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "pos_data"));
 
+  // create publisher
+  RCCHECK(rclc_publisher_init_default(&publisher_butt, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32), "butt_data"));
+
+
   const unsigned int timer_timeout = 10;
   RCCHECK(rclc_timer_init_default(&timer, &support, RCL_MS_TO_NS(timer_timeout), timer_callback));
 
@@ -220,7 +228,7 @@ void setup()
   }
 
   // create executor
-  RCCHECK(rclc_executor_init(&executor, &support.context, 2, &allocator));
+  RCCHECK(rclc_executor_init(&executor, &support.context, 3, &allocator));
   RCCHECK(rclc_executor_add_subscription(&executor, &subscriber, &vel_msg, &subscription_callback, ON_NEW_DATA));
   RCCHECK(rclc_executor_add_timer(&executor, &timer));
 

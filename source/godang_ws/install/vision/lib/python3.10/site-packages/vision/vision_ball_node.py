@@ -41,7 +41,7 @@ model = YOLOv10(
 
 def detect_objects(frame):
     list_of_ball = []
-    results = model(frame, conf=0.2)
+    results = model(frame, conf=0.4)
 
     class_names = model.names
 
@@ -179,6 +179,7 @@ class VisionBallNode(Node):
         self.cap_ball.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
         self.cap_ball.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
         self.pos_history_ = OrderedDict()
+        self.start_time_ = time.time()
 
     def listener_pos_callback(self, msg):
         # TODO: replace time with msg time
@@ -196,8 +197,8 @@ class VisionBallNode(Node):
     """ query with elapse time, i.e. time.time() - self.start_time_"""
 
     def get_robot_pos(self, query_time):
-        if self.pos_history:
-            list_time = list(self.pos_history.keys())
+        if self.pos_history_:
+            list_time = list(self.pos_history_.keys())
             index = bisect_left(list_time, query_time)
             if index == 0:
                 return self.pos_history_[list_time[0]]
@@ -205,8 +206,8 @@ class VisionBallNode(Node):
                 interpolation = (query_time - list_time[index - 1]) / (
                     list_time[index] - list_time[index - 1]
                 )
-                prev_pos = self.pos_history[list_time[index - 1]]
-                next_pos = self.pos_history[list_time[index]]
+                prev_pos = self.pos_history_[list_time[index - 1]]
+                next_pos = self.pos_history_[list_time[index]]
                 dx = next_pos[0] - prev_pos[0]
                 dy = next_pos[1] - prev_pos[1]
                 dtheta = next_pos[2] - prev_pos[2]
@@ -219,8 +220,8 @@ class VisionBallNode(Node):
                     prev_pos[1] + interpolation * dy,
                     prev_pos[2] + interpolation * dtheta,
                 ]
-                # return self.pos_history[list_time[index]]
-            return self.pos_history[list_time[-1]]
+                # return self.pos_history_[list_time[index]]
+            return self.pos_history_[list_time[-1]]
         return [0.0, 0.0, 0.0]
 
     def timer_callback(self):

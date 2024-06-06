@@ -22,17 +22,17 @@ class MobileNode(Node):
         self.publisher_done = self.create_publisher(Int32, "done_data", 10)
         self.publisher_reset = self.create_publisher(Int32, "reset_data", 10)
         self.publisher_mani = self.create_publisher(Int32, "mani_com_data", 10)
-        self.subscription_pos = self.create_subscription(
-            Float32MultiArray, "pos_data", self.listener_pos_callback, 10)
+        self.subscription_pos = self.create_subscription(Float32MultiArray, "pos_data", self.listener_pos_callback, 10)
         self.subscription_pos
-        self.subscription_state = self.create_subscription(
-            Int32MultiArray, "state_data", self.listener_state_callback, 10)
+        self.subscription_state = self.create_subscription(Int32MultiArray, "state_data", self.listener_state_callback, 10)
         self.subscription_state
-        self.subscription_ball = self.create_subscription(
-            Float32MultiArray, "ball_data", self.listener_ball_callback, 10)
-        self.subscription_mani = self.create_subscription(
-            Int32MultiArray, "mani_sensor_data", self.listener_sensor_callback, 10)
+        self.subscription_ball = self.create_subscription(Float32MultiArray, "ball_data", self.listener_ball_callback, 10)
+        self.subscription_ball
+        self.subscription_mani = self.create_subscription(Int32MultiArray, "mani_sensor_data", self.listener_sensor_callback, 10)
         self.subscription_mani
+        self.subscription_silo = self.create_subscription(Int32, "silo_data", self.listener_silo_callback, 10)
+        self.subscription_silo
+        
         timer_period = 0.01  # 100 hz
         self.timer = self.create_timer(timer_period, self.timer_callback)
 
@@ -60,6 +60,10 @@ class MobileNode(Node):
         
         self.target_yaw = 0
         self.done_rotate = False
+
+        #silo
+        self.silo = 2
+        self.fixed_silo = 2
 
         # mani
         self.mani_sensor = [0.0, 0.0, 0.0, 0.0, 0.0]
@@ -102,6 +106,9 @@ class MobileNode(Node):
         self.ball_fresh = True
         self.done_rotate = False
         print("call back")
+        
+    def listener_silo_callback(self, msg):
+        self.silo = msg.data
 
     def rotate_vector(self, vector, theta_degrees):
         theta = np.radians(theta_degrees)  # Convert degrees to radians
@@ -180,8 +187,8 @@ class MobileNode(Node):
                 
                 _, err_y = self.pos_control.world2robot(self.ball_x_stable, self.ball_y_stable)
                 self.target_yaw = math.degrees(math.atan2((self.ball_y_stable - self.pos_y),(self.ball_x_stable - self.pos_x)))
-                if self.done_rotate or (self.ball_fresh and abs(err_y) <= 0.05):
-                    # print("Done ja")
+                if self.done_rotate or (self.ball_fresh and abs(err_y) <= 0.035):
+                    print("Done ja")
                     self.vel_array = [0.0,0.0,0.0]
                     self.way_point = 0
                     self.pos_control.counter = 0
@@ -192,9 +199,9 @@ class MobileNode(Node):
                     if self.ball_fresh:
                         print("Error y: ", err_y)
                     # self.vel_array = self.pos_control.rotate(self.target_yaw, self.pos_z)
-                    self.vel_array = self.pos_control.go_to_world_position(self.pos_x, self.ball_y_stable, self.pos_z, 0.)
+                    self.vel_array = self.pos_control.go_to_world_position(self.pos_x, self.ball_y_stable, 0., 0.)
                     
-                self.ball_fresh = False
+                    self.ball_fresh = False
                     
         elif self.state[0] == 4:
             if self.way_point == 0:
@@ -213,11 +220,13 @@ class MobileNode(Node):
                     self.counter += 1
             elif self.way_point == 1:
                 print(self.target_yaw, self.pos_z)
+                print(1)
                 self.vel_array = self.pos_control.rotate(self.target_yaw, self.pos_z)
                 if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
                     self.resetStart()
                     self.way_point += 1
             elif self.way_point == 2:
+                print(2)
                 if (self.mani_sensor[0] + self.mani_sensor[1]) == 0:
                     self.vel_array = [0.1, 0.0,0.0]
                     self.mani_com = 2
@@ -226,6 +235,7 @@ class MobileNode(Node):
                 else:
                     self.vel_array = [0.1, 0.0,0.0]
             elif self.way_point == 3:
+                print(3)
                 if self.counter < 100:
                     self.vel_array = [0.1, 0.0,0.0]
                 elif self.counter < 50:
@@ -238,19 +248,62 @@ class MobileNode(Node):
                         self.resetStart()
                 self.counter+=1
             elif self.way_point == 4:
-                if self.counter < 100:
+                print(4)
+                if self.counter < 300:
                     self.vel_array = [0.0, 0.0,0.0]
-                elif self.counter < 250:
-                    self.vel_array = [0.0, 0.0,0.0]
-                    self.mani_com = 3
                 else:
                     self.counter = 0
                     self.way_point += 1
                 self.counter += 1
             else:
+                self.counter = 0
                 self.vel_array = [0.0, 0.0, 0.0]
+                # self.way_point = 0
                 done_msg.data = 5
-
+        elif self.state[0] == 5:
+            print("state 5")
+            self.vel_array = [0.0, 0.0, 0.0]
+            self.fixed_silo = self.silo
+            if self.counter<100:
+                self.vel_array = [0.0, 0.0, 0.0]
+            else:
+                print("go to state 6")
+                self.vel_array = [0.0, 0.0, 0.0]
+                done_msg.data = 6
+            self.counter += 1
+        elif self.state[0] == 6:
+            print("state 6")
+            self.vel_array = self.pos_control.go_to_position(-1.9, -0.735 * (2 - self.fixed_silo), 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+            if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
+                self.counter = 0
+                self.resetStart()
+                done_msg.data = 7
+        elif self.state[0] == 7:
+            if (self.mani_sensor[2] + self.mani_sensor[3]) == 0:
+                self.vel_array = [0.0, 0.0, 0.0]
+                done_msg.data = 8
+            else:
+                self.vel_array = [-0.1, 0.0, 0.0]                 
+        elif self.state[0] == 8:
+            print("state 8")
+            if self.counter<100:
+                self.vel_array = [0.0, 0.0, 0.0]
+            elif self.counter < 250:
+                self.vel_array = [0.0, 0.0, 0.0]
+                self.mani_com = 3
+            elif self.counter < 750:
+                self.vel_array = [0.0, 0.0, 0.0]
+            else:
+                done_msg.data = 9
+            self.counter+=1
+        elif self.state[0] == 9:
+            print("state 9")
+            self.vel_array = self.pos_control.go_to_position(0, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+            if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
+                done_msg.data = 10
+        else:
+            self.vel_array = [0.0, 0.0, 0.0]
+            
         # sent data here
         # print(self.vel_array)
         # print("state" , done_msg.data)
