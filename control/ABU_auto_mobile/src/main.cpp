@@ -126,7 +126,7 @@ void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
     pos_msg.data.data[0] = currentPosition.x;
     pos_msg.data.data[1] = currentPosition.y;
     pos_msg.data.data[2] = imu_data.angleZ;
-    // pos_msg.data.data[2] = BR.encoder.getCount();
+    // pos_msg.data.data[2] = FR.encoder.getCount();
 
     RCSOFTCHECK(rcl_publish(&publisher, &pos_msg, NULL));
   }

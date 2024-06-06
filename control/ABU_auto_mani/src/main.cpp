@@ -53,7 +53,7 @@ BallGripper bg(limit_switch, INA, INB, stepPin, dirPin, servoPin);
 Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_300MS, TCS34725_GAIN_1X);
 
 int maniState = 0;
-int lastState = 0;
+int lastState = -1;
 
 int colortemp;
 

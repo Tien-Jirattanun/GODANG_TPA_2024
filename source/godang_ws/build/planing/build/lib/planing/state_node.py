@@ -50,6 +50,8 @@ class StateNode(Node):
             self.state[0] = 3
         elif self.done == 4:
             self.state[0] = 4
+        elif self.done == 5:
+            self.state[0] = 5
         
         
         msg.data = self.state    
