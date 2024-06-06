@@ -85,6 +85,7 @@ class PositionController:
             
             print("error_x", error_x)
             print("error_y", error_y)
+            print("current pos", self.x, self.y, self.theta)
             
             
             return [vx, vy, vz]        

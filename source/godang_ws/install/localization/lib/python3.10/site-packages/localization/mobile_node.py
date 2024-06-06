@@ -181,7 +181,7 @@ class MobileNode(Node):
                 _, err_y = self.pos_control.world2robot(self.ball_x_stable, self.ball_y_stable)
                 self.target_yaw = math.degrees(math.atan2((self.ball_y_stable - self.pos_y),(self.ball_x_stable - self.pos_x)))
                 if self.done_rotate or (self.ball_fresh and abs(err_y) <= 0.05):
-                    print("Done ja")
+                    # print("Done ja")
                     self.vel_array = [0.0,0.0,0.0]
                     self.way_point = 0
                     self.pos_control.counter = 0
@@ -191,7 +191,8 @@ class MobileNode(Node):
                     # print(self.ball_fresh)
                     if self.ball_fresh:
                         print("Error y: ", err_y)
-                    self.vel_array = self.pos_control.rotate(self.target_yaw, self.pos_z)
+                    # self.vel_array = self.pos_control.rotate(self.target_yaw, self.pos_z)
+                    self.vel_array = self.pos_control.go_to_world_position(self.pos_x, self.ball_y_stable, self.pos_z)
                     
                 self.ball_fresh = False
                     
@@ -252,7 +253,7 @@ class MobileNode(Node):
 
         # sent data here
         # print(self.vel_array)
-        print("state" , done_msg.data)
+        # print("state" , done_msg.data)
         vel_msg.data = self.vel_array
         mani_msg.data = self.mani_com
         self.publisher_vel.publish(vel_msg)
