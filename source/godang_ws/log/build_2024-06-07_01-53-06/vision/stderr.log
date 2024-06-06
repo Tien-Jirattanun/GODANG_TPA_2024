@@ -1,0 +1,2 @@
+/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision/vision_ball_node.py:20: SyntaxWarning: list indices must be integers or slices, not tuple; perhaps you missed a comma?
+  [[932.0415378, 0.0, 980.91091955][0.0, 888.19867202, 557.32231945][0.0, 0.0, 1.0]]

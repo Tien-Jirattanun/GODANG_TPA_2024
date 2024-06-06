@@ -8,6 +8,7 @@
 #include <rclc/executor.h>
 
 #include <std_msgs/msg/float32_multi_array.h>
+#include <std_msgs/msg/int32.h>
 
 // Control include
 
@@ -21,8 +22,10 @@
 
 rcl_subscription_t subscriber;
 rcl_publisher_t publisher;
+rcl_publisher_t publisher_butt;
 std_msgs__msg__Float32MultiArray vel_msg;
 std_msgs__msg__Float32MultiArray pos_msg;
+std_msgs__msg__Int32 butt_msg;
 
 rclc_executor_t executor;
 rclc_support_t support;
@@ -78,10 +81,10 @@ int counter = 0;
 #define LED_PIN 25
 
 int button(){
-  if(digitalRead(0) == HIGH) return 1;
-  if(digitalRead(0) == HIGH) return 2;
-  if(digitalRead(0) == HIGH) return 3;
-  if(digitalRead(0) == HIGH) return 4;
+  if(digitalRead(0) == HIGH) return 1;  //
+  if(digitalRead(1) == HIGH) return 2;  //
+  if(digitalRead(19) == HIGH) return 3;
+  if(digitalRead(18) == HIGH) return 4;
   else return 0;
 }
 
@@ -123,11 +126,17 @@ void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
   RCLC_UNUSED(last_call_time);
   if (timer != NULL)
   {
+
+
     pos_msg.data.data[0] = currentPosition.x;
     pos_msg.data.data[1] = currentPosition.y;
     pos_msg.data.data[2] = imu_data.angleZ;
+
     // pos_msg.data.data[2] = FR.encoder.getCount();
 
+    butt_msg.data = button();
+
+    RCSOFTCHECK(rcl_publish(&publisher_butt, &butt_msg, NULL));
     RCSOFTCHECK(rcl_publish(&publisher, &pos_msg, NULL));
   }
 }
