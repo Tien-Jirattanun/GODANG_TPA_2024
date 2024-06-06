@@ -198,12 +198,22 @@ class MobileNode(Node):
                 elif self.counter < 250:
                     self.vel_array = [0.0, 0.0, 0.0]
                 else:
-                    self.vel_array = self.pos_control.go_to_position(0, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                    self.vel_array = self.pos_control.go_to_position(-0.1, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
                     if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
                         self.way_point += 1
+                        self.counter = 0
                         self.resetStart()
                 self.counter+=1
-
+            elif self.way_point == 3:
+                if self.counter < 100:
+                    self.vel_array = [0.0, 0.0,0.0]
+                elif self.counter < 250:
+                    self.vel_array = [0.0, 0.0,0.0]
+                    self.mani_com = 3
+                else:
+                    self.counter = 0
+                    self.way_point += 1
+                self.counter += 1
             else:
                 self.vel_array = [0.0, 0.0, 0.0]
                 done_msg.data = 5
