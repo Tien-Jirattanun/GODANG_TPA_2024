@@ -72,7 +72,7 @@ void BallGripper::stepper_ccw() {
 // additional function for control
 void BallGripper::preparing() {
   motor(-250);
-  delay(900);
+  delay(1100);
   motor_stop();
 }
 

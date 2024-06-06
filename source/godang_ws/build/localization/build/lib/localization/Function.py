@@ -62,15 +62,14 @@ class PositionController:
         ])
         return np.matmul(rotation_matrix, vector)
     
-    def go_to_world_position(self, target_x, target_y,target_yaw):
+    def go_to_world_position(self, target_x, target_y,target_yaw, offset_distance = 1):
         if self.reset == 1:
             pass
         else:
             self.counter += 1
             max_local_vel = min(self.counter * 0.05, self.Max_speed)
-            OFFSET_DISTANCE = 1.0
             error_x, error_y = self.world2robot(target_x, target_y)
-            error_magnitude = math.sqrt(error_x**2 + error_y**2) - OFFSET_DISTANCE
+            error_magnitude = math.sqrt(error_x**2 + error_y**2) - offset_distance
             error_direction = math.atan2(error_y, error_x)
 
             # error_z = -error_direction #(self.angular_difference(target_yaw, self.theta))
