@@ -174,7 +174,8 @@ class MobileNode(Node):
         elif self.state[0] == 4:
             if self.way_point == 0:
                 print(0)
-                self.vel_array = self.pos_control.go_to_position((self.ball_x_stable - 1.0), 0, self.ball_z_stable, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                # self.vel_array = self.pos_control.go_to_position((self.ball_x_stable - 1.0), 0, self.ball_z_stable, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                self.vel_array = self.pos_control.go_to_world_position(self.ball_x_stable, self.ball_y_stable)
                 # self.vel_array = self.pos_control.go_to_position(3, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
                 if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
                     if self.counter < 100:
