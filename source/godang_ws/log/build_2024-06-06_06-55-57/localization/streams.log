@@ -1,0 +1,27 @@
+[3.438s] Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/localization': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/localization build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/install.log --single-version-externally-managed install_data
+[4.562s] running egg_info
+[4.596s] writing ../../build/localization/localization.egg-info/PKG-INFO
+[4.597s] writing dependency_links to ../../build/localization/localization.egg-info/dependency_links.txt
+[4.598s] writing entry points to ../../build/localization/localization.egg-info/entry_points.txt
+[4.598s] writing requirements to ../../build/localization/localization.egg-info/requires.txt
+[4.598s] writing top-level names to ../../build/localization/localization.egg-info/top_level.txt
+[4.667s] reading manifest file '../../build/localization/localization.egg-info/SOURCES.txt'
+[4.669s] writing manifest file '../../build/localization/localization.egg-info/SOURCES.txt'
+[4.670s] running build
+[4.670s] running build_py
+[4.670s] copying localization/mobile_node.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/build/lib/localization
+[4.670s] copying localization/Function.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/build/lib/localization
+[4.671s] copying localization/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/build/lib/localization
+[4.671s] copying localization/PID.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/build/lib/localization
+[4.671s] running install
+[4.684s] running install_lib
+[4.720s] running install_data
+[4.721s] copying resource/localization -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/ament_index/resource_index/packages
+[4.721s] copying package.xml -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/localization
+[4.721s] running install_egg_info
+[4.758s] removing '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info' (and everything under it)
+[4.759s] Copying ../../build/localization/localization.egg-info to /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/lib/python3.10/site-packages/localization-0.0.0-py3.10.egg-info
+[4.761s] running install_scripts
+[5.131s] Installing mobile_node script to /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/lib/localization
+[5.132s] writing list of installed files to '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/install.log'
+[5.193s] Invoked command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/localization' returned '0': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/localization build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/install.log --single-version-externally-managed install_data

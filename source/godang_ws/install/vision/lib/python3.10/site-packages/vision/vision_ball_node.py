@@ -1,5 +1,5 @@
 import sys
-sys.path.append("/home/godang/BoutToHackNASA/source/godang_ws/src/vision/vision")
+sys.path.append("/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision")
 
 from std_msgs.msg import Float32MultiArray
 from ultralytics import YOLOv10
@@ -25,8 +25,7 @@ roi = [0, 0, 1919, 1079]
 focal_length_x = 1029.138061543091  
 focal_length_y = 992.6178560916601 
 real_diameter = 0.19
-model = YOLOv10("src/vision/vision/bestv10_redball.pt")
-
+model = YOLOv10("/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision/bestv10_redball.pt")
 
 
 def detect_objects(frame):
@@ -120,7 +119,7 @@ def R2WConversion(ball_pos,robot_position_in_world_position):
     Y = ball_pos[1]
     Z = ball_pos[2]
     robot_coords_homogeneous = np.array([Z, -X, 1])
-    world_coords_homogeneous = np.dot(transformation_matrix, robot_coords_homogeneous)
+    world_coords_homogeneous = np.matmul(transformation_matrix, robot_coords_homogeneous)
     theta_w = np.rad2deg((theta_r))
     return world_coords_homogeneous[0], world_coords_homogeneous[1], theta_w
 
@@ -145,14 +144,19 @@ class VisionBallNode(Node):
     def __init__(self):
         super().__init__('vision_ball_node')
         self.publisher_ = self.create_publisher(Float32MultiArray, 'ball_data', 10)
+        self.subscriptions_ = self.create_subscription(Float32MultiArray, "pos_data", self.listener_callback, 10)
+        self.subscriptions_
         timer_period = 2  # 0.5 hz
         self.timer = self.create_timer(timer_period, self.timer_callback)
         # self.vision = DistanceCalculator(1,1)
         # load an official model        
-        self.robot_position_in_world_position = [0,0,90]
+        self.robot_position_in_world_position = [0,0,0]
         self.cap_ball = cv2.VideoCapture(2)
         self.cap_ball.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
         self.cap_ball.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+
+    def listener_callback(self, msg):
+        self.robot_position_in_world_position = msg.data
 
     def timer_callback(self):
         ret, frame = self.cap_ball.read()
@@ -171,7 +175,7 @@ class VisionBallNode(Node):
             if world_Conversion:
                 msg.data = world_Conversion
         else:
-            msg.data = [9.99,9.99,9.99]
+            msg.data = [0.0,0.0,0.0]
             
         print(msg.data)
             

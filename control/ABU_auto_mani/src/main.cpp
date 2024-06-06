@@ -14,6 +14,9 @@
 #include "ball_gripper.h"
 #include <RPi_Pico_TimerInterrupt.h>
 #include <pio_encoder.h>
+#include <Wire.h>
+#include <Adafruit_TCS34725.h>
+#include <SPI.h>
 
 // microros define
 
@@ -38,16 +41,21 @@ rcl_timer_t timer;
 #define servoPin 5
 
 #define IR1 26
-#define IR2 2
 #define IR3 6
+
+#define Back1 27
+#define Back2 28
 
 #define start 1
 #define retry 0
 
 BallGripper bg(limit_switch, INA, INB, stepPin, dirPin, servoPin);
+Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_300MS, TCS34725_GAIN_1X);
 
 int maniState = 0;
 int lastState = 0;
+
+int colortemp;
 
 /*------------------------------------------------------*/
 // error handler
@@ -89,8 +97,10 @@ void timer_callback(rcl_timer_t* timer, int64_t last_call_time)
   {
 
     sen_msg.data.data[0] = digitalRead(IR1);
-    sen_msg.data.data[1] = digitalRead(IR2);
-    sen_msg.data.data[2] = digitalRead(IR3);
+    sen_msg.data.data[1] = digitalRead(IR3);
+    sen_msg.data.data[2] = digitalRead(Back1);
+    sen_msg.data.data[3] = digitalRead(Back2);
+    sen_msg.data.data[4] = colortemp;
 
     RCSOFTCHECK(rcl_publish(&publisher, &sen_msg, NULL));
   }
@@ -118,9 +128,9 @@ void setup()
   digitalWrite(LED_PIN, LOW);
 
   pinMode(IR1, INPUT);
-  pinMode(IR2, INPUT);
+  pinMode(Back1, INPUT);
+  pinMode(Back2, INPUT);
   pinMode(IR3, INPUT);
-
   digitalWrite(LED_PIN, HIGH);
 
   delay(2000);
@@ -149,13 +159,15 @@ void setup()
   RCCHECK(rclc_executor_add_subscription(&executor, &subscriber, &com_msg, &subscription_callback, ON_NEW_DATA));
   RCCHECK(rclc_executor_add_timer(&executor, &timer));
 
-  sen_msg.data.capacity = 3;
-  sen_msg.data.size = 3;
+  sen_msg.data.capacity = 5;
+  sen_msg.data.size = 5;
   sen_msg.data.data = (int32_t*)malloc(sen_msg.data.capacity * sizeof(int32_t));
 
   sen_msg.data.data[0] = 0.0f;
   sen_msg.data.data[1] = 0.0f;
   sen_msg.data.data[2] = 0.0f;
+  sen_msg.data.data[3] = 0.0f;
+  sen_msg.data.data[4] = 0.0f;
 }
 
 void setup1()
@@ -163,6 +175,15 @@ void setup1()
   bg.setup();
   pinMode(start, INPUT_PULLUP);
   pinMode(retry, INPUT_PULLUP);
+  pinMode(Back1, INPUT);
+  pinMode(Back2, INPUT);
+
+  Wire.setSDA(20);
+  Wire.setSCL(21);
+
+  Wire.begin();
+  tcs.begin();
+
 }
 
 void loop()
@@ -172,6 +193,10 @@ void loop()
 
 void loop1()
 {
+  uint16_t r,g,b,c;
+  tcs.getRawData(&r,&g,&b,&c);
+  colortemp = tcs.calculateColorTemperature_dn40(r,g,b,c);
+
   if (maniState != lastState)
   {
     switch (maniState)

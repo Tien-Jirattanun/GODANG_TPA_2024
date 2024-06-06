@@ -110,3 +110,11 @@ class PositionController:
             return [0.0,0.0,0.0]
         else:
             return [0.0,0.0,vz]
+    
+    def speed(self,vx,vy,target_z,pos_z):
+        current_z = pos_z
+        error_z = self.angular_difference(target_z, current_z)
+        vz = self.clamp_speed(self.RotateZ.update(error_z), self.Max_speed)
+        return [vx,vy,vz]
+    
+        
