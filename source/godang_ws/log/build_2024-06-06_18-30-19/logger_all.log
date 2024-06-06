@@ -1,0 +1,248 @@
+[0.224s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.225s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=20, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7f7d05386290>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f7d054fe020>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f7d054fe020>>, mixin_verb=('build',))
+[0.293s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.293s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.293s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.293s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.293s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.293s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.293s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws'
+[0.293s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.294s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.294s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.294s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.294s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.294s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.294s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.294s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.294s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.323s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.323s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.323s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.323s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.323s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.323s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extensions ['ignore', 'ignore_ament_install']
+[0.323s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extension 'ignore'
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extension 'ignore_ament_install'
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extensions ['colcon_pkg']
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extension 'colcon_pkg'
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extensions ['colcon_meta']
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extension 'colcon_meta'
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extensions ['ros']
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extension 'ros'
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extensions ['cmake', 'python']
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extension 'cmake'
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extension 'python'
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extensions ['python_setup_py']
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(-q) by extension 'python_setup_py'
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.324s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.325s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.325s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.325s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.325s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.325s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.325s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.326s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.327s] Level 1:colcon.colcon_core.package_identification:_identify(src/localization) by extensions ['ignore', 'ignore_ament_install']
+[0.327s] Level 1:colcon.colcon_core.package_identification:_identify(src/localization) by extension 'ignore'
+[0.327s] Level 1:colcon.colcon_core.package_identification:_identify(src/localization) by extension 'ignore_ament_install'
+[0.327s] Level 1:colcon.colcon_core.package_identification:_identify(src/localization) by extensions ['colcon_pkg']
+[0.327s] Level 1:colcon.colcon_core.package_identification:_identify(src/localization) by extension 'colcon_pkg'
+[0.327s] Level 1:colcon.colcon_core.package_identification:_identify(src/localization) by extensions ['colcon_meta']
+[0.327s] Level 1:colcon.colcon_core.package_identification:_identify(src/localization) by extension 'colcon_meta'
+[0.327s] Level 1:colcon.colcon_core.package_identification:_identify(src/localization) by extensions ['ros']
+[0.327s] Level 1:colcon.colcon_core.package_identification:_identify(src/localization) by extension 'ros'
+[0.331s] DEBUG:colcon.colcon_core.package_identification:Package 'src/localization' with type 'ros.ament_python' and name 'localization'
+[0.331s] Level 1:colcon.colcon_core.package_identification:_identify(src/planing) by extensions ['ignore', 'ignore_ament_install']
+[0.331s] Level 1:colcon.colcon_core.package_identification:_identify(src/planing) by extension 'ignore'
+[0.331s] Level 1:colcon.colcon_core.package_identification:_identify(src/planing) by extension 'ignore_ament_install'
+[0.332s] Level 1:colcon.colcon_core.package_identification:_identify(src/planing) by extensions ['colcon_pkg']
+[0.332s] Level 1:colcon.colcon_core.package_identification:_identify(src/planing) by extension 'colcon_pkg'
+[0.332s] Level 1:colcon.colcon_core.package_identification:_identify(src/planing) by extensions ['colcon_meta']
+[0.332s] Level 1:colcon.colcon_core.package_identification:_identify(src/planing) by extension 'colcon_meta'
+[0.332s] Level 1:colcon.colcon_core.package_identification:_identify(src/planing) by extensions ['ros']
+[0.332s] Level 1:colcon.colcon_core.package_identification:_identify(src/planing) by extension 'ros'
+[0.332s] DEBUG:colcon.colcon_core.package_identification:Package 'src/planing' with type 'ros.ament_python' and name 'planing'
+[0.333s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision) by extensions ['ignore', 'ignore_ament_install']
+[0.333s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision) by extension 'ignore'
+[0.333s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision) by extension 'ignore_ament_install'
+[0.333s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision) by extensions ['colcon_pkg']
+[0.333s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision) by extension 'colcon_pkg'
+[0.333s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision) by extensions ['colcon_meta']
+[0.333s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision) by extension 'colcon_meta'
+[0.333s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision) by extensions ['ros']
+[0.333s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision) by extension 'ros'
+[0.334s] DEBUG:colcon.colcon_core.package_identification:Package 'src/vision' with type 'ros.ament_python' and name 'vision'
+[0.334s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.334s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.334s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.334s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.334s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.374s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.374s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.381s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 39 installed packages in /home/tien/microros_ws/install
+[0.382s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 3 installed packages in /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install
+[0.383s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 3 installed packages in /home/tien/Documents/GitHub/ALL_CODE/red_ws/install
+[0.384s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 15 installed packages in /home/tien/turtlebot3_ws/install
+[0.384s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 3 installed packages in /home/tien/jinpao_naia_ws/install
+[0.385s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /home/tien/abu_ws/install
+[0.385s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 3 installed packages in /home/tien/three_wheel_ws/install
+[0.386s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 5 installed packages in /home/tien/jinpao_ws/install
+[0.389s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 410 installed packages in /opt/ros/humble
+[0.393s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.468s] Level 5:colcon.colcon_core.verb:set package 'localization' build argument 'cmake_args' from command line to 'None'
+[0.468s] Level 5:colcon.colcon_core.verb:set package 'localization' build argument 'cmake_target' from command line to 'None'
+[0.469s] Level 5:colcon.colcon_core.verb:set package 'localization' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.469s] Level 5:colcon.colcon_core.verb:set package 'localization' build argument 'cmake_clean_cache' from command line to 'False'
+[0.469s] Level 5:colcon.colcon_core.verb:set package 'localization' build argument 'cmake_clean_first' from command line to 'False'
+[0.469s] Level 5:colcon.colcon_core.verb:set package 'localization' build argument 'cmake_force_configure' from command line to 'False'
+[0.469s] Level 5:colcon.colcon_core.verb:set package 'localization' build argument 'ament_cmake_args' from command line to 'None'
+[0.469s] Level 5:colcon.colcon_core.verb:set package 'localization' build argument 'catkin_cmake_args' from command line to 'None'
+[0.469s] Level 5:colcon.colcon_core.verb:set package 'localization' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.469s] DEBUG:colcon.colcon_core.verb:Building package 'localization' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization', 'merge_install': False, 'path': '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/localization', 'symlink_install': False, 'test_result_base': None}
+[0.469s] Level 5:colcon.colcon_core.verb:set package 'planing' build argument 'cmake_args' from command line to 'None'
+[0.469s] Level 5:colcon.colcon_core.verb:set package 'planing' build argument 'cmake_target' from command line to 'None'
+[0.469s] Level 5:colcon.colcon_core.verb:set package 'planing' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.469s] Level 5:colcon.colcon_core.verb:set package 'planing' build argument 'cmake_clean_cache' from command line to 'False'
+[0.469s] Level 5:colcon.colcon_core.verb:set package 'planing' build argument 'cmake_clean_first' from command line to 'False'
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'planing' build argument 'cmake_force_configure' from command line to 'False'
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'planing' build argument 'ament_cmake_args' from command line to 'None'
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'planing' build argument 'catkin_cmake_args' from command line to 'None'
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'planing' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.470s] DEBUG:colcon.colcon_core.verb:Building package 'planing' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing', 'merge_install': False, 'path': '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/planing', 'symlink_install': False, 'test_result_base': None}
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'vision' build argument 'cmake_args' from command line to 'None'
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'vision' build argument 'cmake_target' from command line to 'None'
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'vision' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'vision' build argument 'cmake_clean_cache' from command line to 'False'
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'vision' build argument 'cmake_clean_first' from command line to 'False'
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'vision' build argument 'cmake_force_configure' from command line to 'False'
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'vision' build argument 'ament_cmake_args' from command line to 'None'
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'vision' build argument 'catkin_cmake_args' from command line to 'None'
+[0.470s] Level 5:colcon.colcon_core.verb:set package 'vision' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.470s] DEBUG:colcon.colcon_core.verb:Building package 'vision' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision', 'merge_install': False, 'path': '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision', 'symlink_install': False, 'test_result_base': None}
+[0.471s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.472s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.472s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/localization' with build type 'ament_python'
+[0.473s] Level 1:colcon.colcon_core.shell:create_environment_hook('localization', 'ament_prefix_path')
+[0.477s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.477s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/localization/hook/ament_prefix_path.ps1'
+[0.478s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/localization/hook/ament_prefix_path.dsv'
+[0.493s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/localization/hook/ament_prefix_path.sh'
+[0.495s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.495s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.513s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/planing' with build type 'ament_python'
+[0.513s] Level 1:colcon.colcon_core.shell:create_environment_hook('planing', 'ament_prefix_path')
+[0.514s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/planing/hook/ament_prefix_path.ps1'
+[0.515s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/planing/hook/ament_prefix_path.dsv'
+[0.516s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/planing/hook/ament_prefix_path.sh'
+[0.517s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.517s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.555s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision' with build type 'ament_python'
+[0.557s] Level 1:colcon.colcon_core.shell:create_environment_hook('vision', 'ament_prefix_path')
+[0.559s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision/hook/ament_prefix_path.ps1'
+[0.561s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision/hook/ament_prefix_path.dsv'
+[0.563s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision/hook/ament_prefix_path.sh'
+[0.566s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.567s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.217s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/localization'
+[1.218s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.218s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.648s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/planing'
+[1.648s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.648s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.087s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision'
+[2.088s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.088s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.558s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/install.log --single-version-externally-managed install_data
+[3.581s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/planing': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/planing build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/install.log --single-version-externally-managed install_data
+[3.586s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/localization': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/localization build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/install.log --single-version-externally-managed install_data
+[5.568s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/planing' returned '0': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/planing build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/install.log --single-version-externally-managed install_data
+[5.594s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing' for CMake module files
+[5.599s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing' for CMake config files
+[5.607s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/lib'
+[5.610s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/bin'
+[5.612s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/lib/pkgconfig/planing.pc'
+[5.615s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/lib/python3.10/site-packages'
+[5.618s] Level 1:colcon.colcon_core.shell:create_environment_hook('planing', 'pythonpath')
+[5.620s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/planing/hook/pythonpath.ps1'
+[5.628s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/planing/hook/pythonpath.dsv'
+[5.634s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/planing/hook/pythonpath.sh'
+[5.651s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/bin'
+[5.653s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(planing)
+[5.656s] INFO:colcon.colcon_core.shell:Creating package script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/planing/package.ps1'
+[5.678s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/planing/package.dsv'
+[5.682s] INFO:colcon.colcon_core.shell:Creating package script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/planing/package.sh'
+[5.701s] INFO:colcon.colcon_core.shell:Creating package script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/planing/package.bash'
+[5.712s] INFO:colcon.colcon_core.shell:Creating package script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/planing/package.zsh'
+[5.723s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/colcon-core/packages/planing)
+[5.813s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization' for CMake module files
+[5.819s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/localization' returned '0': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/localization build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/localization/install.log --single-version-externally-managed install_data
+[5.822s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization' for CMake config files
+[5.830s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/lib'
+[5.832s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/bin'
+[5.833s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/lib/pkgconfig/localization.pc'
+[5.836s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/lib/python3.10/site-packages'
+[5.838s] Level 1:colcon.colcon_core.shell:create_environment_hook('localization', 'pythonpath')
+[5.843s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/localization/hook/pythonpath.ps1'
+[5.850s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/localization/hook/pythonpath.dsv'
+[5.853s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/localization/hook/pythonpath.sh'
+[5.860s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/bin'
+[5.860s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(localization)
+[5.864s] INFO:colcon.colcon_core.shell:Creating package script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/localization/package.ps1'
+[5.867s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/localization/package.dsv'
+[5.868s] INFO:colcon.colcon_core.shell:Creating package script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/localization/package.sh'
+[5.870s] INFO:colcon.colcon_core.shell:Creating package script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/localization/package.bash'
+[5.872s] INFO:colcon.colcon_core.shell:Creating package script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/localization/package.zsh'
+[5.873s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/localization/share/colcon-core/packages/localization)
+[5.989s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision' for CMake module files
+[5.991s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision' returned '0': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/install.log --single-version-externally-managed install_data
+[5.992s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision' for CMake config files
+[6.000s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib'
+[6.000s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/bin'
+[6.000s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/pkgconfig/vision.pc'
+[6.001s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages'
+[6.001s] Level 1:colcon.colcon_core.shell:create_environment_hook('vision', 'pythonpath')
+[6.002s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision/hook/pythonpath.ps1'
+[6.003s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision/hook/pythonpath.dsv'
+[6.004s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision/hook/pythonpath.sh'
+[6.005s] Level 1:colcon.colcon_core.environment:checking '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/bin'
+[6.005s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(vision)
+[6.006s] INFO:colcon.colcon_core.shell:Creating package script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision/package.ps1'
+[6.007s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision/package.dsv'
+[6.008s] INFO:colcon.colcon_core.shell:Creating package script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision/package.sh'
+[6.009s] INFO:colcon.colcon_core.shell:Creating package script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision/package.bash'
+[6.009s] INFO:colcon.colcon_core.shell:Creating package script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision/package.zsh'
+[6.010s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/colcon-core/packages/vision)
+[6.011s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[6.011s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[6.012s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[6.012s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[6.028s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[6.028s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[6.028s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[6.052s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[6.053s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/local_setup.ps1'
+[6.054s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/_local_setup_util_ps1.py'
+[6.057s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/setup.ps1'
+[6.064s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/local_setup.sh'
+[6.065s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/_local_setup_util_sh.py'
+[6.066s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/setup.sh'
+[6.073s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/local_setup.bash'
+[6.074s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/setup.bash'
+[6.081s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/local_setup.zsh'
+[6.082s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/setup.zsh'

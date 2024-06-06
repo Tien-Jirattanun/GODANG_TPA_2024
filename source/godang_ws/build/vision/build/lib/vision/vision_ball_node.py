@@ -146,17 +146,23 @@ class VisionBallNode(Node):
         self.publisher_ = self.create_publisher(Float32MultiArray, 'ball_data', 10)
         self.subscriptions_ = self.create_subscription(Float32MultiArray, "pos_data", self.listener_callback, 10)
         self.subscriptions_
+        self.subscriptions_vel = self.create_subscription(Float32MultiArray, "vel_data", self.listener_vel_callback, 10)
+        self.subscriptions_vel
         timer_period = 2  # 0.5 hz
         self.timer = self.create_timer(timer_period, self.timer_callback)
         # self.vision = DistanceCalculator(1,1)
         # load an official model        
         self.robot_position_in_world_position = [0,0,0]
+        self.magnitude_vel = 0
         self.cap_ball = cv2.VideoCapture(2)
         self.cap_ball.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
         self.cap_ball.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
 
     def listener_callback(self, msg):
         self.robot_position_in_world_position = msg.data
+        
+    def listener_vel_callback(self, msg):
+        self.magnitude_vel = np.linalg.norm(np.array(msg.data))
 
     def timer_callback(self):
         ret, frame = self.cap_ball.read()
@@ -169,18 +175,16 @@ class VisionBallNode(Node):
         img_undistorted =UndistortImg(frame)
         balls = detect_objects(img_undistorted)
         BallPosRobot = computeBallPosRobotframe(balls)
-        if BallPosRobot != []:
+        if BallPosRobot != [] and self.magnitude_vel < 0.1:
             world_Conversion = R2WConversion(BallPosRobot,self.robot_position_in_world_position)
             print(f"world_Conversion {world_Conversion}")
+            # print(self.magnitude_vel)   
             if world_Conversion:
                 msg.data = world_Conversion
+                self.publisher_.publish(msg)
         else:
             msg.data = [0.0,0.0,0.0]
-            
-        print(msg.data)
-            
-        self.publisher_.publish(msg)
-            
+                     
 
 
 def main(args=None):

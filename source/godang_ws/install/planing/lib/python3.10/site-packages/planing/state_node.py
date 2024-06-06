@@ -30,6 +30,7 @@ class StateNode(Node):
         
     def listener_done_callback(self, msg):
         self.done = msg.data
+        print("call back : ",self.done)
 
     def timer_callback(self):
         msg = Int32MultiArray()
@@ -53,7 +54,8 @@ class StateNode(Node):
         elif self.done == 5:
             self.state[0] = 5
         
-        
+        print("loop : ", self.done)
+        print(self.state)
         msg.data = self.state    
         self.publisher_.publish(msg)
 

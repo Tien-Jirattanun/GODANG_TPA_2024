@@ -20,11 +20,11 @@ class PositionController:
 
     def update_position(self, x, y, theta):
         self.x, self.y, self.theta = x, y, theta
-        self.PosX.reset()
-        self.PosY.reset()
-        self.StraightZ.reset()
-        self.RotateZ.reset()
-        self.reset = 0
+        # self.PosX.reset()
+        # self.PosY.reset()
+        # self.StraightZ.reset()
+        # self.RotateZ.reset()
+        # self.reset = 0
 
     def update_velocity(self, vx, vy, vz):
         self.vx, self.vy, self.vz = vx, vy, vz
@@ -62,33 +62,32 @@ class PositionController:
         ])
         return np.matmul(rotation_matrix, vector)
     
-    def go_to_world_position(self, target_x, target_y):
+    def go_to_world_position(self, target_x, target_y,target_yaw):
         if self.reset == 1:
             pass
         else:
             self.counter += 1
-            max_local_vel = min(self.counter * 0.01, self.Max_speed)
+            max_local_vel = min(self.counter * 0.05, self.Max_speed)
             OFFSET_DISTANCE = 1.0
             error_x, error_y = self.world2robot(target_x, target_y)
             error_magnitude = math.sqrt(error_x**2 + error_y**2) - OFFSET_DISTANCE
             error_direction = math.atan2(error_y, error_x)
 
-            error_z = -error_direction #(self.angular_difference(target_yaw, self.theta))
-            vz = self.clamp_speed(self.RotateZ.update(error_z), self.Max_speed) 
-
+            # error_z = -error_direction #(self.angular_difference(target_yaw, self.theta))
+            # error_z = self.angular_difference(target_yaw, self.theta)
+            # vz = self.clamp_speed(self.RotateZ.update(error_z), self.Max_speed) 
+            vz = 0.
             vx = min(max_local_vel, error_magnitude) * math.cos(error_direction)
             vy = min(max_local_vel, error_magnitude) * math.sin(error_direction)
             
-
-            return [vx, vy, vz]
-
-
-
-
-
-
-           
-        
+            if self.counter >= 20 and abs(vx) <= 0.05 and abs(vy) <= 0.05 and abs(vz) <= 1:
+                return [0.0,0.0,0.0]
+            
+            print("error_x", error_x)
+            print("error_y", error_y)
+            
+            
+            return [vx, vy, vz]        
         
 
     def go_to_position(self, target_x, target_y, target_z, pos_x, pos_y, pos_z, start_x, start_y):        
