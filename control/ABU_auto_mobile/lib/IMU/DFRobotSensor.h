@@ -3,7 +3,7 @@
 
 #include <DFRobot_WT61PC.h>
 
-#if (defined(ARDUINO_AVR_UNO) || defined(ESP8266)) // Using a soft serial port
+#if (defined(ARDUINO_AVR_UNO) || defined(ESP8266) || defined(ARDUINO_RASPBERRY_PI_PICO)) // Using a soft serial port
 #include <SoftwareSerial.h>
 #endif
 
