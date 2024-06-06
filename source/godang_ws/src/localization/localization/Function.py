@@ -13,9 +13,32 @@ class PositionController:
         self.Max_speed = 0.9
         self.Min_Speed_fac = 0.15
         self.reset = 0
+        self.counter = 0
         
     def position_reset(self):
         self.reset = 1
+
+    def update_position(self, x, y, theta):
+        self.x, self.y, self.theta = x, y, theta
+        self.PosX.reset()
+        self.PosY.reset()
+        self.StraightZ.reset()
+        self.RotateZ.reset()
+        self.reset = 0
+
+    def update_velocity(self, vx, vy, vz):
+        self.vx, self.vy, self.vz = vx, vy, vz
+
+
+    def world2robot(self, X_w, Y_w):
+        theta_rad = np.deg2rad(self.theta)
+        transformation_matrix = np.array([[np.cos(theta_rad), -np.sin(theta_rad), self.x],
+                                          [np.sin(theta_rad), np.cos(theta_rad), self.y],
+                                          [0, 0, 1]])
+        world_coords_homogeneous = np.array([X_w, Y_w, 1])  
+        robot_coords_homogeneous = np.dot(np.linalg.inv(transformation_matrix), world_coords_homogeneous)
+        return robot_coords_homogeneous[0], robot_coords_homogeneous[1]
+
 
     def angular_difference(self, target, current):
         difference = target - current
@@ -38,6 +61,35 @@ class PositionController:
             [np.sin(theta), np.cos(theta)]
         ])
         return np.matmul(rotation_matrix, vector)
+    
+    def go_to_world_position(self, target_x, target_y):
+        if self.reset == 1:
+            pass
+        else:
+            self.counter += 1
+            max_local_vel = min(self.counter * 0.01, self.Max_speed)
+            OFFSET_DISTANCE = 1.0
+            error_x, error_y = self.world2robot(target_x, target_y)
+            error_magnitude = math.sqrt(error_x**2 + error_y**2) - OFFSET_DISTANCE
+            error_direction = math.atan2(error_y, error_x)
+
+            error_z = -error_direction #(self.angular_difference(target_yaw, self.theta))
+            vz = self.clamp_speed(self.RotateZ.update(error_z), self.Max_speed) 
+
+            vx = min(max_local_vel, error_magnitude) * math.cos(error_direction)
+            vy = min(max_local_vel, error_magnitude) * math.sin(error_direction)
+            
+
+            return [vx, vy, vz]
+
+
+
+
+
+
+           
+        
+        
 
     def go_to_position(self, target_x, target_y, target_z, pos_x, pos_y, pos_z, start_x, start_y):        
         total_distance = math.sqrt((target_x - start_x)**2 + (target_y - start_y)**2)
