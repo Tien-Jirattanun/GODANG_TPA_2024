@@ -173,11 +173,20 @@ class VisionBallNode(Node):
         if self.pos_history:
             list_time = list(self.pos_history.keys())
             index = bisect_left(list_time, query_time)
+            if(index == 0):
+                return self.pos_history_[list_time[0]]
             if(index < len(list_time)):
-                # maybe do interpolation between two pos if needed.
                 interpolation = (query_time - list_time[index-1]) / (list_time[index] - list_time[index-1])
-                if interpolation > 0:
-                    return [self.pos_history[list_time[index-1]][i] + interpolation * (self.pos_history[list_time[index]][i] - self.pos_history[list_time[index-1]][i]) for i in range(3)]
+                prev_pos = self.pos_history[list_time[index-1]]
+                next_pos = self.pos_history[list_time[index]]
+                dx = next_pos[0] - prev_pos[0]
+                dy = next_pos[1] - prev_pos[1]
+                dtheta = next_pos[2] - prev_pos[2]
+                if dtheta >180:
+                    dtheta -= 360
+                if dtheta < -180:
+                    dtheta += 360
+                return [prev_pos[0] + interpolation * dx, prev_pos[1] + interpolation * dy, prev_pos[2] + interpolation * dtheta]
                 # return self.pos_history[list_time[index]]
             return self.pos_history[list_time[-1]]        
         return [0.0, 0.0, 0.0]
