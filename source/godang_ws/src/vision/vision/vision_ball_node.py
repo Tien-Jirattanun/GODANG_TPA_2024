@@ -17,10 +17,12 @@ import time
 class_names = ["purple", "red"]
 
 camera_matrix = np.array(
-    [[932.0415378, 0.0, 980.91091955],[0.0, 888.19867202, 557.32231945],[0.0, 0.0, 1.0]]
+    [[511.89699558,0.,977.91778871],
+ [0.,484.99541997, 522.04977865],
+ [0.,0.,1.]]
 )
 
-dist_coeffs = np.array([0.19576996, -0.24765409, -0.00625207, 0.0039396, 0.10282869])
+dist_coeffs = np.array([-0.00855721, 0.01103223,  0.02456658, -0.03959475, -0.00104443])
 
 new_camera_matrix = np.array(
     [
@@ -31,13 +33,17 @@ new_camera_matrix = np.array(
 )
 roi = [0, 0, 1919, 1079]
 
-focal_length_x = 932.0415377984883
-focal_length_y = 888.198672015751
+focal_length_x = 511.8969955785815
+focal_length_y = 484.99541996780914
 real_diameter = 0.19
 model = YOLOv10(
     "/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision/bestv10_redball.pt"
 )
 
+# distance center of ball obset from the center of the camera
+def distance_ball_from_center(x1, x2):
+    center_camera = new_camera_matrix[0, 2]
+    return (x1 + x2) / 2 - center_camera
 
 def detect_objects(frame):
     list_of_ball = []
@@ -79,6 +85,7 @@ def image_to_robot_coordinates(u, v, depth):
 def computeBallPosRobotframe(list_of_ball):
     ## radio of the ball
     radio_threshold = 1.2
+    tolarance = 5
     ## check if there are any balls
     if list_of_ball == []:
         return []
@@ -97,16 +104,23 @@ def computeBallPosRobotframe(list_of_ball):
     ## first choose most confident ball and match radio
     # print(list_of_ball)
     if list_of_ball != []:
+        distance_ball_from_center_ = []
+        for i in range(len(list_of_ball)):
+            distance_ball_from_center_ = distance_ball_from_center(list_of_ball[i][0][0], list_of_ball[i][0][2])
+            distance_ball_from_center_.append(distance_ball_from_center_)
+        sorted_distance_ball_from_center = sorted(distance_ball_from_center_)
+
         sorted_conf_ball = sorted(list_of_ball, key=lambda x: x[1], reverse=True)
-        for i in range(len(sorted_conf_ball)):
+        for i in range(len(sorted_distance_ball_from_center)):
             diff_x = sorted_conf_ball[i][0][2] - sorted_conf_ball[i][0][0]
             diff_y = sorted_conf_ball[i][0][3] - sorted_conf_ball[i][0][1]
-            if sorted_conf_ball[i][2] == "red":
+
+            if sorted_conf_ball[i][2] == 'red' and abs(diff_x - diff_y) < tolarance:
                 ## compute the center of the ball
                 x1, y1, x2, y2 = sorted_conf_ball[i][0]
                 u = x1 + (x2 - x1) / 2
                 v = y1 + (y2 - y1) / 2
-
+            
                 ## Get depth
                 depth_x = (real_diameter * focal_length_x) / (x2 - x1)
 
