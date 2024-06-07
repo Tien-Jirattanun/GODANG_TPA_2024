@@ -154,11 +154,6 @@ void subscription_callback(const void *msgin)
   vel[0] = msg->data.data[0];
   vel[1] = msg->data.data[1];
   vel[2] = msg->data.data[2];
-
-  // if (counter++ % 100 == 0 && (vx != 0 || vy != 0 || wz != 0))
-  // {
-  digitalWrite(LED_PIN, !digitalRead(LED_PIN));
-  // }s
 }
 
 void subscription_reset_callback(const void *msgin)
@@ -168,7 +163,7 @@ void subscription_reset_callback(const void *msgin)
   {
     currentPosition.x = 0;
     currentPosition.y = 0;
-    IMU.begin();
+    IMU.Reset();
   }
   digitalWrite(LED_PIN, !digitalRead(LED_PIN));
 }
@@ -265,6 +260,8 @@ void setup()
   vel_msg.data.data[0] = 0.0f;
   vel_msg.data.data[1] = 0.0f;
   vel_msg.data.data[2] = 0.0f;
+
+  reset_msg.data = 0;
 }
 
 void loop()

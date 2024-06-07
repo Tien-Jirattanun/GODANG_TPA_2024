@@ -22,6 +22,7 @@ public:
 
     void begin();
     void update();
+    void Reset();
     SensorData getSensorData() const;
 
 private:

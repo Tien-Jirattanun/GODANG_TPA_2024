@@ -17,6 +17,7 @@ vision/ML.py
 vision/__init__.py
 vision/ballonthefloor.py
 vision/cam_midball.py
+vision/checkcam.py
 vision/config.py
 vision/depth_scale_ball.py
 vision/linetracking.py

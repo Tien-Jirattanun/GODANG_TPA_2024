@@ -1,0 +1,171 @@
+[3.203s] Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/install.log --single-version-externally-managed install_data
+[5.814s] running egg_info
+[6.004s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[6.021s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[6.048s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[6.049s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[6.049s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[6.351s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[6.366s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[6.366s] running build
+[6.367s] running build_py
+[6.371s] copying vision/ballonthefloor.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[6.372s] copying vision/vision_silo_node.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[6.373s] copying vision/cam_midball.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[6.374s] copying vision/depth_scale_ball.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[6.374s] copying vision/vision_ball_node.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[6.376s] copying vision/checkcam.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[6.377s] copying vision/ML.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[6.379s] copying vision/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision
+[6.379s] copying vision/ultralytics/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics
+[6.386s] copying vision/ultralytics/cfg/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/cfg
+[6.386s] copying vision/ultralytics/data/dataset.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data
+[6.387s] copying vision/ultralytics/data/split_dota.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data
+[6.387s] copying vision/ultralytics/data/annotator.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data
+[6.388s] copying vision/ultralytics/data/loaders.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data
+[6.388s] copying vision/ultralytics/data/build.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data
+[6.389s] copying vision/ultralytics/data/augment.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data
+[6.394s] copying vision/ultralytics/data/utils.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data
+[6.394s] copying vision/ultralytics/data/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data
+[6.395s] copying vision/ultralytics/data/converter.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data
+[6.396s] copying vision/ultralytics/data/base.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data
+[6.396s] copying vision/ultralytics/models/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models
+[6.397s] copying vision/ultralytics/nn/autobackend.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/nn
+[6.397s] copying vision/ultralytics/nn/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/nn
+[6.401s] copying vision/ultralytics/nn/tasks.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/nn
+[6.402s] copying vision/ultralytics/engine/exporter.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/engine
+[6.403s] copying vision/ultralytics/engine/trainer.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/engine
+[6.404s] copying vision/ultralytics/engine/model.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/engine
+[6.404s] copying vision/ultralytics/engine/predictor.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/engine
+[6.410s] copying vision/ultralytics/engine/results.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/engine
+[6.410s] copying vision/ultralytics/engine/tuner.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/engine
+[6.410s] copying vision/ultralytics/engine/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/engine
+[6.411s] copying vision/ultralytics/engine/validator.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/engine
+[6.411s] copying vision/ultralytics/solutions/distance_calculation.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/solutions
+[6.417s] copying vision/ultralytics/solutions/ai_gym.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/solutions
+[6.418s] copying vision/ultralytics/solutions/object_counter.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/solutions
+[6.418s] copying vision/ultralytics/solutions/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/solutions
+[6.418s] copying vision/ultralytics/solutions/heatmap.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/solutions
+[6.424s] copying vision/ultralytics/solutions/speed_estimation.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/solutions
+[6.428s] copying vision/ultralytics/utils/files.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.429s] copying vision/ultralytics/utils/metrics.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.429s] copying vision/ultralytics/utils/loss.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.429s] copying vision/ultralytics/utils/errors.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.430s] copying vision/ultralytics/utils/triton.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.432s] copying vision/ultralytics/utils/dist.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.433s] copying vision/ultralytics/utils/autobatch.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.433s] copying vision/ultralytics/utils/tal.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.434s] copying vision/ultralytics/utils/ops.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.436s] copying vision/ultralytics/utils/instance.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.437s] copying vision/ultralytics/utils/checks.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.437s] copying vision/ultralytics/utils/patches.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.438s] copying vision/ultralytics/utils/benchmarks.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.438s] copying vision/ultralytics/utils/tuner.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.438s] copying vision/ultralytics/utils/torch_utils.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.442s] copying vision/ultralytics/utils/plotting.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.443s] copying vision/ultralytics/utils/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.443s] copying vision/ultralytics/utils/downloads.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils
+[6.444s] copying vision/ultralytics/trackers/bot_sort.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/trackers
+[6.445s] copying vision/ultralytics/trackers/byte_tracker.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/trackers
+[6.446s] copying vision/ultralytics/trackers/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/trackers
+[6.451s] copying vision/ultralytics/trackers/basetrack.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/trackers
+[6.452s] copying vision/ultralytics/trackers/track.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/trackers
+[6.453s] copying vision/ultralytics/hub/session.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/hub
+[6.454s] copying vision/ultralytics/hub/auth.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/hub
+[6.456s] copying vision/ultralytics/hub/utils.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/hub
+[6.458s] copying vision/ultralytics/hub/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/hub
+[6.460s] copying vision/ultralytics/data/explorer/explorer.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data/explorer
+[6.461s] copying vision/ultralytics/data/explorer/utils.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data/explorer
+[6.469s] copying vision/ultralytics/data/explorer/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data/explorer
+[6.469s] copying vision/ultralytics/data/explorer/gui/dash.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data/explorer/gui
+[6.470s] copying vision/ultralytics/data/explorer/gui/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/data/explorer/gui
+[6.471s] copying vision/ultralytics/models/yolo/model.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo
+[6.476s] copying vision/ultralytics/models/yolo/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo
+[6.476s] copying vision/ultralytics/models/fastsam/model.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/fastsam
+[6.479s] copying vision/ultralytics/models/fastsam/val.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/fastsam
+[6.479s] copying vision/ultralytics/models/fastsam/predict.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/fastsam
+[6.480s] copying vision/ultralytics/models/fastsam/prompt.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/fastsam
+[6.480s] copying vision/ultralytics/models/fastsam/utils.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/fastsam
+[6.484s] copying vision/ultralytics/models/fastsam/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/fastsam
+[6.487s] copying vision/ultralytics/models/nas/model.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/nas
+[6.488s] copying vision/ultralytics/models/nas/val.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/nas
+[6.495s] copying vision/ultralytics/models/nas/predict.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/nas
+[6.497s] copying vision/ultralytics/models/nas/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/nas
+[6.505s] copying vision/ultralytics/models/rtdetr/train.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/rtdetr
+[6.509s] copying vision/ultralytics/models/rtdetr/model.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/rtdetr
+[6.513s] copying vision/ultralytics/models/rtdetr/val.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/rtdetr
+[6.519s] copying vision/ultralytics/models/rtdetr/predict.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/rtdetr
+[6.519s] copying vision/ultralytics/models/rtdetr/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/rtdetr
+[6.520s] copying vision/ultralytics/models/utils/loss.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/utils
+[6.522s] copying vision/ultralytics/models/utils/ops.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/utils
+[6.526s] copying vision/ultralytics/models/utils/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/utils
+[6.526s] copying vision/ultralytics/models/yolov10/train.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolov10
+[6.527s] copying vision/ultralytics/models/yolov10/model.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolov10
+[6.527s] copying vision/ultralytics/models/yolov10/val.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolov10
+[6.528s] copying vision/ultralytics/models/yolov10/predict.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolov10
+[6.528s] copying vision/ultralytics/models/yolov10/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolov10
+[6.529s] copying vision/ultralytics/models/sam/amg.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/sam
+[6.533s] copying vision/ultralytics/models/sam/model.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/sam
+[6.533s] copying vision/ultralytics/models/sam/build.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/sam
+[6.536s] copying vision/ultralytics/models/sam/predict.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/sam
+[6.537s] copying vision/ultralytics/models/sam/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/sam
+[6.537s] copying vision/ultralytics/models/yolo/obb/train.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/obb
+[6.537s] copying vision/ultralytics/models/yolo/obb/val.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/obb
+[6.541s] copying vision/ultralytics/models/yolo/obb/predict.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/obb
+[6.549s] copying vision/ultralytics/models/yolo/obb/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/obb
+[6.553s] copying vision/ultralytics/models/yolo/pose/train.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/pose
+[6.557s] copying vision/ultralytics/models/yolo/pose/val.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/pose
+[6.558s] copying vision/ultralytics/models/yolo/pose/predict.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/pose
+[6.558s] copying vision/ultralytics/models/yolo/pose/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/pose
+[6.558s] copying vision/ultralytics/models/yolo/detect/train.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/detect
+[6.563s] copying vision/ultralytics/models/yolo/detect/val.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/detect
+[6.563s] copying vision/ultralytics/models/yolo/detect/predict.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/detect
+[6.564s] copying vision/ultralytics/models/yolo/detect/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/detect
+[6.569s] copying vision/ultralytics/models/yolo/segment/train.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/segment
+[6.570s] copying vision/ultralytics/models/yolo/segment/val.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/segment
+[6.570s] copying vision/ultralytics/models/yolo/segment/predict.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/segment
+[6.571s] copying vision/ultralytics/models/yolo/segment/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/segment
+[6.571s] copying vision/ultralytics/models/yolo/classify/train.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/classify
+[6.572s] copying vision/ultralytics/models/yolo/classify/val.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/classify
+[6.572s] copying vision/ultralytics/models/yolo/classify/predict.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/classify
+[6.572s] copying vision/ultralytics/models/yolo/classify/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/yolo/classify
+[6.572s] copying vision/ultralytics/models/sam/modules/transformer.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/sam/modules
+[6.573s] copying vision/ultralytics/models/sam/modules/decoders.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/sam/modules
+[6.576s] copying vision/ultralytics/models/sam/modules/encoders.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/sam/modules
+[6.576s] copying vision/ultralytics/models/sam/modules/tiny_encoder.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/sam/modules
+[6.581s] copying vision/ultralytics/models/sam/modules/sam.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/sam/modules
+[6.582s] copying vision/ultralytics/models/sam/modules/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/models/sam/modules
+[6.582s] copying vision/ultralytics/nn/modules/transformer.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/nn/modules
+[6.583s] copying vision/ultralytics/nn/modules/head.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/nn/modules
+[6.583s] copying vision/ultralytics/nn/modules/conv.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/nn/modules
+[6.584s] copying vision/ultralytics/nn/modules/block.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/nn/modules
+[6.584s] copying vision/ultralytics/nn/modules/utils.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/nn/modules
+[6.584s] copying vision/ultralytics/nn/modules/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/nn/modules
+[6.585s] copying vision/ultralytics/utils/callbacks/dvc.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils/callbacks
+[6.585s] copying vision/ultralytics/utils/callbacks/neptune.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils/callbacks
+[6.585s] copying vision/ultralytics/utils/callbacks/mlflow.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils/callbacks
+[6.586s] copying vision/ultralytics/utils/callbacks/tensorboard.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils/callbacks
+[6.586s] copying vision/ultralytics/utils/callbacks/clearml.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils/callbacks
+[6.587s] copying vision/ultralytics/utils/callbacks/wb.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils/callbacks
+[6.587s] copying vision/ultralytics/utils/callbacks/comet.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils/callbacks
+[6.587s] copying vision/ultralytics/utils/callbacks/hub.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils/callbacks
+[6.587s] copying vision/ultralytics/utils/callbacks/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils/callbacks
+[6.588s] copying vision/ultralytics/utils/callbacks/raytune.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils/callbacks
+[6.588s] copying vision/ultralytics/utils/callbacks/base.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/utils/callbacks
+[6.588s] copying vision/ultralytics/trackers/utils/gmc.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/trackers/utils
+[6.588s] copying vision/ultralytics/trackers/utils/kalman_filter.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/trackers/utils
+[6.589s] copying vision/ultralytics/trackers/utils/matching.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/trackers/utils
+[6.589s] copying vision/ultralytics/trackers/utils/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build/lib/vision/ultralytics/trackers/utils
+[6.616s] running install
+[6.649s] running install_lib
+[6.880s] running install_data
+[6.881s] copying resource/vision -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/ament_index/resource_index/packages
+[6.882s] copying package.xml -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/share/vision
+[6.883s] running install_egg_info
+[7.017s] removing '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info' (and everything under it)
+[7.020s] Copying ../../build/vision/vision.egg-info to /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info
+[7.024s] running install_scripts
+[8.198s] Installing vision_ball script to /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/vision
+[8.200s] Installing vision_silo script to /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/vision
+[8.225s] writing list of installed files to '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/install.log'
+[8.398s] Invoked command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision' returned '0': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/vision/install.log --single-version-externally-managed install_data

@@ -43,6 +43,11 @@ void DFRobotSensor::begin()
     previousTime = millis();
 }
 
+void DFRobotSensor::Reset()
+{
+    set_zero = sensor.Angle.Z;
+}
+
 void DFRobotSensor::update()
 {
     if (sensor.available())
