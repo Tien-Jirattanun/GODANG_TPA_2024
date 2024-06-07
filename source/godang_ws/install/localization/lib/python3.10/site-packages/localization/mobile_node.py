@@ -130,6 +130,7 @@ class MobileNode(Node):
         vel_msg = Float32MultiArray()
         done_msg = Int32()
         mani_msg = Int32()
+        reset_msg = Int32()
         vel_msg.layout.dim.append(
             MultiArrayDimension(label='rows', size=3, stride=3))
         vel_msg.layout.dim.append(MultiArrayDimension(
@@ -139,69 +140,192 @@ class MobileNode(Node):
             self.vel_array = [0.0, 0.0, 0.0]
             self.way_point = 0
         elif self.state[0] == 1 and self.state[1] == 0 and self.state[2] == 0:
-            pass
-            # # waypoint 1
-            # if self.way_point == 0:
-            #     self.vel_array = self.pos_control.go_to_position(6, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
-            #     if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
-            #         self.way_point += 1
-            #         self.resetStart()
-            # # waypoint 2
-            # elif self.way_point == 1:
-            #     self.vel_array = self.pos_control.go_to_position(6, 2, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
-            #     if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
-            #         self.way_point += 1
-            #         self.resetStart()
-            # # waypoint 3
-            # if self.way_point == 0:
-            #     self.vel_array = self.pos_control.rotate(90, self.pos_z)
-            #     if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
-            #         self.way_point += 1
-            #         self.resetStart()
-            # # waypoint 4
-            # elif self.way_point == 1:
-            #     self.vel_array = self.pos_control.go_to_position(
-            #         1, 0, 90, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
-            #     if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
-            #         self.way_point += 1
-            #         self.resetStart()
-            # else:
-            #     print(2)
-            #     self.vel_array = [0.0, 0.0, 0.0]
-            #     self.way_point = 0
-            #     done_msg.data = 2
+            #Normal Run Right
+            # waypoint 1
+            if self.way_point == 0:
+                self.vel_array = self.pos_control.go_to_position(6.45, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 2
+            elif self.way_point == 1:
+                self.vel_array = self.pos_control.go_to_position(6.45, 3.80, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 3
+            if self.way_point == 2:
+                self.vel_array = self.pos_control.go_to_position(10.07, 3.80, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 4
+            elif self.way_point == 3:
+                self.vel_array = self.pos_control.go_to_position(10.07, 2.75, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 5
+            elif self.way_point == 4:
+                self.vel_array = self.pos_control.rotate(-90,self.pos_z)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            else:
+                print(2)
+                self.vel_array = [0.0, 0.0, 0.0]
+                self.way_point = 0
+                done_msg.data = 2
+                reset_msg.data = 1
+                self.counter = 0
         elif self.state[0] == 1 and self.state[1] == 1 and self.state[2] == 0:
-            pass
-        elif self.state[0] == 1 and self.state[1] == 0 and self.state[2] == 0:
-            pass
+            #Normal Run Left
+            # waypoint 1
+            if self.way_point == 0:
+                self.vel_array = self.pos_control.go_to_position(6.45, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 2
+            elif self.way_point == 1:
+                self.vel_array = self.pos_control.go_to_position(6.45, -3.80, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 3
+            if self.way_point == 2:
+                self.vel_array = self.pos_control.go_to_position(10.07, -3.80, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 4
+            elif self.way_point == 3:
+                self.vel_array = self.pos_control.go_to_position(10.07, -2.75, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 5
+            elif self.way_point == 4:
+                self.vel_array = self.pos_control.rotate(90,self.pos_z)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            else:
+                print(2)
+                self.vel_array = [0.0, 0.0, 0.0]
+                self.way_point = 0
+                done_msg.data = 2
+                reset_msg.data = 1
+                self.counter = 0
         elif self.state[0] == 1 and self.state[1] == 1 and self.state[2] == 1:
-            pass
+            #Retire Run Right
+            # waypoint 1
+            if self.way_point == 0:
+                self.vel_array = self.pos_control.go_to_position(0.92, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 2
+            elif self.way_point == 1:
+                self.vel_array = self.pos_control.go_to_position(0.92, 3.95, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 3
+            if self.way_point == 2:
+                self.vel_array = self.pos_control.go_to_position(4.54, 3.95, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 4
+            elif self.way_point == 3:
+                self.vel_array = self.pos_control.go_to_position(4.54, 2.90, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 5
+            elif self.way_point == 4:
+                self.vel_array = self.pos_control.rotate(-90,self.pos_z)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            else:
+                print(2)
+                self.vel_array = [0.0, 0.0, 0.0]
+                self.way_point = 0
+                done_msg.data = 2
+                reset_msg.data = 1
+                self.counter = 0
+        elif self.state[0] == 1 and self.state[1] == 0 and self.state[2] == 1:
+            #Retire Run Left
+            # waypoint 1
+            if self.way_point == 0:
+                self.vel_array = self.pos_control.go_to_position(0.92, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 2
+            elif self.way_point == 1:
+                self.vel_array = self.pos_control.go_to_position(0.92, -3.95, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 3
+            if self.way_point == 2:
+                self.vel_array = self.pos_control.go_to_position(4.54, -3.95, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 4
+            elif self.way_point == 3:
+                self.vel_array = self.pos_control.go_to_position(4.54, -2.90, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            # waypoint 5
+            elif self.way_point == 4:
+                self.vel_array = self.pos_control.rotate(90,self.pos_z)
+                if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
+                    self.way_point += 1
+                    self.resetStart()
+            else:
+                print(2)
+                self.vel_array = [0.0, 0.0, 0.0]
+                self.way_point = 0
+                done_msg.data = 2
+                reset_msg.data = 1
+                self.counter = 0
         elif self.state[0] == 2:
-            pass
+            done_msg.data = 3
         elif self.state[0] == 3:
-            self.vel_array = [0.0, 0.0, 0.0]
-            if self.ball_x != 0.0 or self.ball_y != 0.0 or self.ball_z != 0.0:
-                self.ball_x_stable = self.ball_x
-                self.ball_y_stable = self.ball_y
-                self.ball_z_stable = self.ball_z
-                
-                _, err_y = self.pos_control.world2robot(self.ball_x_stable, self.ball_y_stable)
-                self.target_yaw = math.degrees(math.atan2((self.ball_y_stable - self.pos_y),(self.ball_x_stable - self.pos_x)))
-                if self.done_rotate or (self.ball_fresh and abs(err_y) <= 0.035):
-                    print("Done ja")
-                    self.vel_array = [0.0,0.0,0.0]
-                    self.way_point = 0
-                    self.pos_control.counter = 0
-                    done_msg.data = 4
-                    self.done_rotate = True
-                else :
-                    # print(self.ball_fresh)
-                    if self.ball_fresh:
-                        print("Error y: ", err_y)
-                    # self.vel_array = self.pos_control.rotate(self.target_yaw, self.pos_z)
-                    self.vel_array = self.pos_control.go_to_world_position(self.pos_x, self.ball_y_stable, 0., 0.)
+            if self.counter < 300:
+                pass
+            else :    
+                self.vel_array = [0.0, 0.0, 0.0]
+                if self.ball_x != 0.0 or self.ball_y != 0.0 or self.ball_z != 0.0:
+                    self.ball_x_stable = self.ball_x
+                    self.ball_y_stable = self.ball_y
+                    self.ball_z_stable = self.ball_z
                     
-                    self.ball_fresh = False
+                    _, err_y = self.pos_control.world2robot(self.ball_x_stable, self.ball_y_stable)
+                    self.target_yaw = math.degrees(math.atan2((self.ball_y_stable - self.pos_y),(self.ball_x_stable - self.pos_x)))
+                    if self.done_rotate or (self.ball_fresh and abs(err_y) <= 0.035):
+                        print("Done ja")
+                        self.vel_array = [0.0,0.0,0.0]
+                        self.way_point = 0
+                        self.pos_control.counter = 0
+                        done_msg.data = 4
+                        self.done_rotate = True
+                        self.counter = 0 
+                        # may be the problem
+                    else :
+                        # print(self.ball_fresh)
+                        if self.ball_fresh:
+                            print("Error y: ", err_y)
+                        # self.vel_array = self.pos_control.rotate(self.target_yaw, self.pos_z)
+                        self.vel_array = self.pos_control.go_to_world_position(self.pos_x, self.ball_y_stable, 0., 0.)                        
+                        self.ball_fresh = False
+            self.counter+=1
                     
         elif self.state[0] == 4:
             if self.way_point == 0:
@@ -300,7 +424,7 @@ class MobileNode(Node):
             print("state 9")
             self.vel_array = self.pos_control.go_to_position(0, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
             if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
-                done_msg.data = 10
+                done_msg.data = 3
         else:
             self.vel_array = [0.0, 0.0, 0.0]
             
@@ -309,6 +433,7 @@ class MobileNode(Node):
         # print("state" , done_msg.data)
         vel_msg.data = self.vel_array
         mani_msg.data = self.mani_com
+        self.publisher_reset.publish(reset_msg)
         self.publisher_vel.publish(vel_msg)
         self.publisher_done.publish(done_msg)
         self.publisher_mani.publish(mani_msg)

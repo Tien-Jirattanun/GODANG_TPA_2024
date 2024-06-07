@@ -21,11 +21,13 @@
 // microros define
 
 rcl_subscription_t subscriber;
+rcl_subscription_t subscriber_reset;
 rcl_publisher_t publisher;
 rcl_publisher_t publisher_butt;
 std_msgs__msg__Float32MultiArray vel_msg;
 std_msgs__msg__Float32MultiArray pos_msg;
 std_msgs__msg__Int32 butt_msg;
+std_msgs__msg__Int32 reset_msg;
 
 rclc_executor_t executor;
 rclc_support_t support;
@@ -75,6 +77,7 @@ int currentStep = 0;
 int stepsCount = 0;
 bool newStepsAvailable = false;
 TransformStep steps[10];
+int reset_data = 0;
 
 int counter = 0;
 
@@ -158,6 +161,18 @@ void subscription_callback(const void *msgin)
   // }s
 }
 
+void subscription_reset_callback(const void *msgin)
+{
+  const std_msgs__msg__Int32 *msg = (const std_msgs__msg__Int32 *)msgin;
+  if (msg->data == 1)
+  {
+    currentPosition.x = 0;
+    currentPosition.y = 0;
+    IMU.begin();
+  }
+  digitalWrite(LED_PIN, !digitalRead(LED_PIN));
+}
+
 // timer interrupt call back
 
 bool TimerHandler(struct repeating_timer *t)
@@ -205,6 +220,7 @@ void setup()
 
   // create subscriber
   RCCHECK(rclc_subscription_init_default(&subscriber, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "vel_data"));
+  RCCHECK(rclc_subscription_init_default(&subscriber_reset, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32), "reset_data"));
 
   // create publisher
   RCCHECK(rclc_publisher_init_default(&publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray), "pos_data"));
@@ -233,8 +249,9 @@ void setup()
   }
 
   // create executor
-  RCCHECK(rclc_executor_init(&executor, &support.context, 3, &allocator));
+  RCCHECK(rclc_executor_init(&executor, &support.context, 4, &allocator));
   RCCHECK(rclc_executor_add_subscription(&executor, &subscriber, &vel_msg, &subscription_callback, ON_NEW_DATA));
+  RCCHECK(rclc_executor_add_subscription(&executor, &subscriber_reset, &reset_msg, &subscription_reset_callback, ON_NEW_DATA));
   RCCHECK(rclc_executor_add_timer(&executor, &timer));
 
   pos_msg.data.capacity = 3;
