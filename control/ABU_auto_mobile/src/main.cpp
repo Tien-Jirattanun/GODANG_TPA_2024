@@ -81,13 +81,13 @@ int counter = 0;
 #define LED_PIN 25
 
 int button(){
-  if(digitalRead(0) == HIGH) 
-    return 1;  
-  else if(digitalRead(1) == HIGH) 
+  if(digitalRead(0) == LOW) 
     return 2;  
-  else if(digitalRead(19) == HIGH) 
+  else if(digitalRead(1) == LOW) 
+    return 1;  
+  else if(digitalRead(19) == LOW) 
     return 3;
-  else if(digitalRead(18) == HIGH) 
+  else if(digitalRead(18) == LOW) 
     return 4;
   else return 0;
 }
@@ -184,6 +184,11 @@ void setup()
   Serial.begin(921600);
   set_microros_serial_transports(Serial);
   delay(100);
+
+  pinMode(0,INPUT_PULLUP);
+  pinMode(1,INPUT_PULLUP);
+  pinMode(19,INPUT_PULLUP);
+  pinMode(18,INPUT_PULLUP);
 
   pinMode(LED_PIN, OUTPUT);
   digitalWrite(LED_PIN, LOW);

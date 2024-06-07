@@ -175,7 +175,7 @@ class VisionBallNode(Node):
         # self.vision = DistanceCalculator(1,1)
         # load an official model
         self.robot_position_in_world_position = [0, 0, 0]
-        self.cap_ball = cv2.VideoCapture(2)
+        self.cap_ball = cv2.VideoCapture(0)
         self.cap_ball.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
         self.cap_ball.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
         self.pos_history_ = OrderedDict()

@@ -23,7 +23,7 @@ class StateNode(Node):
         self.button = 0
         self.done = 0
         # state [state, field, retired]
-        self.state = [3, 0, 0] #mockup
+        self.state = [5, 0, 0] #mockup
         
     def listener_butt_callback(self, msg):
         self.button = msg.data
@@ -36,9 +36,9 @@ class StateNode(Node):
         msg = Int32MultiArray()
         
         # on start
-        if self.state[0] == 0 and self.button == 1:
+        if self.state[0] == 0 and self.button == 2:
             self.state = [1, 0, 0]
-        elif self.state[0] == 0 and self.button == 2:
+        elif self.state[0] == 0 and self.button == 1:
             self.state = [1, 1, 0]
         elif self.state[0] == 0 and self.button == 3:
             self.state = [1, 0, 1]

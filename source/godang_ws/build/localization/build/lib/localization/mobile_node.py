@@ -139,7 +139,7 @@ class MobileNode(Node):
             self.vel_array = [0.0, 0.0, 0.0]
             self.way_point = 0
         elif self.state[0] == 1 and self.state[1] == 0 and self.state[2] == 0:
-
+            pass
             # # waypoint 1
             # if self.way_point == 0:
             #     self.vel_array = self.pos_control.go_to_position(6, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
@@ -152,24 +152,24 @@ class MobileNode(Node):
             #     if self.vel_array[0] < 0.01 and self.vel_array[0] > -0.01 and self.vel_array[1] < 0.01 and self.vel_array[1] > -0.01 and self.vel_array[2] < 0.01 and self.vel_array[2] > -0.01:
             #         self.way_point += 1
             #         self.resetStart()
-            # waypoint 3
-            if self.way_point == 0:
-                self.vel_array = self.pos_control.rotate(90, self.pos_z)
-                if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
-                    self.way_point += 1
-                    self.resetStart()
-            # waypoint 4
-            elif self.way_point == 1:
-                self.vel_array = self.pos_control.go_to_position(
-                    1, 0, 90, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
-                if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
-                    self.way_point += 1
-                    self.resetStart()
-            else:
-                print(2)
-                self.vel_array = [0.0, 0.0, 0.0]
-                self.way_point = 0
-                done_msg.data = 2
+            # # waypoint 3
+            # if self.way_point == 0:
+            #     self.vel_array = self.pos_control.rotate(90, self.pos_z)
+            #     if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
+            #         self.way_point += 1
+            #         self.resetStart()
+            # # waypoint 4
+            # elif self.way_point == 1:
+            #     self.vel_array = self.pos_control.go_to_position(
+            #         1, 0, 90, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
+            #     if self.vel_array[0] == 0.0 and self.vel_array[1] == 0.0 and self.vel_array[2] == 0.0:
+            #         self.way_point += 1
+            #         self.resetStart()
+            # else:
+            #     print(2)
+            #     self.vel_array = [0.0, 0.0, 0.0]
+            #     self.way_point = 0
+            #     done_msg.data = 2
         elif self.state[0] == 1 and self.state[1] == 1 and self.state[2] == 0:
             pass
         elif self.state[0] == 1 and self.state[1] == 0 and self.state[2] == 0:

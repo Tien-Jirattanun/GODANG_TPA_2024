@@ -19,14 +19,14 @@ def generate_launch_description():
         executable="vision_ball"
     )
     
-    # vision_silo_node = Node(
-    #     package="vision",
-    #     executable="vision_silo"
-    # )
+    vision_silo_node = Node(
+        package="vision",
+        executable="vision_silo"
+    )
     
     ld.add_action(mobile_node)
     ld.add_action(state_node)
     ld.add_action(vision_ball_node)
-    # ld.add_action(vision_silo_node)
+    ld.add_action(vision_silo_node)
     
     return ld

@@ -139,6 +139,7 @@ class MobileNode(Node):
             self.vel_array = [0.0, 0.0, 0.0]
             self.way_point = 0
         elif self.state[0] == 1 and self.state[1] == 0 and self.state[2] == 0:
+            pass
             # # waypoint 1
             # if self.way_point == 0:
             #     self.vel_array = self.pos_control.go_to_position(6, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)

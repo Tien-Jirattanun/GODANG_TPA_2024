@@ -206,17 +206,23 @@ void loop1()
         break;
       case 2:
         bg.grab();
+      case 3:
         bg.lift();
         bg.release();
         break;
-      case 3:
+      case 4:
         bg.shoot();
         break;
-      case 4:
+      case 5:
         bg.stepper_cw();
         break;
-      case 5:
+      case 6:
         bg.stepper_ccw();
+        break;
+      case 7:
+        bg.lift();
+        bg.release();
+        bg.shoot();
         break;
       default:
         break;
