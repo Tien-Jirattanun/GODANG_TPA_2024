@@ -92,7 +92,8 @@ def computeBallPosRobotframe(list_of_ball):
     ## check if there is any red balls
     red_ball = False
     for i in range(len(list_of_ball)):
-        if list_of_ball[i][2] == "red":
+        # if list_of_ball[i][2] == "red":
+        if list_of_ball[i][2] ==  class_names[1]:
             red_ball = True
             break
 
@@ -115,7 +116,9 @@ def computeBallPosRobotframe(list_of_ball):
             diff_x = sorted_conf_ball[i][0][2] - sorted_conf_ball[i][0][0]
             diff_y = sorted_conf_ball[i][0][3] - sorted_conf_ball[i][0][1]
 
-            if sorted_conf_ball[i][2] == 'red' and abs(diff_x - diff_y) < tolarance:
+            # if sorted_conf_ball[i][2] == 'red' and abs(diff_x - diff_y) < tolarance:
+            
+            if sorted_conf_ball[i][2] == class_names[1] and abs(diff_x - diff_y) < tolarance:
                 ## compute the center of the ball
                 x1, y1, x2, y2 = sorted_conf_ball[i][0]
                 u = x1 + (x2 - x1) / 2
