@@ -1,0 +1,25 @@
+[6.075s] Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/planing': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/planing build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/install.log --single-version-externally-managed install_data
+[7.758s] running egg_info
+[7.805s] writing ../../build/planing/planing.egg-info/PKG-INFO
+[7.806s] writing dependency_links to ../../build/planing/planing.egg-info/dependency_links.txt
+[7.807s] writing entry points to ../../build/planing/planing.egg-info/entry_points.txt
+[7.808s] writing requirements to ../../build/planing/planing.egg-info/requires.txt
+[7.808s] writing top-level names to ../../build/planing/planing.egg-info/top_level.txt
+[7.919s] reading manifest file '../../build/planing/planing.egg-info/SOURCES.txt'
+[7.923s] writing manifest file '../../build/planing/planing.egg-info/SOURCES.txt'
+[7.925s] running build
+[7.926s] running build_py
+[7.926s] copying planing/state_node.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/build/lib/planing
+[7.927s] copying planing/__init__.py -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/build/lib/planing
+[7.928s] running install
+[7.956s] running install_lib
+[8.032s] running install_data
+[8.033s] copying resource/planing -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/ament_index/resource_index/packages
+[8.033s] copying package.xml -> /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/share/planing
+[8.033s] running install_egg_info
+[8.101s] removing '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/lib/python3.10/site-packages/planing-0.0.0-py3.10.egg-info' (and everything under it)
+[8.103s] Copying ../../build/planing/planing.egg-info to /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/lib/python3.10/site-packages/planing-0.0.0-py3.10.egg-info
+[8.106s] running install_scripts
+[8.622s] Installing state_node script to /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/lib/planing
+[8.623s] writing list of installed files to '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/install.log'
+[8.721s] Invoked command in '/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/planing' returned '0': PYTHONPATH=/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/prefix_override:/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/install/planing/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/planing build --build-base /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/build install --record /home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/build/planing/install.log --single-version-externally-managed install_data

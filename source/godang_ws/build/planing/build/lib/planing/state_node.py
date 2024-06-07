@@ -38,16 +38,14 @@ class StateNode(Node):
         # on start
         if self.state[0] == 0 and self.button == 2:
             self.state = [1, 0, 0]
-        # elif self.state[0] == 0 and self.button == 1:
-        #     self.state = [1, 1, 0]
-        # elif self.state[0] == 0 and self.button == 3:
-        #     self.state = [1, 0, 1]
-        # elif self.state[0] == 0 and self.button == 4:
-        #     self.state = [1, 1, 1]
+        elif self.state[0] == 0 and self.button == 1:
+            self.state = [1, 1, 0]
+        elif self.state[0] == 0 and self.button == 3:
+            self.state = [1, 0, 1]
+        elif self.state[0] == 0 and self.button == 4:
+            self.state = [1, 1, 1]
             
-        if self.done == 2:
-            self.state[0] = 2
-        elif self.done == 3:
+        if self.done == 3:
             self.state[0] = 3
         elif self.done == 4:
             self.state[0] = 4

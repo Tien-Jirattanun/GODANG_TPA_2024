@@ -182,8 +182,8 @@ class MobileNode(Node):
             else:
                 print(2)
                 self.vel_array = [0.0, 0.0, 0.0]
-                self.way_point = 0
-                done_msg.data = 2
+                # self.way_point = 0
+                done_msg.data = 3
                 reset_msg.data = 1
                 self.counter = 0
         elif self.state[0] == 1 and self.state[1] == 1 and self.state[2] == 0:
@@ -221,8 +221,8 @@ class MobileNode(Node):
             else:
                 ##print(2)
                 self.vel_array = [0.0, 0.0, 0.0]
-                self.way_point = 0
-                done_msg.data = 2
+                # self.way_point = 0
+                done_msg.data = 3
                 reset_msg.data = 1
                 self.counter = 0
         elif self.state[0] == 1 and self.state[1] == 1 and self.state[2] == 1:
@@ -260,8 +260,8 @@ class MobileNode(Node):
             else:
                 ##print(2)
                 self.vel_array = [0.0, 0.0, 0.0]
-                self.way_point = 0
-                done_msg.data = 2
+                # self.way_point = 0
+                done_msg.data = 3
                 reset_msg.data = 1
                 self.counter = 0
         elif self.state[0] == 1 and self.state[1] == 0 and self.state[2] == 1:
@@ -299,15 +299,13 @@ class MobileNode(Node):
             else:
                 ##print(2)
                 self.vel_array = [0.0, 0.0, 0.0]
-                self.way_point = 0
-                done_msg.data = 2
+                # self.way_point = 0
+                done_msg.data = 3
                 reset_msg.data = 1
                 self.counter = 0
-        elif self.state[0] == 2:
-            done_msg.data = 3
         elif self.state[0] == 3:
             if self.counter < 300:
-                pass
+                self.vel_array = [0.0, 0.0, 0.0]
             else :    
                 self.vel_array = [0.0, 0.0, 0.0]
                 if self.ball_x != 0.0 or self.ball_y != 0.0 or self.ball_z != 0.0:

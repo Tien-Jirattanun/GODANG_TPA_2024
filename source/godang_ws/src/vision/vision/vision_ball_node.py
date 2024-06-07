@@ -37,7 +37,7 @@ focal_length_x = 511.8969955785815
 focal_length_y = 484.99541996780914
 real_diameter = 0.19
 model = YOLOv10(
-    "/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision/blueballWeight.pt"
+    "/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision/bestv10_redball.pt"
 )
 
 # distance center of ball obset from the center of the camera
