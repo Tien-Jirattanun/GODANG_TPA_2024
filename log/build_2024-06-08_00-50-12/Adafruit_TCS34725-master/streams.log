@@ -1,0 +1,43 @@
+[0.951s] Invoking command in '/home/tien/Documents/GitHub/BoutToHackNASA/build/Adafruit_TCS34725-master': /usr/bin/cmake /home/tien/Documents/GitHub/BoutToHackNASA/control/ABU_auto_mani/lib/Adafruit_TCS34725-master -DCMAKE_INSTALL_PREFIX=/home/tien/Documents/GitHub/BoutToHackNASA/install/Adafruit_TCS34725-master
+[0.967s] [33mCMake Warning (dev) in CMakeLists.txt:
+[0.968s]   No project() command is present.  The top-level CMakeLists.txt file must
+[0.968s]   contain a literal, direct call to the project() command.  Add a line of
+[0.970s]   code such as
+[0.971s] 
+[0.971s]     project(ProjectName)
+[0.972s] 
+[0.972s]   near the top of the file, but after cmake_minimum_required().
+[0.972s] 
+[0.975s]   CMake is pretending there is a "project(Project)" command on the first
+[0.975s]   line.
+[0.976s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[0.976s] [0m
+[1.054s] -- The C compiler identification is GNU 11.4.0
+[1.163s] -- The CXX compiler identification is GNU 11.4.0
+[1.179s] -- Detecting C compiler ABI info
+[1.314s] -- Detecting C compiler ABI info - done
+[1.335s] -- Check for working C compiler: /usr/bin/cc - skipped
+[1.335s] -- Detecting C compile features
+[1.337s] -- Detecting C compile features - done
+[1.344s] -- Detecting CXX compiler ABI info
+[1.492s] -- Detecting CXX compiler ABI info - done
+[1.511s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.512s] -- Detecting CXX compile features
+[1.513s] -- Detecting CXX compile features - done
+[1.515s] [31mCMake Error at CMakeLists.txt:1 (idf_component_register):
+[1.515s]   Unknown CMake command "idf_component_register".
+[1.516s] 
+[1.516s] [0m
+[1.516s] [33mCMake Warning (dev) in CMakeLists.txt:
+[1.516s]   No cmake_minimum_required command is present.  A line of code such as
+[1.517s] 
+[1.517s]     cmake_minimum_required(VERSION 3.22)
+[1.517s] 
+[1.517s]   should be added at the top of the file.  The version specified may be lower
+[1.517s]   if you wish to support older CMake versions for this project.  For more
+[1.517s]   information run "cmake --help-policy CMP0000".
+[1.518s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[1.518s] [0m
+[1.518s] -- Configuring incomplete, errors occurred!
+[1.518s] See also "/home/tien/Documents/GitHub/BoutToHackNASA/build/Adafruit_TCS34725-master/CMakeFiles/CMakeOutput.log".
+[1.521s] Invoked command in '/home/tien/Documents/GitHub/BoutToHackNASA/build/Adafruit_TCS34725-master' returned '1': /usr/bin/cmake /home/tien/Documents/GitHub/BoutToHackNASA/control/ABU_auto_mani/lib/Adafruit_TCS34725-master -DCMAKE_INSTALL_PREFIX=/home/tien/Documents/GitHub/BoutToHackNASA/install/Adafruit_TCS34725-master

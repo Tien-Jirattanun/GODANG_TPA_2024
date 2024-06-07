@@ -69,6 +69,7 @@ class PositionController:
             self.counter += 1
             max_local_vel = min(self.counter * 0.05, self.Max_speed)
             error_x, error_y = self.world2robot(target_x, target_y)
+            error_y = error_y * 2
             error_magnitude = math.sqrt(error_x**2 + error_y**2) - offset_distance
             error_direction = math.atan2(error_y, error_x)
 
@@ -79,7 +80,9 @@ class PositionController:
             vx = min(max_local_vel, error_magnitude) * math.cos(error_direction)
             vy = min(max_local_vel, error_magnitude) * math.sin(error_direction)
             
-            if self.counter >= 20 and abs(vx) <= 0.05 and abs(vy) <= 0.05 and abs(vz) <= 1:
+            print("GoToWorld")
+            
+            if self.counter >= 20 and abs(vx) <= 0.01 and abs(vy) <= 0.01 and abs(vz) <= 1:
                 return [0.0,0.0,0.0]
             
             print("error_x", error_x)

@@ -23,7 +23,7 @@ class StateNode(Node):
         self.button = 0
         self.done = 0
         # state [state, field, retired]
-        self.state = [0, 0, 0] #mockup
+        self.state = [3, 0, 0] #mockup
         
     def listener_butt_callback(self, msg):
         self.button = msg.data
