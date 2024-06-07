@@ -7,8 +7,8 @@ class PositionController:
         self.x, self.y, self.theta = 0, 0, 0
         self.PosX = PIDController(kP=0.1, kI=0.05, kD=0)
         self.PosY = PIDController(kP=0.1, kI=0.05, kD=0)
-        self.StraightZ = PIDController(kP=0.01, kI=0.001, kD=0)
-        self.RotateZ = PIDController(kP=0.05, kI=0.05, kD=0.1)
+        self.StraightZ = PIDController(kP=0.005, kI=0.001, kD=0)
+        self.RotateZ = PIDController(kP=0.02, kI=0.02, kD=0.01)
         self.vx, self.vy, self.vz = 0, 0, 0
         self.Max_speed = 0.9
         self.Min_Speed_fac = 0.15
@@ -74,7 +74,7 @@ class PositionController:
 
             error_z = -error_direction #(self.angular_difference(target_yaw, self.theta))
             error_z = self.angular_difference(target_yaw, self.theta)
-            vz = self.clamp_speed(self.RotateZ.update(error_z), self.Max_speed) 
+            vz = self.clamp_speed(self.StraightZ.update(error_z), self.Max_speed) 
             # vz = 0.
             vx = min(max_local_vel, error_magnitude) * math.cos(error_direction)
             vy = min(max_local_vel, error_magnitude) * math.sin(error_direction)
