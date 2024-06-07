@@ -143,7 +143,7 @@ class PositionController:
 
             error_x, error_y = self.rotate_vector([error_x,error_y], -pos_z)
             
-            print(vx,vy,vz)
+            # print(vx,vy,vz)
 
             if abs(error_x) <= 0.05 and abs(error_y) <= 0.05 and abs(error_z) <= 3:
                 return [0.0,0.0,0.0]

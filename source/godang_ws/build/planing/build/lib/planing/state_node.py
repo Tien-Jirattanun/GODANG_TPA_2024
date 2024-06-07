@@ -30,7 +30,7 @@ class StateNode(Node):
         
     def listener_done_callback(self, msg):
         self.done = msg.data
-        print("call back : ",self.done)
+        # print("call back : ",self.done)
 
     def timer_callback(self):
         msg = Int32MultiArray()
@@ -38,12 +38,12 @@ class StateNode(Node):
         # on start
         if self.state[0] == 0 and self.button == 2:
             self.state = [1, 0, 0]
-        elif self.state[0] == 0 and self.button == 1:
-            self.state = [1, 1, 0]
-        elif self.state[0] == 0 and self.button == 3:
-            self.state = [1, 0, 1]
-        elif self.state[0] == 0 and self.button == 4:
-            self.state = [1, 1, 1]
+        # elif self.state[0] == 0 and self.button == 1:
+        #     self.state = [1, 1, 0]
+        # elif self.state[0] == 0 and self.button == 3:
+        #     self.state = [1, 0, 1]
+        # elif self.state[0] == 0 and self.button == 4:
+        #     self.state = [1, 1, 1]
             
         if self.done == 2:
             self.state[0] = 2
@@ -65,7 +65,7 @@ class StateNode(Node):
             self.state[0] = 10
         
         print("loop : ", self.done)
-        print(self.state)
+        # print(self.state)
         msg.data = self.state    
         self.publisher_.publish(msg)
 

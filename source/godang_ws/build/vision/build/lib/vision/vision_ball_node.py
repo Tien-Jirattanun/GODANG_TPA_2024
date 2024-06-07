@@ -14,7 +14,7 @@ import numpy as np
 import cv2
 import time
 
-class_names = ["purple", "red"]
+class_names = ["purple", "blue"]
 
 camera_matrix = np.array(
     [[932.0415378, 0.0, 980.91091955],[0.0, 888.19867202, 557.32231945],[0.0, 0.0, 1.0]]
@@ -35,13 +35,13 @@ focal_length_x = 932.0415377984883
 focal_length_y = 888.198672015751
 real_diameter = 0.19
 model = YOLOv10(
-    "/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision/bestv10_redball.pt"
+    "/home/tien/Documents/GitHub/BoutToHackNASA/source/godang_ws/src/vision/vision/blueballWeight.pt"
 )
 
 
 def detect_objects(frame):
     list_of_ball = []
-    results = model(frame, conf=0.4)
+    results = model(frame, conf=0.1)
 
     class_names = model.names
 
@@ -82,15 +82,15 @@ def computeBallPosRobotframe(list_of_ball):
     ## check if there are any balls
     if list_of_ball == []:
         return []
-    ## check if there is any red balls
-    red_ball = False
+    ## check if there is any blue balls
+    blue_ball = False
     for i in range(len(list_of_ball)):
-        if list_of_ball[i][2] == "red":
-            red_ball = True
+        if list_of_ball[i][2] == "blue":
+            blue_ball = True
             break
 
-    ## if there is no red ball
-    if red_ball == False:
+    ## if there is no blue ball
+    if blue_ball == False:
         ball_pos = []
         return ball_pos
 
@@ -101,7 +101,7 @@ def computeBallPosRobotframe(list_of_ball):
         for i in range(len(sorted_conf_ball)):
             diff_x = sorted_conf_ball[i][0][2] - sorted_conf_ball[i][0][0]
             diff_y = sorted_conf_ball[i][0][3] - sorted_conf_ball[i][0][1]
-            if sorted_conf_ball[i][2] == "red":
+            if sorted_conf_ball[i][2] == "blue":
                 ## compute the center of the ball
                 x1, y1, x2, y2 = sorted_conf_ball[i][0]
                 u = x1 + (x2 - x1) / 2
