@@ -71,6 +71,7 @@ def detect_objects(frame):
             list_of_ball.append([detection, confidence, class_name])
             # print(list_of_ball)
 
+
     return list_of_ball
 
 
@@ -90,22 +91,22 @@ def image_to_robot_coordinates(u, v, depth):
 def computeBallPosRobotframe(list_of_ball):
     ## radio of the ball
     radio_threshold = 1.2
-    tolarance = 5
+    tolarance = 20
     ## check if there are any balls
     if list_of_ball == []:
         return []
     ## check if there is any blue balls
-    red_ball = False
-    for i in range(len(list_of_ball)):
-        # if list_of_ball[i][2] == "red":
-        if list_of_ball[i][2] ==  class_names[1]:
-            red_ball = True
-            break
+    # red_ball = False
+    # for i in range(len(list_of_ball)):
+    #     # if list_of_ball[i][2] == "red":
+    #     if list_of_ball[i][2] ==  class_names[1]:
+    #         red_ball = True
+    #         break
 
     ## if there is no blue ball
-    if red_ball == False:
-        ball_pos = []
-        return ball_pos
+    # if red_ball == False:
+    #     ball_pos = []
+    #     return ball_pos
 
     ## first choose most confident ball and match radio
     # print(list_of_ball)
@@ -117,25 +118,28 @@ def computeBallPosRobotframe(list_of_ball):
         sorted_distance_ball_from_center = sorted(distance_ball_from_center_)
 
         sorted_conf_ball = sorted(list_of_ball, key=lambda x: x[1], reverse=True)
-        for i in range(len(distance_ball_from_center_)):
+        for i in range(len(sorted_distance_ball_from_center)):
             diff_x = sorted_conf_ball[i][0][2] - sorted_conf_ball[i][0][0]
             diff_y = sorted_conf_ball[i][0][3] - sorted_conf_ball[i][0][1]
 
             # if sorted_conf_ball[i][2] == 'red' and abs(diff_x - diff_y) < tolarance:
             
             # if sorted_conf_ball[i][2] == class_names[1] and abs(diff_x - diff_y) < tolarance:
-            if sorted_conf_ball[i][2] == class_names[1]:
+            # if sorted_conf_ball[i][2] == class_names[1]:
+            if abs(diff_x - diff_y) < tolarance:
                 ## compute the center of the ball
                 x1, y1, x2, y2 = sorted_conf_ball[i][0]
                 u = x1 + (x2 - x1) / 2
                 v = y1 + (y2 - y1) / 2
+                index_classname = class_names.index(sorted_conf_ball[i][2])
             
                 ## Get depth
                 depth_x = (real_diameter * focal_length_x) / (x2 - x1)
 
                 ## compute the image_to_robot_coordinates
                 X, Y, Z = image_to_robot_coordinates(u, v, depth_x)
-                ball_pos = [X, Y, Z]
+                ball_pos = [X, Y, Z, index_classname]
+
 
                 return ball_pos
         else:
@@ -157,10 +161,11 @@ def R2WConversion(ball_pos, robot_position_in_world_position):
     X = ball_pos[0]
     Y = ball_pos[1]
     Z = ball_pos[2]
+    class_index = ball_pos[3]
     robot_coords_homogeneous = np.array([Z, -X, 1])
     world_coords_homogeneous = np.dot(transformation_matrix, robot_coords_homogeneous)
     theta_w = np.rad2deg((theta_r))
-    return world_coords_homogeneous[0], world_coords_homogeneous[1], theta_w
+    return world_coords_homogeneous[0], world_coords_homogeneous[1], theta_w, class_index
 
 
 def UndistortImg(img):
@@ -266,7 +271,7 @@ class VisionBallNode(Node):
             if world_Conversion:
                 msg.data = world_Conversion
         else:
-            msg.data = [0.0, 0.0, 0.0]
+            msg.data = [0.0, 0.0, 0.0, -9.9]
 
         print(msg.data)
 
