@@ -48,7 +48,7 @@ else:
 # distance center of ball obset from the center of the camera
 def distance_ball_from_center(x1, x2):
     center_camera = new_camera_matrix[0, 2]
-    return (x1 + x2) / 2 - center_camera
+    return abs((x1 + x2) / 2 - center_camera)
 
 def detect_objects(frame):
     list_of_ball = []
@@ -126,22 +126,22 @@ def computeBallPosRobotframe(list_of_ball):
             
             # if sorted_conf_ball[i][2] == class_names[1] and abs(diff_x - diff_y) < tolarance:
             # if sorted_conf_ball[i][2] == class_names[1]:
-            if abs(diff_x - diff_y) < tolarance:
-                ## compute the center of the ball
-                x1, y1, x2, y2 = sorted_conf_ball[i][0]
-                u = x1 + (x2 - x1) / 2
-                v = y1 + (y2 - y1) / 2
-                index_classname = class_names.index(sorted_conf_ball[i][2])
-            
-                ## Get depth
-                depth_x = (real_diameter * focal_length_x) / (x2 - x1)
+            # if abs(diff_x - diff_y) < tolarance:
+            ## compute the center of the ball
+            x1, y1, x2, y2 = sorted_conf_ball[i][0]
+            u = x1 + (x2 - x1) / 2
+            v = y1 + (y2 - y1) / 2
+            index_classname = class_names.index(sorted_conf_ball[i][2])
+        
+            ## Get depth
+            depth_x = (real_diameter * focal_length_x) / (x2 - x1)
 
-                ## compute the image_to_robot_coordinates
-                X, Y, Z = image_to_robot_coordinates(u, v, depth_x)
-                ball_pos = [X, Y, Z, index_classname]
+            ## compute the image_to_robot_coordinates
+            X, Y, Z = image_to_robot_coordinates(u, v, depth_x)
+            ball_pos = [X, Y, Z, index_classname]
 
 
-                return ball_pos
+            return ball_pos
         else:
             ball_pos = []
     return ball_pos
@@ -165,7 +165,7 @@ def R2WConversion(ball_pos, robot_position_in_world_position):
     robot_coords_homogeneous = np.array([Z, -X, 1])
     world_coords_homogeneous = np.dot(transformation_matrix, robot_coords_homogeneous)
     theta_w = np.rad2deg((theta_r))
-    return world_coords_homogeneous[0], world_coords_homogeneous[1], theta_w, class_index
+    return world_coords_homogeneous[0], world_coords_homogeneous[1], theta_w
 
 
 def UndistortImg(img):
@@ -271,7 +271,7 @@ class VisionBallNode(Node):
             if world_Conversion:
                 msg.data = world_Conversion
         else:
-            msg.data = [0.0, 0.0, 0.0, -9.9]
+            msg.data = [0.0, 0.0, 0.0]
 
         print(msg.data)
 
