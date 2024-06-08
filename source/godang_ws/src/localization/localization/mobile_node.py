@@ -381,7 +381,7 @@ class MobileNode(Node):
                 ##print(3)
                 if self.counter < 100:
                     self.vel_array = [0.1, 0.0,0.0]
-                elif self.counter < 50:
+                elif self.counter < 150:
                     self.vel_array = [0.0, 0.0, 0.0]
                 else:
                     self.vel_array = self.pos_control.go_to_position(0.0, 0, 0, self.pos_x, self.pos_y, self.pos_z, self.startX, self.startY)
