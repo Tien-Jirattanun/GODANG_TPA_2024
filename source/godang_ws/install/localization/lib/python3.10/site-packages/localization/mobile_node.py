@@ -72,7 +72,6 @@ class MobileNode(Node):
         # state
         self.state = [0, 0, 0]
         self.rotate_round = 0
-        
         # way point
         self.way_point = 0
         self.startX = 0
@@ -81,7 +80,6 @@ class MobileNode(Node):
         # loop control
         self.counter = 0
         self.counter_1 = 0
-        self.counter_color = 0
         # ========================
 
     def listener_state_callback(self, msg):
@@ -375,23 +373,10 @@ class MobileNode(Node):
                 if (self.mani_sensor[0] + self.mani_sensor[1]) == 0:
                     self.vel_array = [0.1, 0.0,0.0]
                     self.mani_com = 2
-                    if (self.mani_sensor[4] < 5000 or self.mani_sensor[5] > 15000):
-                        self.counter = 0
-                        self.way_point += 1
-                    else :
-                        self.vel_array = [0.0, 0.0,0.0]
-                        self.counter_color = 0
-                        self.way_point = 5
+                    self.counter = 0
+                    self.way_point += 1
                 else:
                     self.vel_array = [0.1, 0.0,0.0]
-            elif self.way_point == 5:
-                self.vel_array = [-0.1,0.0,0.0]
-                if (self.counter_color < 500):
-                    self.mani_com = 3
-                elif (self.counter_color < 700):
-                    self.mani_com = 2
-                else :
-                    self.way_point = 2
             elif self.way_point == 3:
                 ##print(3)
                 if self.counter < 100:
