@@ -1,4 +1,4 @@
-# Bout to hack NASA
+# TPA 2024 Godang TEAM
 
 This git contain the code, ROS work space and testing enviroment
 
